@@ -1,5 +1,5 @@
 ---
-import BlogLayout from '../layouts/BlogLayout.astro';
+import Layout from '../layouts/Layout.astro';
 
 const jsonLd = JSON.stringify({
   "@context": "https://schema.org",
@@ -18,12 +18,13 @@ const jsonLd = JSON.stringify({
     "@type": "Country",
     "name": "España"
   },
-  "priceRange": "Consultar presupuesto"
+  "priceRange": "300€ - 8.000€ (pago único)"
 });
 
 const services = [
   {
     id: "mejora-hojas-calculo",
+    image: "/img/blog/hero-sheets-tips.png",
     icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3h18v18H3z"/><path d="M3 9h18"/><path d="M9 3v18"/><path d="M13 13l2 2 4-4"/></svg>`,
     title: "Optimización Pro de Google Sheets",
     subtitle: "De hojas lentas a sistemas de alto rendimiento",
@@ -36,11 +37,11 @@ const services = [
       "Sistemas de búsqueda y filtrado ultra-rápidos",
       "Limpieza de duplicados y normalización"
     ],
-    accent: "blue",
-    image: "/img/servicios/sheets.png"
+    price: "desde 300€"
   },
   {
     id: "automatizacion-appscript",
+    image: "/img/blog/hero-automatizacion.png",
     icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>`,
     title: "Automatización con Motores AppScript",
     subtitle: "Tu empresa trabajando mientras tú descansas",
@@ -53,11 +54,11 @@ const services = [
       "Conexión con APIs externas (Stripe, WhatsApp...)",
       "Registro de errores y logs de ejecución"
     ],
-    accent: "blue",
-    image: "/img/servicios/automation.png"
+    price: "desde 500€"
   },
   {
     id: "software-customizado",
+    image: "/img/blog/hero-software.png",
     icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><path d="M8 21h8"/><path d="M12 17v4"/></svg>`,
     title: "Web-Apps a Medida (Ecosistema Google)",
     subtitle: "Software potente, interfaz profesional, coste cero de servidor",
@@ -70,11 +71,11 @@ const services = [
       "Adaptado a móviles y tablets (Responsive)",
       "Sin cuotas mensuales de alojamiento (0€/mes)"
     ],
-    accent: "blue",
-    image: "/img/servicios/webapp.png"
+    price: "desde 2.500€"
   },
   {
     id: "creacion-formularios",
+    image: "/img/blog/hero-crm-vertical.png",
     icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="M9 2h6"/><path d="M12 11h4"/><path d="M12 16h4"/><path d="M8 11h.01"/><path d="M8 16h.01"/></svg>`,
     title: "Sistemas de Captura de Datos",
     subtitle: "Orden absoluto desde el primer clic",
@@ -87,12 +88,12 @@ const services = [
       "Validación de NIF/CIF, emails y teléfonos",
       "Notificaciones push automáticas al recibir datos"
     ],
-    accent: "blue",
-    image: "/img/servicios/forms.png"
+    price: "desde 400€"
   },
   {
     id: "formularios-leads-magnet",
-    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/><circle cx="12" cy="12" r="9"/></svg>`,
+    image: "/img/blog/hero-leads.png",
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>`,
     title: "Sistemas Lead Magnet & Captación",
     subtitle: "Tu web vendiendo por ti 24/7",
     description: "Diseñamos el embudo técnico para tus campañas. Formularios que no solo captan, sino que segmentan y califican al cliente automáticamente en tu CRM.",
@@ -104,11 +105,11 @@ const services = [
       "Trackeo de procedencia (Google/Facebook/RRSS)",
       "Cálculo de ROI por lead integrado"
     ],
-    accent: "blue",
-    image: "/img/servicios/leads.png"
+    price: "desde 800€"
   },
   {
     id: "dashboards-tiempo-real",
+    image: "/img/blog/hero-dashboard.png",
     icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/></svg>`,
     title: "Dashboards y BI en Tiempo Real",
     subtitle: "Visibilidad total para decisiones inteligentes",
@@ -121,83 +122,156 @@ const services = [
       "Acceso compartido y seguro para socios",
       "Alertas automáticas de KPIs críticos"
     ],
-    accent: "blue",
-    image: "/img/servicios/dashboards.png"
+    price: "desde 600€"
   }
 ];
 ---
 
-<BlogLayout
+<Layout
   title="Servicios de Automatización Google Sheets y AppScript | Konte"
   description="Mejora tus hojas de cálculo, automatiza con AppScript, crea dashboards en tiempo real y formularios lead magnet. Software a medida para PYMES sin costes de mantenimiento."
   jsonLd={jsonLd}
 >
-  <!-- Hero -->
-  <section class="relative py-20 md:py-28 bg-white dark:bg-black border-b border-gray-100 dark:border-gray-900 overflow-hidden text-center">
-    <div class="absolute inset-0 opacity-10">
-      <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-lightAccent rounded-full blur-3xl"></div>
+  <!-- ===================== NAVBAR ===================== -->
+  <nav id="main-nav" class="fixed w-full top-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-200 transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-18 py-3">
+        <a href="/" class="flex items-center gap-3 group">
+          <div class="w-10 h-10 bg-lightAccent text-white flex items-center justify-center font-display font-black text-2xl rotate-3 group-hover:rotate-0 transition-transform shadow-[3px_3px_0_0_rgba(0,0,0,0.15)]">K</div>
+          <span class="font-display font-bold text-2xl tracking-tight uppercase text-gray-900">Konte</span>
+        </a>
+
+        <div class="hidden md:flex items-center gap-8">
+          <a href="/#proyectos" class="text-sm font-bold text-gray-600 hover:text-lightAccent transition-colors">Proyectos</a>
+          <a href="/servicios" class="text-sm font-bold text-lightAccent border-b-2 border-lightAccent pb-0.5">Servicios</a>
+          <a href="/blog" class="text-sm font-bold text-gray-600 hover:text-lightAccent transition-colors">Blog</a>
+          <a href="/#faq" class="text-sm font-bold text-gray-600 hover:text-lightAccent transition-colors">FAQ</a>
+        </div>
+
+        <div class="flex items-center gap-3">
+          <a href="#servicios-contacto" class="hidden md:flex items-center gap-2 text-sm font-bold text-gray-700 hover:text-lightAccent transition-colors border border-gray-300 hover:border-lightAccent px-4 py-2 rounded-sm">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+            Escribir
+          </a>
+          <button id="nav-calendly-btn" class="px-5 py-2.5 bg-lightAccent text-white font-bold text-sm tracking-wide rounded-sm hover:-translate-y-0.5 transition-transform shadow-[3px_3px_0_0_rgba(0,0,0,0.2)]">
+            Agendar llamada →
+          </button>
+          <button id="mobile-menu-btn" class="md:hidden p-2 text-gray-900" aria-label="Abrir menú">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+          </button>
+        </div>
+      </div>
     </div>
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-      <div class="inline-block px-4 py-2 bg-gray-900 text-white font-bold text-xs uppercase tracking-widest mb-6">Nuestros Servicios</div>
-      <h1 class="font-display text-5xl md:text-7xl font-black uppercase tracking-tight mb-6 leading-[0.9] text-gray-900 dark:text-white">
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-gray-200 px-4 py-4 space-y-3">
+      <a href="/#proyectos" class="block text-base font-bold text-gray-900 hover:text-lightAccent transition-colors">Proyectos</a>
+      <a href="/servicios" class="block text-base font-bold text-lightAccent">Servicios</a>
+      <a href="/blog" class="block text-base font-bold text-gray-900 hover:text-lightAccent transition-colors">Blog</a>
+      <a href="#servicios-contacto" class="block text-base font-bold text-gray-900 hover:text-lightAccent transition-colors">Contacto</a>
+      <button id="mobile-calendly-btn" class="w-full py-3 bg-lightAccent text-white font-black text-sm uppercase tracking-widest rounded-sm">Agendar llamada gratis</button>
+    </div>
+  </nav>
+
+  <!-- ===================== HERO ===================== -->
+  <section class="relative pt-32 pb-20 bg-white border-b border-gray-200 overflow-hidden text-center">
+    <div class="absolute inset-0 bg-[linear-gradient(to_right,#e5e7eb_1px,transparent_1px),linear-gradient(to_bottom,#e5e7eb_1px,transparent_1px)] bg-[size:64px_64px] opacity-30 pointer-events-none"></div>
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-lightAccent/8 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+      <div class="inline-block px-4 py-2 bg-gray-900 text-white font-bold text-xs uppercase tracking-widest mb-6">Todos los servicios</div>
+      <h1 class="font-display text-5xl md:text-7xl font-black uppercase tracking-tight mb-6 leading-[0.85] text-gray-900">
         Digitaliza tu operativa.<br/>
         <span class="text-lightAccent">Sin límites.</span>
       </h1>
-      <p class="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto leading-relaxed font-medium">
+      <p class="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed font-medium mb-10">
         Transformamos procesos manuales en sistemas de alta ingeniería sobre Google Workspace. Sin servidores, sin mantenimiento, propiedad 100% tuya.
       </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <button id="hero-calendly-btn" class="group inline-flex items-center justify-center gap-3 px-10 py-5 bg-lightAccent text-white font-black text-base uppercase tracking-widest rounded-sm hover:-translate-y-1 transition-all shadow-[6px_6px_0_0_rgba(0,0,0,0.15)]">
+          Agendar sesión gratuita →
+        </button>
+        <a href="#servicios-contacto" class="group inline-flex items-center justify-center gap-3 px-10 py-5 bg-white text-gray-900 font-black text-base uppercase tracking-widest rounded-sm border-2 border-gray-900 hover:-translate-y-1 transition-all shadow-[6px_6px_0_0_rgba(0,0,0,0.15)] hover:border-lightAccent hover:text-lightAccent">
+          Enviar consulta →
+        </a>
+      </div>
     </div>
   </section>
 
-  <!-- Services Grid -->
-  <section class="py-20 bg-white dark:bg-black">
+  <!-- ===================== SERVICES LIST ===================== -->
+  <section class="py-16 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Quick nav -->
+      <div class="flex flex-wrap gap-3 mb-16 justify-center">
+        {services.map(s => (
+          <a href={`#${s.id}`} class="px-4 py-2 bg-gray-100 hover:bg-lightAccent hover:text-white text-gray-700 font-bold text-xs uppercase tracking-widest rounded-full transition-all">
+            {s.title.split(' ')[0]} {s.title.split(' ')[1]}
+          </a>
+        ))}
+      </div>
+
       <div class="grid grid-cols-1 gap-12">
         {services.map((service, i) => (
-          <article id={service.id} class="flex flex-col md:flex-row border-2 border-gray-100 dark:border-gray-800 rounded-3xl overflow-hidden hover:border-lightAccent transition-all duration-500 hover:shadow-2xl group/card">
+          <article id={service.id} class="flex flex-col lg:flex-row border-2 border-gray-100 rounded-3xl overflow-hidden hover:border-lightAccent transition-all duration-500 hover:shadow-2xl group/card scroll-mt-24">
             <!-- Left: Info -->
-            <div class="flex-1 p-8 md:p-14 bg-gray-900 relative">
+            <div class="flex-1 p-8 md:p-14 bg-gray-900 relative overflow-hidden">
+              <!-- Real scene photo — right side strip -->
+              {service.image && (
+                <div class="absolute inset-y-0 right-0 w-2/5 pointer-events-none select-none opacity-30">
+                  <img
+                    src={service.image}
+                    alt=""
+                    aria-hidden="true"
+                    class="w-full h-full object-cover object-center"
+                  />
+                  <!-- Strong fade so text always wins -->
+                  <div class="absolute inset-0" style="background: linear-gradient(to right, #111827 0%, rgba(17,24,39,0.85) 40%, rgba(17,24,39,0.3) 75%, transparent 100%);"></div>
+                </div>
+              )}
               <div class="relative z-10">
                 <div class="flex items-start justify-between mb-8">
                   <div class="w-20 h-20 text-lightAccent bg-lightAccent/10 p-4 rounded-2xl border border-lightAccent/20 group-hover/card:scale-110 transition-transform duration-500" set:html={service.icon} />
-                  <span class="text-5xl font-black text-white tracking-tighter opacity-10">0{i + 1}</span>
+                  <span class="text-6xl font-black text-white opacity-10 font-display">0{i + 1}</span>
                 </div>
-                
-                <h2 class="font-display text-3xl md:text-5xl font-black uppercase tracking-tight mb-4 text-white leading-tight">
+
+                <h2 class="font-display text-3xl md:text-4xl font-black uppercase tracking-tight mb-3 text-white leading-tight">
                   {service.title}
                 </h2>
                 <p class="text-lightAccent font-black text-sm uppercase tracking-widest mb-6">{service.subtitle}</p>
                 <p class="text-xl text-gray-300 leading-relaxed mb-10 font-medium">{service.description}</p>
-                
-                <div class="p-8 bg-white/5 border-l-8 border-lightAccent rounded-r-2xl shadow-sm">
+
+                <div class="p-8 bg-white/5 border-l-4 border-lightAccent rounded-r-2xl shadow-sm">
                   <p class="text-[10px] font-black uppercase tracking-[0.2em] text-lightAccent mb-3">¿Cuándo necesito este servicio?</p>
-                  <p class="text-white font-bold text-lg md:text-xl leading-relaxed">"{service.whenToUse}"</p>
+                  <p class="text-white font-bold text-lg leading-relaxed">"{service.whenToUse}"</p>
                 </div>
               </div>
             </div>
 
-            <!-- Right: Details -->
-            <div class="w-full md:w-[450px] p-8 md:p-14 bg-gray-50 dark:bg-black/40 border-l border-gray-100 dark:border-gray-800 flex flex-col justify-between">
+            <!-- Right: Details + CTA -->
+            <div class="w-full lg:w-[420px] p-8 md:p-14 bg-gray-50 border-t lg:border-t-0 lg:border-l border-gray-200 flex flex-col justify-between">
               <div>
-                <h3 class="text-xs font-black uppercase tracking-widest text-gray-400 mb-8 border-b border-gray-200 dark:border-gray-700 pb-4">¿Qué incluye?</h3>
-                <ul class="space-y-6">
+                <h3 class="text-xs font-black uppercase tracking-widest text-gray-400 mb-8 border-b border-gray-200 pb-4">¿Qué incluye?</h3>
+                <ul class="space-y-5">
                   {service.benefits.map(b => (
                     <li class="flex items-start gap-4">
                       <div class="w-6 h-6 bg-lightAccent/10 text-lightAccent rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="4">
-                          <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path>
-                        </svg>
+                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
                       </div>
-                      <span class="text-base font-bold text-gray-700 dark:text-gray-300 leading-tight">{b}</span>
+                      <span class="text-base font-bold text-gray-700 leading-tight">{b}</span>
                     </li>
                   ))}
                 </ul>
               </div>
-              <div class="mt-12">
-                <a href="/#calendly" class="group flex items-center justify-between w-full p-6 bg-gray-900 dark:bg-white text-white dark:text-black font-black text-sm uppercase tracking-widest transition-all hover:bg-lightAccent dark:hover:bg-lightAccent hover:text-white shadow-[8px_8px_0_0_rgba(0,0,0,1)] dark:shadow-[8px_8px_0_0_rgba(255,255,255,0.1)] hover:shadow-none hover:translate-x-1 hover:translate-y-1">
-                  Evaluar Viabilidad
-                  <span class="group-hover:translate-x-1 transition-transform">&rarr;</span>
-                </a>
+              <div class="mt-10">
+                <div class="mb-4 px-4 py-3 bg-blue-50 border border-blue-200 rounded-lg text-center">
+                  <span class="text-xs font-black uppercase tracking-widest text-gray-500">Inversión estimada</span>
+                  <div class="text-2xl font-black text-lightAccent mt-1">{service.price}</div>
+                  <span class="text-xs text-gray-500 font-medium">pago único · 0€/mes después</span>
+                </div>
+                <button
+                  class="calendly-service-btn group flex items-center justify-between w-full p-5 bg-gray-900 text-white font-black text-sm uppercase tracking-widest transition-all hover:bg-lightAccent rounded-lg"
+                >
+                  Evaluar viabilidad
+                  <span class="group-hover:translate-x-1 transition-transform">→</span>
+                </button>
               </div>
             </div>
           </article>
@@ -206,11 +280,9 @@ const services = [
     </div>
   </section>
 
-  <!-- Pricing Philosophy -->
-  <section class="py-24 bg-gray-950 text-center relative overflow-hidden">
-    <div class="absolute inset-0 opacity-20">
-        <div class="absolute -bottom-24 -right-24 w-[500px] h-[500px] bg-lightAccent rounded-full blur-[120px]"></div>
-    </div>
+  <!-- ===================== PRICING PHILOSOPHY ===================== -->
+  <section class="py-24 bg-gray-900 text-center relative overflow-hidden">
+    <div class="absolute -bottom-24 -right-24 w-[500px] h-[500px] bg-lightAccent/10 rounded-full blur-[120px] pointer-events-none"></div>
     <div class="max-w-5xl mx-auto px-4 relative z-10">
       <h2 class="font-display text-5xl md:text-7xl font-black uppercase mb-8 text-white leading-[0.85] tracking-tighter">
         Inversión única.<br/><span class="text-lightAccent">Cero costes fijos.</span>
@@ -218,29 +290,179 @@ const services = [
       <p class="text-xl text-gray-400 mb-16 max-w-3xl mx-auto leading-relaxed">
         Eliminamos la tiranía del SaaS mensual. Construimos tu propia tecnología para que seas dueño total de tu operativa y tus datos.
       </p>
-      
+
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
+        {[
+          { num: "0€", label: "Mantenimiento", desc: "Sin servidores, sin licencias, sin sorpresas a final de mes." },
+          { num: "100%", label: "Propiedad", desc: "El código es tuyo. Si mañana quieres cambiar algo, puedes." },
+          { num: "24/7", label: "Disponibilidad", desc: "Infraestructura Google con 99.9% de tiempo de actividad." }
+        ].map(item => (
           <div class="p-10 bg-white/5 backdrop-blur-md border border-white/10 rounded-[32px] text-left hover:border-lightAccent transition-colors">
-              <div class="text-5xl font-black text-lightAccent mb-4">0€</div>
-              <div class="text-xs font-black uppercase tracking-widest text-white mb-3">Mantenimiento</div>
-              <p class="text-sm text-gray-500 leading-relaxed">Sin servidores, sin licencias, sin sorpresas a final de mes.</p>
+            <div class="text-5xl font-black text-lightAccent mb-4">{item.num}</div>
+            <div class="text-xs font-black uppercase tracking-widest text-white mb-3">{item.label}</div>
+            <p class="text-sm text-gray-500 leading-relaxed">{item.desc}</p>
           </div>
-          <div class="p-10 bg-white/5 backdrop-blur-md border border-white/10 rounded-[32px] text-left hover:border-lightAccent transition-colors">
-              <div class="text-5xl font-black text-lightAccent mb-4">100%</div>
-              <div class="text-xs font-black uppercase tracking-widest text-white mb-3">Propiedad</div>
-              <p class="text-sm text-gray-500 leading-relaxed">El código es tuyo. Si mañana quieres cambiar algo, puedes.</p>
-          </div>
-          <div class="p-10 bg-white/5 backdrop-blur-md border border-white/10 rounded-[32px] text-left hover:border-lightAccent transition-colors">
-              <div class="text-5xl font-black text-lightAccent mb-4">24/7</div>
-              <div class="text-xs font-black uppercase tracking-widest text-white mb-3">Disponibilidad</div>
-              <p class="text-sm text-gray-500 leading-relaxed">Infraestructura Google con 99.9% de tiempo de actividad.</p>
-          </div>
+        ))}
       </div>
 
-      <a href="/#calendly" class="inline-flex items-center gap-4 px-12 py-7 bg-lightAccent text-white font-black text-xl uppercase tracking-widest hover:scale-105 transition-all shadow-[20px_20px_60px_-15px_rgba(0,85,255,0.3)]">
-        Hablar con un consultor
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
-      </a>
+      <button id="pricing-calendly-btn" class="inline-flex items-center gap-4 px-12 py-7 bg-lightAccent text-white font-black text-xl uppercase tracking-widest hover:-translate-y-1 transition-all shadow-[8px_8px_0_0_rgba(0,85,255,0.3)] rounded-sm">
+        Hablar con un consultor →
+      </button>
     </div>
   </section>
-</BlogLayout>
+
+  <!-- ===================== CONTACT FORM ===================== -->
+  <section id="servicios-contacto" class="py-24 bg-white">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <div class="inline-block px-4 py-2 bg-lightAccent text-white font-bold text-xs uppercase tracking-widest mb-6">Hablemos</div>
+      <h2 class="font-display text-4xl md:text-5xl font-black uppercase mb-4 text-gray-900">¿Interesado en algún servicio?</h2>
+      <p class="text-gray-600 text-lg mb-12 font-medium">Cuéntame qué necesitas y te respondo con una propuesta en menos de 24h.</p>
+
+      <div class="bg-gray-50 rounded-2xl p-8 md:p-10 text-left border border-gray-200">
+        <form id="servicios-contact-form" action="https://formspree.io/f/xredqzoa" method="POST" class="space-y-5">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+            <div>
+              <label class="block text-xs font-black uppercase tracking-widest text-gray-700 mb-2">Nombre *</label>
+              <input type="text" name="nombre" required placeholder="Tu nombre" class="w-full p-3.5 bg-white border-2 border-gray-200 rounded-lg focus:outline-none focus:border-lightAccent transition-colors text-gray-900 font-medium text-sm">
+            </div>
+            <div>
+              <label class="block text-xs font-black uppercase tracking-widest text-gray-700 mb-2">Email *</label>
+              <input type="email" name="email" required placeholder="tu@empresa.com" class="w-full p-3.5 bg-white border-2 border-gray-200 rounded-lg focus:outline-none focus:border-lightAccent transition-colors text-gray-900 font-medium text-sm">
+            </div>
+          </div>
+          <div>
+            <label class="block text-xs font-black uppercase tracking-widest text-gray-700 mb-2">Servicio de interés</label>
+            <select name="servicio" class="w-full p-3.5 bg-white border-2 border-gray-200 rounded-lg focus:outline-none focus:border-lightAccent transition-colors text-gray-900 font-medium text-sm">
+              <option value="">Selecciona un servicio...</option>
+              <option>Optimización Google Sheets</option>
+              <option>Automatización AppScript</option>
+              <option>Web-App a Medida</option>
+              <option>Dashboards en Tiempo Real</option>
+              <option>Captura de Datos</option>
+              <option>Lead Magnet & Captación</option>
+              <option>No lo tengo claro aún</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-xs font-black uppercase tracking-widest text-gray-700 mb-2">¿Qué quieres resolver? *</label>
+            <textarea name="mensaje" required rows="5" placeholder="Describe el problema o proceso que quieres automatizar/mejorar..." class="w-full p-3.5 bg-white border-2 border-gray-200 rounded-lg focus:outline-none focus:border-lightAccent transition-colors text-gray-900 font-medium text-sm resize-none"></textarea>
+          </div>
+          <button type="submit" id="svc-submit-btn" class="w-full py-4 bg-gray-900 text-white font-black text-base uppercase tracking-widest rounded-lg hover:bg-lightAccent transition-all duration-300 flex items-center justify-center gap-2 group">
+            <span>Enviar consulta</span>
+            <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Toast -->
+  <div id="toast" class="fixed bottom-10 left-1/2 -translate-x-1/2 z-[200] opacity-0 translate-y-10 pointer-events-none transition-all duration-500">
+    <div class="bg-gray-900 text-white px-8 py-4 rounded-xl shadow-2xl font-black uppercase tracking-widest flex items-center gap-4 border border-gray-700">
+      <div class="bg-green-500 text-white rounded-full p-1">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
+      </div>
+      <span id="toast-message">¡Enviado!</span>
+    </div>
+  </div>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="bg-black text-gray-400 py-12 border-t border-gray-800 text-center">
+    <div class="max-w-7xl mx-auto px-4">
+      <a href="/" class="font-display font-bold text-3xl mb-3 text-white inline-block hover:text-lightAccent transition-colors">Konte</a>
+      <p class="mb-4 text-sm">Agencia de Software a Medida para PYMES · Google Workspace · AppScript · Automatización</p>
+      <div class="flex justify-center flex-wrap gap-6 mt-4 text-sm">
+        <a href="/" class="hover:text-white transition-colors">Inicio</a>
+        <a href="/servicios" class="hover:text-white transition-colors">Servicios</a>
+        <a href="/blog" class="hover:text-white transition-colors">Blog</a>
+        <a href="/#contacto" class="hover:text-white transition-colors">Contacto</a>
+      </div>
+      <p class="mt-8 text-xs text-gray-600">&copy; {new Date().getFullYear()} Konte Solutions. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+
+  <!-- ===================== SCRIPTS ===================== -->
+  <script>
+    // Mobile menu
+    document.getElementById('mobile-menu-btn')?.addEventListener('click', () => {
+      document.getElementById('mobile-menu')?.classList.toggle('hidden');
+    });
+
+    // Load Calendly
+    const calLink = document.createElement('link');
+    calLink.href = 'https://assets.calendly.com/assets/external/widget.css';
+    calLink.rel = 'stylesheet';
+    document.head.appendChild(calLink);
+
+    const calScript = document.createElement('script');
+    calScript.src = 'https://assets.calendly.com/assets/external/widget.js';
+    calScript.async = true;
+    document.body.appendChild(calScript);
+
+    function openCalendly() {
+      // @ts-ignore
+      if (window.Calendly) {
+        // @ts-ignore
+        window.Calendly.initPopupWidget({ url: 'https://calendly.com/konte-contacto/30min' });
+      } else {
+        window.open('https://calendly.com/konte-contacto/30min', '_blank');
+      }
+    }
+
+    // All Calendly buttons
+    ['nav-calendly-btn', 'hero-calendly-btn', 'pricing-calendly-btn', 'mobile-calendly-btn'].forEach(id => {
+      document.getElementById(id)?.addEventListener('click', (e) => {
+        e.preventDefault();
+        openCalendly();
+      });
+    });
+
+    // Service cards Calendly buttons
+    document.querySelectorAll('.calendly-service-btn').forEach(btn => {
+      btn.addEventListener('click', () => openCalendly());
+    });
+
+    // Navbar scroll shadow
+    const nav = document.getElementById('main-nav');
+    window.addEventListener('scroll', () => {
+      nav?.classList.toggle('shadow-md', window.scrollY > 20);
+    }, { passive: true });
+
+    // Toast
+    function showToast(message: string) {
+      const toast = document.getElementById('toast');
+      const msg = document.getElementById('toast-message');
+      if (!toast || !msg) return;
+      msg.textContent = message;
+      toast.classList.remove('opacity-0', 'translate-y-10', 'pointer-events-none');
+      setTimeout(() => toast.classList.add('opacity-0', 'translate-y-10', 'pointer-events-none'), 4000);
+    }
+
+    // Contact form
+    const form = document.getElementById('servicios-contact-form') as HTMLFormElement;
+    form?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btn = document.getElementById('svc-submit-btn') as HTMLButtonElement;
+      const originalHTML = btn.innerHTML;
+      btn.disabled = true;
+      btn.innerHTML = '<span>Enviando...</span>';
+      try {
+        const res = await fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { 'Accept': 'application/json' }
+        });
+        if (res.ok) {
+          showToast('¡Consulta enviada! Te respondo pronto.');
+          form.reset();
+        } else throw new Error();
+      } catch {
+        showToast('Error al enviar. Inténtalo de nuevo.');
+      } finally {
+        btn.disabled = false;
+        btn.innerHTML = originalHTML;
+      }
+    });
+  </script>
+
+</Layout>
