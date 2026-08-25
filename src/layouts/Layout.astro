@@ -1,4 +1,6 @@
 ---
+import WhatsAppWidget from '../components/WhatsAppWidget.astro';
+
 interface Props {
   title: string;
   description?: string;
@@ -81,5 +83,6 @@ const canonicalURL = canonical || Astro.url.href;
   </head>
   <body class="bg-lightBg text-lightText dark:bg-darkBg dark:text-darkText font-sans transition-colors duration-300 antialiased selection:bg-lightAccent selection:text-white dark:selection:bg-darkAccent text-gray-800 dark:text-gray-200">
     <slot />
+    <WhatsAppWidget />
   </body>
 </html>

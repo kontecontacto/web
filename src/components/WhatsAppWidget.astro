@@ -1,0 +1,185 @@
+---
+// src/components/WhatsAppWidget.astro
+---
+
+<div class="fixed bottom-20 sm:bottom-8 right-6 sm:right-8 z-50 font-sans" id="whatsapp-widget-container">
+  <!-- Notification Badge on floating button -->
+  <div class="relative">
+    <!-- Pulse ring -->
+    <div class="absolute inset-0 rounded-full whatsapp-pulse bg-[#25D366]/40 pointer-events-none"></div>
+    
+    <!-- Floating button -->
+    <button
+      id="whatsapp-btn"
+      class="relative flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 bg-[#25D366] hover:bg-[#128C7E] text-white rounded-full shadow-2xl transition-all duration-300 hover:scale-110 focus:outline-none group z-10"
+      aria-label="Contactar por WhatsApp"
+    >
+      <!-- Icon -->
+      <svg class="w-7 h-7 sm:w-8 sm:h-8 fill-current" viewBox="0 0 24 24">
+        <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.513 2.262 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.724-1.455L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.825 1.451 5.436 0 9.86-4.37 9.864-9.799.002-2.63-1.023-5.101-2.885-6.965C16.528 1.977 14.07 1.953 11.47 1.953c-5.437 0-9.862 4.371-9.866 9.8.001 2.01.536 3.97 1.55 5.702L2.146 21.8l4.501-1.646zm11.758-6.84c-.31-.154-1.829-.902-2.11-.1-1.002-.281-.123-.315-.355-.079-.232.074-.4.242-.49.344-.09.102-.18.225-.27.327-.27.31-.574.653-.878.583-.304-.07-.468-.224-.766-.356-.3-.132-.6-.288-.89-.474-.41-.263-.78-.588-1.09-.96-.28-.335-.078-.517.18-.77.26-.26.31-.355.46-.516.15-.16.22-.27.33-.45.11-.18.05-.34-.02-.49-.07-.15-.65-1.565-.89-2.14-.24-.56-.5-.48-.68-.49-.17-.01-.37-.01-.57-.01-.2 0-.52.075-.79.37-.27.295-1.03 1.01-1.03 2.46s1.055 2.85 1.2 3.05c.145.2 2.08 3.175 5.04 4.455.705.305 1.25.485 1.68.62.71.225 1.355.19 1.865.115.57-.085 1.83-.75 2.09-1.47.26-.72.26-1.34.18-1.47-.08-.13-.3-.22-.61-.37z"/>
+      </svg>
+      
+      <!-- Unread indicator dot -->
+      <span id="whatsapp-unread-dot" class="absolute -top-1 -right-1 flex h-4 w-4 z-20">
+        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+        <span class="relative inline-flex rounded-full h-4 w-4 bg-red-500 text-[10px] text-white items-center justify-center font-bold font-sans">1</span>
+      </span>
+    </button>
+  </div>
+
+  <!-- Chat Bubble Dialog -->
+  <div
+    id="whatsapp-chat-bubble"
+    class="absolute bottom-18 sm:bottom-20 right-0 w-[310px] sm:w-[340px] bg-white rounded-2xl shadow-2xl border border-gray-100 overflow-hidden transform scale-90 opacity-0 pointer-events-none transition-all duration-300 origin-bottom-right"
+  >
+    <!-- Header -->
+    <div class="bg-gradient-to-r from-[#075e54] to-[#128c7e] text-white px-4 py-3.5 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <!-- Avatar -->
+        <div class="relative w-10 h-10 rounded-full bg-white/20 flex items-center justify-center font-bold text-lg border border-white/20">
+          M
+          <!-- Active Green Dot -->
+          <span class="absolute bottom-0 right-0 w-3 h-3 bg-green-500 border-2 border-[#075e54] rounded-full"></span>
+        </div>
+        <div>
+          <div class="font-bold text-sm leading-tight text-white">Martín (Konte)</div>
+          <div class="text-[11px] text-green-300 font-medium">En línea</div>
+        </div>
+      </div>
+      <!-- Close Button -->
+      <button id="whatsapp-chat-close" class="text-white/80 hover:text-white p-1 rounded-full hover:bg-white/10 transition-colors" aria-label="Cerrar chat">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Body -->
+    <div class="bg-[#e5ddd5] p-4 min-h-[120px] flex flex-col justify-between relative" style="background-image: url('https://user-images.githubusercontent.com/15075759/28719144-86dc0f70-73b1-11e7-911d-60d70fcded21.png'); background-repeat: repeat;">
+      <!-- Message -->
+      <div class="bg-white text-gray-800 p-3 rounded-lg rounded-tl-none shadow-sm text-sm relative max-w-[90%] self-start animate-fade-in">
+        <p class="font-sans leading-relaxed text-gray-800">¡Hola! 👋 Soy Martín de Konte. ¿Tienes alguna pregunta sobre tu proyecto o quieres automatizar un proceso?</p>
+        <span class="block text-[9px] text-gray-400 text-right mt-1.5 font-sans" id="chat-timestamp">12:00</span>
+      </div>
+    </div>
+
+    <!-- Footer / Mock Input -->
+    <div class="p-3 bg-gray-50 border-t border-gray-150">
+      <a
+        id="whatsapp-chat-link"
+        href="https://wa.me/34602194331?text=Hola%20Mart%C3%ADn%2C%20vengo%20de%20la%20web%20y%20me%20gustar%C3%ADa%20saber%20m%C3%A1s%20sobre%20tus%20servicios."
+        target="_blank"
+        rel="noopener noreferrer"
+        class="flex items-center justify-between w-full bg-white border border-gray-200 rounded-full px-4 py-2.5 hover:border-gray-300 transition-colors group"
+      >
+        <span class="text-xs sm:text-sm text-gray-400 font-sans">Escribe tu consulta por WhatsApp...</span>
+        <div class="bg-[#128c7e] text-white p-1.5 rounded-full group-hover:scale-105 transition-transform flex items-center justify-center">
+          <svg class="w-4 h-4 fill-current rotate-45 transform translate-x-[1px]" viewBox="0 0 24 24">
+            <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+          </svg>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>
+
+<style>
+  /* Pulse Ring keyframes */
+  @keyframes pulse-ring {
+    0% {
+      transform: scale(0.95);
+      box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+    }
+    70% {
+      transform: scale(1);
+      box-shadow: 0 0 0 14px rgba(37, 211, 102, 0);
+    }
+    100% {
+      transform: scale(0.95);
+      box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+    }
+  }
+  .whatsapp-pulse {
+    animation: pulse-ring 2.5s infinite;
+  }
+
+  /* Show Chat transition helper classes */
+  .show-chat {
+    transform: scale(1) !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+  }
+</style>
+
+<script>
+  // Dynamic behavior run on client
+  function initWhatsAppWidget() {
+    const container = document.getElementById('whatsapp-widget-container');
+    const btn = document.getElementById('whatsapp-btn');
+    const bubble = document.getElementById('whatsapp-chat-bubble');
+    const closeBtn = document.getElementById('whatsapp-chat-close');
+    const unreadDot = document.getElementById('whatsapp-unread-dot');
+    const chatTimestamp = document.getElementById('chat-timestamp');
+    const chatLink = document.getElementById('whatsapp-chat-link');
+
+    if (!btn || !bubble || !closeBtn || !container) return;
+
+    // Set real time stamp
+    if (chatTimestamp) {
+      const now = new Date();
+      const hrs = now.getHours().toString().padStart(2, '0');
+      const mins = now.getMinutes().toString().padStart(2, '0');
+      chatTimestamp.textContent = `${hrs}:${mins}`;
+    }
+
+    // Toggle bubble
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      bubble.classList.toggle('show-chat');
+      
+      // Hide unread dot when user clicks the widget
+      if (unreadDot) {
+        unreadDot.classList.add('hidden');
+      }
+    });
+
+    // Close bubble
+    closeBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      bubble.classList.remove('show-chat');
+      // Save in sessionStorage that user closed it, so we don't open it automatically again this session
+      sessionStorage.setItem('wa-bubble-closed', 'true');
+    });
+
+    // Close if click outside
+    document.addEventListener('click', (e) => {
+      const target = e.target as HTMLElement;
+      if (bubble.classList.contains('show-chat') && !container.contains(target)) {
+        bubble.classList.remove('show-chat');
+      }
+    });
+
+    // Handle direct click on mock input
+    chatLink?.addEventListener('click', () => {
+      bubble.classList.remove('show-chat');
+      if (unreadDot) {
+        unreadDot.classList.add('hidden');
+      }
+    });
+
+    // Auto show bubble after 4 seconds if not closed before
+    const isClosedBefore = sessionStorage.getItem('wa-bubble-closed');
+    if (!isClosedBefore) {
+      setTimeout(() => {
+        // Double check if user hasn't already clicked it
+        if (!bubble.classList.contains('show-chat')) {
+          bubble.classList.add('show-chat');
+        }
+      }, 4000);
+    }
+  }
+
+  // Run on page load & View Transitions (if used in Astro)
+  document.addEventListener('DOMContentLoaded', initWhatsAppWidget);
+  document.addEventListener('astro:page-load', initWhatsAppWidget);
+</script>
