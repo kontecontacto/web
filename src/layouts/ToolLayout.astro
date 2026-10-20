@@ -1,0 +1,44 @@
+---
+// Layout mínimo para las apps gratuitas (pantalla completa, sin cabecera ni pie de la web).
+import { SITE } from '../data/site';
+
+interface Props {
+  title: string;
+  manifest?: string;
+}
+
+const { title, manifest } = Astro.props;
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="robots" content="noindex, follow" />
+    <meta name="theme-color" content="#111827" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/turnero-online-gratis/icon-192.png" />
+    {manifest && <link rel="manifest" href={manifest} />}
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400..900&family=Space+Grotesk:wght@500..700&display=swap" rel="stylesheet" />
+    {SITE.gaId && (
+      <>
+        <script async src={`https://www.googletagmanager.com/gtag/js?id=${SITE.gaId}`}></script>
+        <script is:inline define:vars={{ gaId: SITE.gaId }}>
+          window.dataLayer = window.dataLayer || [];
+          function gtag() { dataLayer.push(arguments); }
+          window.gtag = gtag;
+          gtag('js', new Date());
+          gtag('config', gaId);
+        </script>
+      </>
+    )}
+  </head>
+  <body class="antialiased">
+    <slot />
+  </body>
+</html>

@@ -1,0 +1,15 @@
+{
+  "name": "Turnero gratis · Konte",
+  "short_name": "Turnero",
+  "description": "Turnero online gratis con pantalla de turnos y aviso por voz.",
+  "start_url": "/turnero-online-gratis/app/",
+  "scope": "/turnero-online-gratis/",
+  "display": "standalone",
+  "background_color": "#111827",
+  "theme_color": "#111827",
+  "lang": "es",
+  "icons": [
+    { "src": "/turnero-online-gratis/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/turnero-online-gratis/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}

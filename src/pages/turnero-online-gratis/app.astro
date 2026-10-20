@@ -1,0 +1,9 @@
+---
+import ToolLayout from '../../layouts/ToolLayout.astro';
+import Panel from '../../tools/turnero/Panel.tsx';
+---
+
+<ToolLayout title="Turnero gratis · Panel de llamadas | Konte" manifest="/turnero-online-gratis/manifest.webmanifest">
+  <Panel client:only="react" />
+  <noscript>El turnero necesita JavaScript activado.</noscript>
+</ToolLayout>

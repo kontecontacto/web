@@ -58,8 +58,8 @@ const isActive = (href: string) => path.startsWith(href);
         </div>
         <a href="/servicios/" class={`text-sm font-bold transition-colors ${isActive('/servicios') ? 'text-lightAccent' : 'text-gray-700 hover:text-lightAccent'}`}>Servicios</a>
         <a href="/#proyectos" class="text-sm font-bold text-gray-700 hover:text-lightAccent transition-colors">Proyectos</a>
-        <a href="/plantilla-crm-gratis/" class="flex items-center gap-1.5 text-sm font-bold text-gray-700 hover:text-lightAccent transition-colors">
-          Plantilla CRM
+        <a href="/herramientas-gratis/" class={`flex items-center gap-1.5 text-sm font-bold transition-colors ${isActive('/herramientas-gratis') || isActive('/turnero-online-gratis') || isActive('/plantilla-crm-gratis') ? 'text-lightAccent' : 'text-gray-700 hover:text-lightAccent'}`}>
+          Herramientas
           <span class="bg-green-500 text-white text-[9px] font-black px-1.5 py-0.5 rounded uppercase tracking-wide leading-none">Gratis</span>
         </a>
         <a href="/blog/" class={`text-sm font-bold transition-colors ${isActive('/blog') ? 'text-lightAccent' : 'text-gray-700 hover:text-lightAccent'}`}>Blog</a>
@@ -97,6 +97,7 @@ const isActive = (href: string) => path.startsWith(href);
       <div class="grid grid-cols-2 gap-x-4 gap-y-3 border-t border-gray-100 pt-4">
         <a href="/servicios/" class="text-base font-bold text-gray-900">Servicios</a>
         <a href="/#proyectos" class="text-base font-bold text-gray-900">Proyectos</a>
+        <a href="/turnero-online-gratis/" class="text-base font-bold text-gray-900">Turnero <span class="text-green-600 text-xs">gratis</span></a>
         <a href="/plantilla-crm-gratis/" class="text-base font-bold text-gray-900">Plantilla CRM <span class="text-green-600 text-xs">gratis</span></a>
         <a href="/blog/" class="text-base font-bold text-gray-900">Blog</a>
         <a href="/contacto/" class="text-base font-bold text-gray-900">Contacto</a>

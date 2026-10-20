@@ -1,0 +1,20 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import ToolsBand from '../components/ToolsBand.astro';
+---
+
+<Layout
+  title="Herramientas gratis para negocios: turnero y CRM | Konte"
+  description="Herramientas gratuitas para tu negocio: turnero online con pantalla y voz, y plantilla CRM para Excel y Google Sheets. Sin instalar y sin tarjeta."
+  ogImage="/img/og/turnero-online-gratis.png"
+>
+  <section class="bg-white border-b border-gray-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
+      <Breadcrumbs items={[{ name: 'Herramientas gratis', href: '/herramientas-gratis/' }]} />
+      <h1 class="mt-6 font-display text-5xl md:text-7xl font-black uppercase tracking-tighter leading-[0.9] text-gray-900">Herramientas <span class="text-lightAccent">gratis</span></h1>
+      <p class="mt-5 text-xl text-gray-600 max-w-3xl font-medium">Pequeñas herramientas que hacemos para que puedas empezar hoy mismo, sin gastar nada. Cuando se te queden cortas, las convertimos en un sistema a medida para tu negocio.</p>
+    </div>
+  </section>
+  <ToolsBand title="Elige y empieza" />
+</Layout>

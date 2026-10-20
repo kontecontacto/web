@@ -175,6 +175,17 @@ const serviceJsonLd = JSON.stringify({
   </section>
 
   {s.slug === 'crm-a-medida' && <CrmTemplateBand />}
+  {s.slug === 'sistema-de-turnos-y-citas' && (
+    <section class="py-14 bg-green-500">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-[1fr_auto] gap-6 items-center">
+        <div>
+          <p class="text-xs font-black uppercase tracking-widest text-green-900 mb-2">Pruébalo hoy, gratis</p>
+          <h2 class="font-display text-3xl md:text-4xl font-black uppercase text-white leading-tight">¿Solo necesitas una pantalla de turnos? Usa nuestro turnero gratis</h2>
+        </div>
+        <a href="/turnero-online-gratis/" class="inline-flex items-center justify-center px-8 py-4 bg-white text-gray-900 font-black uppercase tracking-widest rounded-sm shadow-[6px_6px_0_0_rgba(0,0,0,0.2)] whitespace-nowrap">Abrir turnero gratis →</a>
+      </div>
+    </section>
+  )}
 
   <!-- ===================== FAQ ===================== -->
   <section class="py-16 md:py-24 bg-white">
