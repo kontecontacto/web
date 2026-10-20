@@ -32,6 +32,7 @@ export const GET: APIRoute = () => {
     `- [Plantilla CRM gratis para Excel y Google Sheets](${SITE.url}/plantilla-crm-gratis/)`,
     `- [Turnero online gratis](${SITE.url}/turnero-online-gratis/): sistema de turnos gratuito en el navegador con pantalla para TV, aviso por voz, varias colas y tickets impresos. Uso libre 15 días y después registro gratuito; versión Pro a medida con varios dispositivos, QR, WhatsApp y cita previa.`,
     `- [Herramientas gratis](${SITE.url}/herramientas-gratis/)`,
+    `- [Demo gratuita de sistema de gestión](${SITE.url}/demo/): sistema de prueba con clientes, agenda, ventas, inventario y facturas en PDF para clínica, taller o tienda. Sin registro.`,
     `- [Contacto](${SITE.url}/contacto/)`,
     '',
     '## Casos reales',

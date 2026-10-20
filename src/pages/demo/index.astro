@@ -1,0 +1,9 @@
+---
+import ToolLayout from '../../layouts/ToolLayout.astro';
+import DemoApp from '../../tools/demo/DemoApp.tsx';
+---
+
+<ToolLayout title="Demo gratis: sistema de gestión con clientes, agenda y facturas | Konte">
+  <DemoApp client:only="react" />
+  <noscript>La demo necesita JavaScript activado.</noscript>
+</ToolLayout>

@@ -12,7 +12,7 @@ export default defineConfig({
     tailwind(),
     react(),
     sitemap({
-      filter: (page) => !/\/404|\/turnero-online-gratis\/(app|pantalla)\//.test(page),
+      filter: (page) => !/\/404|\/demo\/|\/turnero-online-gratis\/(app|pantalla)\//.test(page),
       changefreq: 'weekly',
       lastmod: new Date(),
     }),

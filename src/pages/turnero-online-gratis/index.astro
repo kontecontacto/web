@@ -98,6 +98,7 @@ const appJsonLd = JSON.stringify({
             <p class="font-black text-gray-900 mb-1">¿Estás en el móvil?</p>
             <p class="text-sm text-gray-600 mb-3">El turnero se usa en el ordenador de tu negocio. Te enviamos el enlace por email para abrirlo allí.</p>
             <input type="hidden" name="origen" value="Turnero gratis (móvil)" />
+            <input type="hidden" name="respuesta" value="turnero-enlace" />
             <input type="hidden" name="_autoresponse" value={`Aquí tienes tu turnero gratis. Ábrelo en el ordenador de tu negocio: ${SITE.url}${APP}\n\nPulsa «Abrir pantalla», lleva esa ventana a la TV y pulsa F11. Después, «Siguiente» para llamar cada turno.\n\n¿Quieres llamar desde el móvil, que tus clientes saquen turno con un QR o recibir avisos por WhatsApp? Responde a este email o escríbenos al ${SITE.phone}.\n\nKonte · ${SITE.url}`} />
             <input type="text" name="_honey" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true" />
             <div class="flex gap-2">

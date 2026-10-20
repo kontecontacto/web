@@ -1,4 +1,5 @@
 import { SITE, whatsappLink } from '../data/site';
+import { sendForm } from './send';
 
 declare global {
   interface Window {
@@ -118,26 +119,13 @@ document.querySelectorAll<HTMLFormElement>('form[data-konte-form]').forEach((for
     delete data._honey;
 
     const subject = data.necesidad ? `${form.dataset.subject}: ${data.necesidad}` : form.dataset.subject;
-    const payload = { ...data, pagina: location.href, _subject: subject, _template: 'table', _captcha: 'false' };
+    const payload = { ...data, pagina: location.href, _subject: subject };
 
     const original = label?.textContent;
     btn.disabled = true;
     if (label) label.textContent = 'Enviando…';
 
-    let ok = isBot;
-    if (!isBot) {
-      try {
-        const res = await fetch(SITE.formEndpoint, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-          body: JSON.stringify(payload),
-        });
-        const json = await res.json().catch(() => ({}));
-        ok = res.ok && String(json.success) !== 'false';
-      } catch {
-        ok = false;
-      }
-    }
+    const ok = isBot || (await sendForm(payload));
 
     btn.disabled = false;
     if (label) label.textContent = original || '';

@@ -1,6 +1,6 @@
 // Licencia de las herramientas gratuitas: uso libre durante TRIAL_DAYS y, a partir de ahí,
 // registro gratuito obligatorio (el registro llega como contacto a contacto@konte.es).
-import { SITE } from '../data/site';
+import { sendForm } from '../scripts/send';
 
 export const TRIAL_DAYS = 15;
 
@@ -42,23 +42,16 @@ export function needsRegistration(license: License) {
 // Envía el registro a contacto@konte.es. Si el envío falla, el usuario sigue pudiendo usar la herramienta.
 export async function register(tool: string, toolName: string, data: { name: string; email: string; business: string; phone?: string }) {
   const license = getLicense(tool);
-  try {
-    await fetch(SITE.formEndpoint, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-      body: JSON.stringify({
-        _subject: `Registro herramienta gratis: ${toolName}`,
-        _template: 'table',
-        _captcha: 'false',
-        origen: toolName,
-        nombre: data.name,
-        email: data.email,
-        negocio: data.business,
-        telefono: data.phone || '',
-        dias_de_uso: daysUsed(license),
-      }),
-    });
-  } catch {}
+  await sendForm({
+    _subject: `Registro herramienta gratis: ${toolName}`,
+    origen: toolName,
+    nombre: data.name,
+    email: data.email,
+    negocio: data.business,
+    telefono: data.phone || '',
+    dias_de_uso: daysUsed(license),
+    pagina: location.href,
+  });
   const updated = { ...license, registered: { ...data, at: Date.now() } };
   saveLicense(tool, updated);
   (window as any).gtag?.('event', 'generate_lead', { form: toolName });

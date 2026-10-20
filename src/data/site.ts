@@ -12,8 +12,10 @@ export const SITE = {
   region: 'Cataluña',
   country: 'ES',
   calendly: 'https://calendly.com/konte-contacto/30min',
-  // Los formularios envían a este endpoint y llegan a contacto@konte.es.
-  // La primera vez FormSubmit manda un email de activación a esa dirección: hay que confirmarlo.
+  // URL /exec del Apps Script de apps-script/formularios.gs: guarda cada contacto en una hoja
+  // de Google y lo envía a contacto@konte.es. Mientras esté vacío se usa FormSubmit (formEndpoint).
+  formsUrl: '',
+  // FormSubmit: la primera vez manda un email de activación a contacto@konte.es que hay que confirmar.
   formEndpoint: 'https://formsubmit.co/ajax/contacto@konte.es',
   // ID de Google Analytics 4 (G-XXXXXXX). Vacío = sin analítica.
   gaId: '',
