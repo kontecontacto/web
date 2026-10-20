@@ -1,0 +1,230 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import Faq from '../components/Faq.astro';
+import WhatsAppIcon from '../components/WhatsAppIcon.astro';
+import { SITE, whatsappLink } from '../data/site';
+
+const FILE = '/descargas/plantilla-crm-konte.xlsx';
+const pageUrl = `${SITE.url}/plantilla-crm-gratis/`;
+const shareText = `Plantilla CRM gratis para Excel y Google Sheets, con panel de ventas automático: ${pageUrl}`;
+
+const autoresponse = `¡Gracias por descargar la Plantilla CRM de Konte!
+
+Si la descarga no empezó sola, aquí la tienes: ${SITE.url}${FILE}
+
+Para usarla en Google Sheets: súbela a Google Drive > clic derecho > Abrir con > Hojas de cálculo de Google.
+
+Y si algún día se te queda pequeña, la convertimos en un CRM online con app móvil, varios usuarios y recordatorios por WhatsApp. Solo tienes que responder a este email o escribirnos al ${SITE.phone}.
+
+Konte · ${SITE.url}`;
+
+const tabs = [
+  { n: 'Panel', d: 'Clientes activos, valor del embudo, previsión ponderada, ventas del mes, tasa de cierre y seguimientos vencidos. Con gráficos.' },
+  { n: 'Clientes', d: 'Ficha de cada contacto con origen, estado, responsable, último contacto y total ganado (calculados solos).' },
+  { n: 'Oportunidades', d: 'Tu embudo de ventas por etapas: importe, probabilidad, valor ponderado, cierre previsto y días abierta.' },
+  { n: 'Seguimientos', d: 'Cada llamada, email o reunión con su próximo paso. Te marca en rojo lo VENCIDO y en naranja lo de HOY.' },
+  { n: 'Listas', d: 'Cambia etapas, probabilidades, orígenes y responsables, y toda la plantilla se adapta.' },
+];
+
+const faqs = [
+  { q: '¿La plantilla CRM es gratis de verdad?', a: 'Sí, 100% gratis y sin letra pequeña. Solo te pedimos tu email para enviarte el enlace. Puedes usarla y modificarla libremente en tu empresa.' },
+  { q: '¿Funciona en Excel y en Google Sheets?', a: 'Sí. Es un archivo .xlsx que funciona en Excel (escritorio y Microsoft 365) y en Google Sheets. Para Google Sheets, súbela a Google Drive y ábrela con Hojas de cálculo de Google.' },
+  { q: '¿Necesito saber fórmulas?', a: 'No. Solo rellenas las celdas blancas y eliges opciones en los desplegables. Las columnas grises y el panel se calculan solos.' },
+  { q: '¿Cuántos clientes y oportunidades caben?', a: 'Viene preparada para 1.000 clientes, 1.000 oportunidades y 1.000 seguimientos. Si necesitas más, probablemente ya te toca un CRM a medida.' },
+  { q: '¿Puedo usarla con mi equipo?', a: 'Sí. En Google Sheets puedes compartirla y trabajar a la vez. En la pestaña Listas pones los nombres de tu equipo y el panel te muestra los números de cada uno.' },
+  { q: '¿Qué hago cuando se me quede pequeña?', a: 'La convertimos en un CRM online a medida: app móvil, permisos por usuario, recordatorios por WhatsApp y email, captación automática desde tu web y todos los datos de tu plantilla importados.' },
+];
+
+const appJsonLd = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: 'Plantilla CRM gratis de Konte',
+  applicationCategory: 'BusinessApplication',
+  operatingSystem: 'Microsoft Excel, Google Sheets',
+  url: pageUrl,
+  image: `${SITE.url}/img/og/plantilla-crm-gratis.png`,
+  description: 'Plantilla CRM gratuita para Excel y Google Sheets con clientes, oportunidades, seguimientos y panel de ventas automático.',
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' },
+  publisher: { '@id': `${SITE.url}/#organization` },
+  inLanguage: 'es',
+});
+
+const field = 'w-full px-3.5 py-3 bg-gray-50 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-lightAccent focus:bg-white transition-colors text-gray-900 font-medium text-sm';
+const label = 'block text-[11px] font-black uppercase tracking-widest text-gray-700 mb-1.5';
+---
+
+<Layout
+  title="Plantilla CRM gratis en Excel y Google Sheets (descarga) | Konte"
+  description="Descarga gratis nuestra plantilla CRM para Excel y Google Sheets: clientes, embudo de ventas, seguimientos con avisos y panel automático. Lista en 5 minutos."
+  ogImage="/img/og/plantilla-crm-gratis.png"
+  jsonLd={appJsonLd}
+  contactProps={{ need: 'CRM a medida', title: '¿Prefieres un CRM a medida?', subtitle: 'Convertimos la plantilla (o tu Excel actual) en un CRM online con app móvil, varios usuarios, recordatorios por WhatsApp y tus datos importados.' }}
+>
+  <section class="relative bg-white border-b border-gray-200 overflow-hidden">
+    <div class="absolute inset-0 bg-[linear-gradient(to_right,#e5e7eb_1px,transparent_1px),linear-gradient(to_bottom,#e5e7eb_1px,transparent_1px)] bg-[size:64px_64px] opacity-30 pointer-events-none"></div>
+    <div class="absolute -top-20 right-0 w-[600px] h-[400px] bg-green-400/10 rounded-full blur-[120px] pointer-events-none"></div>
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 md:py-16 grid lg:grid-cols-[1.1fr_0.9fr] gap-10 lg:gap-14 items-start">
+      <div>
+        <Breadcrumbs items={[{ name: 'Plantilla CRM gratis', href: '/plantilla-crm-gratis/' }]} />
+        <div class="mt-6 inline-flex items-center gap-2 px-3 py-1.5 bg-green-50 border border-green-200 text-green-700 rounded-full">
+          <span class="text-xs font-black uppercase tracking-widest">Descarga gratuita · Excel y Google Sheets</span>
+        </div>
+        <h1 class="mt-5 font-display text-4xl md:text-6xl font-black uppercase tracking-tight leading-[0.95] text-gray-900">
+          Plantilla CRM <span class="text-lightAccent">gratis</span> para Excel y Google Sheets
+        </h1>
+        <p class="mt-6 text-lg md:text-xl text-gray-600 leading-relaxed font-medium">
+          Organiza tus clientes, tu embudo de ventas y tus seguimientos en un solo archivo. El panel de ventas se actualiza solo y te avisa de lo que se te está quedando atrás. Sin registrarte en ningún programa y sin cuotas.
+        </p>
+        <ul class="mt-8 grid sm:grid-cols-2 gap-3 text-sm font-bold text-gray-800">
+          {['Panel de ventas automático con gráficos', 'Embudo por etapas con previsión ponderada', 'Avisos de seguimientos vencidos', 'Desplegables: sin escribir dos veces', 'Para 1.000 clientes y oportunidades', 'Lista en 5 minutos, con ejemplos'].map((t) => (
+            <li class="flex items-center gap-2"><span class="w-5 h-5 rounded-full bg-green-500 text-white text-[10px] flex items-center justify-center flex-shrink-0">✓</span>{t}</li>
+          ))}
+        </ul>
+      </div>
+
+      <div id="descargar" class="bg-white border-2 border-gray-900 rounded-2xl p-6 sm:p-8 shadow-[10px_10px_0_0_rgba(34,197,94,0.25)] lg:sticky lg:top-28">
+        <div data-form-wrap>
+          <form id="form-plantilla" data-konte-form data-subject="Descarga plantilla CRM" data-download={FILE} class="space-y-4" novalidate>
+            <p class="text-[10px] font-black uppercase tracking-widest text-green-600">Gratis · Sin spam</p>
+            <h2 class="font-display text-2xl font-black uppercase text-gray-900 leading-tight">Descarga la plantilla</h2>
+            <input type="hidden" name="origen" value="Plantilla CRM gratis" />
+            <input type="hidden" name="_autoresponse" value={autoresponse} />
+            <input type="text" name="_honey" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true" />
+            <div>
+              <label for="pl-nombre" class={label}>Nombre *</label>
+              <input id="pl-nombre" type="text" name="nombre" required autocomplete="name" placeholder="Tu nombre" class={field} />
+            </div>
+            <div>
+              <label for="pl-email" class={label}>Email *</label>
+              <input id="pl-email" type="email" name="email" required autocomplete="email" placeholder="tu@empresa.com" class={field} />
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label for="pl-negocio" class={label}>Tu negocio</label>
+                <input id="pl-negocio" type="text" name="negocio" placeholder="Ej.: clínica, taller…" class={field} />
+              </div>
+              <div>
+                <label for="pl-equipo" class={label}>¿Cuántos sois?</label>
+                <select id="pl-equipo" name="equipo" class={field}>
+                  <option value="">Elige…</option>
+                  <option>Solo yo</option>
+                  <option>2 a 5</option>
+                  <option>6 a 20</option>
+                  <option>Más de 20</option>
+                </select>
+              </div>
+            </div>
+            <p data-form-error-inline class="hidden text-sm font-bold text-red-600"></p>
+            <button type="submit" class="w-full py-4 bg-green-500 hover:bg-green-600 text-white font-black text-base uppercase tracking-widest rounded-lg transition-colors flex items-center justify-center gap-2 shadow-[4px_4px_0_0_rgba(0,0,0,0.15)]">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M12 3v12m0 0-4-4m4 4 4-4M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
+              <span data-submit-label>Descargar gratis</span>
+            </button>
+            <p class="text-center text-xs text-gray-500">Te enviamos también el enlace por email. <a href="/privacidad/" class="underline">Privacidad</a></p>
+          </form>
+
+          <div data-form-success class="hidden text-center py-4">
+            <div class="w-16 h-16 mx-auto mb-5 rounded-full bg-green-100 text-green-600 flex items-center justify-center">
+              <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M12 3v12m0 0-4-4m4 4 4-4M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
+            </div>
+            <p class="font-display text-2xl font-black uppercase text-gray-900 mb-2">¡Descarga en marcha!</p>
+            <p class="text-gray-600 mb-5">Si no empieza sola, <a href={FILE} download class="text-lightAccent font-bold underline">pulsa aquí</a>. Ábrela y empieza por la pestaña «Inicio».</p>
+            <p class="text-sm font-bold text-gray-900 mb-3">¿Te la ha recomendado alguien? Pásala tú también:</p>
+            <div class="flex flex-col sm:flex-row gap-2 justify-center">
+              <a href={`https://wa.me/?text=${encodeURIComponent(shareText)}`} target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-[#25D366] text-white text-xs font-black uppercase tracking-widest rounded-lg"><WhatsAppIcon class="w-4 h-4" />Compartir</a>
+              <a href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(pageUrl)}`} target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-[#0A66C2] text-white text-xs font-black uppercase tracking-widest rounded-lg">LinkedIn</a>
+            </div>
+            <a data-success-whatsapp href={whatsappLink()} class="hidden"></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Vista previa del panel -->
+  <section class="py-16 md:py-20 bg-gray-50 border-b border-gray-200">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="font-display text-3xl md:text-5xl font-black uppercase text-gray-900 text-center mb-4 leading-tight">Así se ve tu panel de ventas</h2>
+      <p class="text-center text-lg text-gray-600 mb-10 font-medium">Se calcula solo con lo que escribes en el resto de pestañas.</p>
+      <div class="bg-white rounded-2xl border border-gray-200 shadow-2xl overflow-hidden" aria-hidden="true">
+        <div class="h-9 bg-[#1D6F42] flex items-center px-4 gap-3 text-white text-xs font-bold">
+          <span class="w-5 h-5 bg-white text-[#1D6F42] rounded flex items-center justify-center font-black">X</span>
+          plantilla-crm-konte.xlsx
+        </div>
+        <div class="p-4 sm:p-6 overflow-x-auto">
+          <p class="font-black text-lightAccent text-xl mb-1">PANEL DE VENTAS</p>
+          <p class="text-xs italic text-gray-400 mb-5">Se actualiza solo con lo que escribes en Clientes, Oportunidades y Seguimientos.</p>
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-3 min-w-[520px]">
+            {[['Clientes activos', '3', false], ['Oportunidades abiertas', '4', false], ['Valor del embudo', '14.800 €', false], ['Previsión ponderada', '6.290 €', false], ['Ganado este mes', '3.200 €', false], ['Tasa de cierre', '67%', false], ['Seguimientos vencidos', '1', true], ['Seguimientos para hoy', '1', false]].map(([l, v, alert]) => (
+              <div class="border border-gray-200">
+                <p class={`text-[9px] font-black uppercase text-white text-center py-1 ${alert ? 'bg-red-600' : 'bg-gray-900'}`}>{l}</p>
+                <p class={`text-center font-black text-xl py-3 bg-blue-50/50 ${alert ? 'text-red-600' : 'text-lightAccent'}`}>{v}</p>
+              </div>
+            ))}
+          </div>
+          <div class="mt-6 grid md:grid-cols-2 gap-6 min-w-[520px]">
+            <table class="w-full text-xs border border-gray-200">
+              <thead><tr class="bg-lightAccent text-white"><th class="p-1.5 text-left">Etapa</th><th class="p-1.5">Nº</th><th class="p-1.5 text-right">Importe</th></tr></thead>
+              <tbody>
+                {[['1. Nuevo', 1, '900 €'], ['2. Contactado', 1, '6.500 €'], ['3. Propuesta enviada', 1, '2.600 €'], ['4. Negociación', 1, '4.800 €'], ['5. Ganada', 2, '5.000 €'], ['6. Perdida', 1, '700 €']].map(([e, n, v]) => (
+                  <tr class="border-t border-gray-100"><td class="p-1.5">{e}</td><td class="p-1.5 text-center">{n}</td><td class="p-1.5 text-right">{v}</td></tr>
+                ))}
+              </tbody>
+            </table>
+            <div>
+              <p class="text-xs font-black text-gray-700 mb-2">Seguimientos</p>
+              {[['Taller Mecánico Ruiz', 'Enviar presupuesto final', 'VENCIDO', 'bg-red-600 text-white'], ['Gimnasio Fuerza Norte', 'Demo por videollamada', 'HOY', 'bg-amber-500 text-white'], ['Distribuciones Mar', 'Enviar casos de éxito', 'Esta semana', 'bg-amber-100 text-amber-800']].map(([c, p, a, cls]) => (
+                <div class="flex items-center justify-between gap-2 border-b border-gray-100 py-2 text-xs">
+                  <span><span class="font-bold text-gray-900">{c}</span> · <span class="text-gray-500">{p}</span></span>
+                  <span class={`px-2 py-0.5 rounded font-black text-[10px] ${cls}`}>{a}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 md:py-24 bg-white">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="font-display text-3xl md:text-5xl font-black uppercase text-gray-900 mb-10 leading-tight">Qué incluye la plantilla</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+        {tabs.map((t, i) => (
+          <div class="p-6 border-2 border-gray-200 rounded-2xl">
+            <span class="inline-block px-2.5 py-1 bg-lightAccent text-white text-[10px] font-black uppercase tracking-widest rounded mb-3">Pestaña {i + 1}</span>
+            <h3 class="font-display text-xl font-black uppercase text-gray-900 mb-2">{t.n}</h3>
+            <p class="text-sm text-gray-600 leading-relaxed">{t.d}</p>
+          </div>
+        ))}
+      </div>
+
+      <div class="mt-14 grid md:grid-cols-2 gap-6">
+        <div class="p-8 bg-gray-50 border border-gray-200 rounded-2xl">
+          <h2 class="font-display text-2xl font-black uppercase text-gray-900 mb-4">Cómo usarla en Google Sheets</h2>
+          <ol class="space-y-3 text-gray-700">
+            <li><strong>1.</strong> Descarga el archivo y súbelo a Google Drive.</li>
+            <li><strong>2.</strong> Clic derecho → Abrir con → Hojas de cálculo de Google.</li>
+            <li><strong>3.</strong> Archivo → Guardar como Hojas de cálculo de Google.</li>
+            <li><strong>4.</strong> Compártela con tu equipo y úsala también desde el móvil.</li>
+          </ol>
+        </div>
+        <div class="p-8 bg-gray-900 rounded-2xl text-white">
+          <h2 class="font-display text-2xl font-black uppercase mb-4">¿Y cuando se te quede pequeña?</h2>
+          <p class="text-gray-300 mb-6">Una hoja de cálculo tiene límites: no envía WhatsApps, no tiene app, cuesta controlar quién toca qué. Cuando llegues ahí, la convertimos en un CRM online a medida con tus datos dentro.</p>
+          <a href="/soluciones/crm-a-medida/" class="inline-flex items-center gap-2 px-6 py-3 bg-lightAccent text-white font-black text-sm uppercase tracking-widest rounded-sm">Ver CRM a medida →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 md:py-24 bg-gray-50 border-t border-gray-200">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="font-display text-3xl md:text-5xl font-black uppercase text-gray-900 text-center mb-12">Preguntas frecuentes</h2>
+      <Faq items={faqs} />
+      <div class="mt-12 text-center">
+        <a href="#descargar" class="inline-flex items-center gap-2 px-8 py-4 bg-green-500 hover:bg-green-600 text-white font-black uppercase tracking-widest rounded-sm transition-colors shadow-[4px_4px_0_0_rgba(0,0,0,0.15)]">Descargar la plantilla gratis</a>
+      </div>
+    </div>
+  </section>
+</Layout>

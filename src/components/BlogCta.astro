@@ -1,0 +1,27 @@
+---
+import WhatsAppIcon from './WhatsAppIcon.astro';
+import { solutionBySlug } from '../data/soluciones';
+import { whatsappLink } from '../data/site';
+
+interface Props {
+  solution: string;
+}
+
+const s = solutionBySlug(Astro.props.solution)!;
+---
+
+<div class="not-prose my-16 p-8 md:p-10 bg-gray-900 text-white rounded-[32px] shadow-2xl overflow-hidden relative">
+  <div class="absolute -top-24 -right-24 w-64 h-64 bg-lightAccent/30 rounded-full blur-3xl pointer-events-none"></div>
+  <div class="relative">
+    <p class="text-xs font-black uppercase tracking-widest text-lightAccent mb-3">¿Lo quieres en tu empresa?</p>
+    <h3 class="font-display font-black text-3xl md:text-4xl uppercase mb-4 leading-none tracking-tighter">Te lo construimos a medida</h3>
+    <p class="mb-8 text-lg text-gray-300 max-w-xl font-medium">Cuéntanos qué necesitas y en 48 h te enviamos una propuesta con plazos y precio cerrado. Gratis y sin compromiso.</p>
+    <div class="flex flex-col sm:flex-row gap-3">
+      <a href="#contacto" data-need={s.need} class="inline-flex items-center justify-center px-8 py-4 bg-lightAccent text-white font-black uppercase tracking-widest rounded-sm hover:-translate-y-0.5 transition-transform">Pedir presupuesto →</a>
+      <a href={whatsappLink(`Hola, he leído vuestro blog y me interesa: ${s.name}.`)} target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 px-8 py-4 bg-[#25D366] hover:bg-[#128C7E] text-white font-black uppercase tracking-widest rounded-sm transition-colors">
+        <WhatsAppIcon class="w-5 h-5" /> WhatsApp
+      </a>
+    </div>
+    <p class="mt-6 text-sm text-gray-400">Más información: <a href={`/soluciones/${s.slug}/`} class="text-white font-bold underline hover:text-lightAccent">{s.name}</a></p>
+  </div>
+</div>

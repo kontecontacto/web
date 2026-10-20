@@ -1,0 +1,72 @@
+---
+import PostLayout from '../../layouts/PostLayout.astro';
+
+const faqs = [
+  { q: '¿Cuál es la diferencia entre turnos y cita previa?', a: 'La cita previa reserva una hora concreta por adelantado. Un sistema de turnos (o gestor de colas) ordena a las personas que ya están esperando, normalmente con un número y una pantalla. En Latinoamérica también se llama "turno" a la cita reservada.' },
+  { q: '¿Cómo reduzco las ausencias de clientes?', a: 'Con recordatorios automáticos (24 h y 2 h antes), un enlace fácil para cambiar o cancelar, lista de espera para rellenar huecos y, en servicios caros, cobrando una señal al reservar.' },
+  { q: '¿Puedo usar mi web para las reservas?', a: 'Sí. Un sistema a medida se integra en tu web con tu dominio y tu imagen, y también puedes compartir el enlace por Instagram, Google o WhatsApp.' },
+];
+---
+
+<PostLayout
+  slug="sistema-de-turnos-y-cita-previa"
+  title="Sistema de turnos o cita previa para tu negocio: ¿app estándar o a medida?"
+  metaTitle="Sistema de turnos y cita previa: ¿estándar o a medida? | Konte"
+  description="Qué debe tener un buen sistema de turnos y cita previa, cuándo te basta una app estándar y cuándo compensa hacerlo a medida. Con trucos para reducir ausencias."
+  image="/img/blog/hero-turnos.webp"
+  ogImage="/img/og/blog-sistema-de-turnos-y-cita-previa.png"
+  label="Turnos y citas"
+  tags={['Turnos', 'Cita previa', 'Reservas']}
+  date="2026-10-20"
+  readTime="6 min"
+  solution="sistema-de-turnos-y-citas"
+  faqs={faqs}
+  related={[
+    { href: '/blog/crm-medida-clinicas-talleres/', label: 'CRM', title: 'El CRM perfecto para clínicas y talleres' },
+    { href: '/blog/cuanto-cuesta-un-software-a-medida/', label: 'Precios', title: '¿Cuánto cuesta un software a medida?' },
+  ]}
+>
+  <p class="lead">Si pasas buena parte del día al teléfono dando, cambiando y anulando citas, o tu sala de espera es un caos de "¿quién va ahora?", necesitas un sistema de turnos o de cita previa. La duda es si te basta con una app de las que ya existen o si te compensa una hecha a medida. Aquí tienes cómo decidirlo.</p>
+
+  <h2>Turnos, citas y reservas: no es lo mismo</h2>
+  <ul>
+    <li><strong>Cita previa:</strong> el cliente reserva un día y una hora. Típico de clínicas, peluquerías, talleres o gestorías.</li>
+    <li><strong>Turnos o gestor de colas:</strong> el cliente llega, coge número y espera a que le llamen en una pantalla. Típico de carnicerías, farmacias, administraciones o atención al público.</li>
+    <li><strong>Reservas de recursos:</strong> pistas, salas, máquinas o plazas en una clase, con aforo.</li>
+  </ul>
+  <p>Muchos negocios necesitan una mezcla: citas por la mañana, atención sin cita por la tarde y una pantalla que ordene a todos.</p>
+
+  <h2>Lo que debe tener cualquier sistema</h2>
+  <ul>
+    <li>Reserva online 24/7 desde el móvil, sin instalar nada.</li>
+    <li>Confirmaciones y recordatorios automáticos por email, SMS o WhatsApp.</li>
+    <li>Cambios y cancelaciones en autoservicio desde el propio recordatorio.</li>
+    <li>Agenda por profesional, con vista de todo el equipo.</li>
+    <li>Historial del cliente: qué se hizo la última vez.</li>
+  </ul>
+
+  <h2>Cuándo te basta una app estándar</h2>
+  <p>Si eres un profesional o un equipo pequeño, con servicios sencillos y sin reglas especiales, una app de reservas de las que ya existen te puede servir perfectamente. Pruébala antes de invertir en nada más.</p>
+
+  <h2>Cuándo compensa hacerlo a medida</h2>
+  <ul>
+    <li><strong>Recursos compartidos:</strong> un servicio necesita a la vez un profesional, una sala y una máquina.</li>
+    <li><strong>Reglas propias:</strong> duraciones variables, tiempos de preparación, prioridades, clientes con bono o tarifas especiales.</li>
+    <li><strong>Varias sedes</strong> con agendas y horarios distintos y una visión global.</li>
+    <li><strong>Integración con lo que ya usas:</strong> tu CRM, tu facturación o tu web, sin copiar datos.</li>
+    <li><strong>Pantalla de turnos</strong> en sala combinada con citas online.</li>
+    <li><strong>Cobro de señal o prepago</strong> con tu propia pasarela, sin comisiones de plataforma.</li>
+    <li><strong>Tu marca:</strong> tu dominio, tus colores, y los datos de tus clientes en tu sistema, no en el de otro.</li>
+    <li>Pagas licencias por profesional y la cuota ya es más alta que un desarrollo propio.</li>
+  </ul>
+
+  <h2>Cuatro trucos para que no te dejen plantado</h2>
+  <ol>
+    <li><strong>Doble recordatorio:</strong> uno el día antes y otro un par de horas antes.</li>
+    <li><strong>Cancelar tiene que ser fácil:</strong> si cuesta, el cliente simplemente no viene.</li>
+    <li><strong>Lista de espera automática:</strong> cuando alguien cancela, el hueco se ofrece al siguiente.</li>
+    <li><strong>Señal en servicios caros:</strong> un pequeño depósito reduce mucho las ausencias.</li>
+  </ol>
+
+  <p>Si quieres ver qué incluiría un sistema así para tu negocio, echa un vistazo a nuestra página de <a href="/soluciones/sistema-de-turnos-y-citas/">sistemas de turnos y cita previa a medida</a>.</p>
+</PostLayout>

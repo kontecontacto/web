@@ -1,0 +1,82 @@
+---
+import WhatsAppIcon from './WhatsAppIcon.astro';
+import { SITE, whatsappLink } from '../data/site';
+import { SOLUTIONS } from '../data/soluciones';
+---
+
+<footer class="bg-black text-gray-400 pt-16 pb-28 md:pb-12 border-t border-gray-800">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-10 mb-12">
+      <div class="lg:col-span-4">
+        <a href="/" class="flex items-center gap-3 mb-4">
+          <div class="w-10 h-10 bg-lightAccent text-white flex items-center justify-center font-display font-black text-2xl">K</div>
+          <span class="font-display font-bold text-2xl tracking-tight uppercase text-white">Konte</span>
+        </a>
+        <p class="text-sm text-gray-500 leading-relaxed mb-6 max-w-sm">
+          Desarrollo de software a medida para empresas: CRM, sistemas de turnos y citas, tickets con QR, inventario, ERP y apps de gestión. En la nube o sobre Google Workspace. Desde {SITE.city} para España y Latinoamérica.
+        </p>
+        <ul class="space-y-3 text-sm">
+          <li>
+            <a href={SITE.phoneHref} class="flex items-center gap-3 text-white font-bold hover:text-lightAccent transition-colors">
+              <svg class="w-4 h-4 text-lightAccent" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>
+              {SITE.phone}
+            </a>
+          </li>
+          <li>
+            <a href={`mailto:${SITE.email}`} class="flex items-center gap-3 text-white font-bold hover:text-lightAccent transition-colors">
+              <svg class="w-4 h-4 text-lightAccent" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
+              {SITE.email}
+            </a>
+          </li>
+          <li>
+            <a href={whatsappLink()} target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 text-white font-bold hover:text-[#25D366] transition-colors">
+              <WhatsAppIcon class="w-4 h-4 text-[#25D366]" />
+              WhatsApp
+            </a>
+          </li>
+          <li class="flex items-center gap-3">
+            <svg class="w-4 h-4 text-lightAccent" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>
+            {SITE.city}, España · Remoto en Latinoamérica
+          </li>
+        </ul>
+      </div>
+
+      <div class="lg:col-span-4">
+        <h2 class="text-white font-black text-xs uppercase tracking-widest mb-5">Soluciones a medida</h2>
+        <ul class="grid grid-cols-1 gap-2.5 text-sm">
+          {SOLUTIONS.map((s) => (
+            <li><a href={`/soluciones/${s.slug}/`} class="hover:text-white transition-colors">{s.name}</a></li>
+          ))}
+        </ul>
+      </div>
+
+      <div class="lg:col-span-2">
+        <h2 class="text-white font-black text-xs uppercase tracking-widest mb-5">Konte</h2>
+        <ul class="space-y-2.5 text-sm">
+          <li><a href="/servicios/" class="hover:text-white transition-colors">Servicios</a></li>
+          <li><a href="/#proyectos" class="hover:text-white transition-colors">Proyectos</a></li>
+          <li><a href="/blog/" class="hover:text-white transition-colors">Blog</a></li>
+          <li><a href="/plantilla-crm-gratis/" class="hover:text-white transition-colors">Plantilla CRM gratis</a></li>
+          <li><a href="/contacto/" class="hover:text-white transition-colors">Contacto</a></li>
+        </ul>
+      </div>
+
+      <div class="lg:col-span-2">
+        <h2 class="text-white font-black text-xs uppercase tracking-widest mb-5">Dónde trabajamos</h2>
+        <ul class="space-y-2.5 text-sm">
+          <li><a href="/desarrollo-software-a-medida-barcelona/" class="hover:text-white transition-colors">Software a medida en Barcelona</a></li>
+          <li><a href="/software-a-medida-latinoamerica/" class="hover:text-white transition-colors">Software a medida en Latinoamérica</a></li>
+          <li><span>Toda España en remoto</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-600">
+      <p>&copy; {new Date().getFullYear()} {SITE.legalName} · konte.es</p>
+      <div class="flex gap-6">
+        <a href="/privacidad/" class="hover:text-white transition-colors">Privacidad</a>
+        <a href="/contacto/" class="hover:text-white transition-colors">Contacto</a>
+      </div>
+    </div>
+  </div>
+</footer>

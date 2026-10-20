@@ -7,6 +7,7 @@ export default function ProjectGallery({ project }) {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const images = [project.mainImg, ...project.thumbs];
+  const src = (file) => encodeURI(`/img/${project.folder}/${file.replace(/\.png$/, '.webp')}`);
 
   const openLightbox = (index) => {
     setCurrentIndex(index);
@@ -51,8 +52,12 @@ export default function ProjectGallery({ project }) {
           <div className="w-2.5 h-2.5 rounded-full bg-green-500"></div>
         </div>
         <img 
-          src={`/img/${project.folder}/${project.mainImg}`} 
-          alt={project.title} 
+          src={src(project.mainImg)}
+          alt={`Captura del sistema ${project.title}`}
+          loading="lazy"
+          decoding="async"
+          width="1600"
+          height="780" 
           className="w-full h-[220px] sm:h-[280px] object-cover object-top project-image group-hover:opacity-70 transition-opacity" 
         />
         <div className="absolute inset-x-0 top-1/2 flex justify-center pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity">
@@ -65,8 +70,12 @@ export default function ProjectGallery({ project }) {
         {project.thumbs.map((thumb, idx) => (
           <img 
             key={idx}
-            src={`/img/${project.folder}/${thumb}`} 
-            alt="Thumbnail" 
+            src={src(thumb)}
+            alt={`${project.title}: pantalla ${idx + 2}`}
+            loading="lazy"
+            decoding="async"
+            width="400"
+            height="300" 
             className="w-full aspect-square md:aspect-[4/3] object-cover object-top rounded-2xl border border-gray-700 project-image cursor-pointer hover:border-lightAccent dark:hover:border-darkAccent transition-colors shadow-lg"
             onClick={() => openLightbox(idx + 1)} 
           />
@@ -111,8 +120,8 @@ export default function ProjectGallery({ project }) {
                   initial={{ opacity: 0, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.2 }}
-                  src={`/img/${project.folder}/${images[currentIndex]}`}
-                  alt="Gallery Image"
+                  src={src(images[currentIndex])}
+                  alt={`${project.title}: pantalla ${currentIndex + 1}`}
                   className="w-full max-h-[90vh] object-contain rounded-xl shadow-[0_0_80px_rgba(0,0,0,0.8)] ring-1 ring-white/20"
                 />
                 <div className="absolute -bottom-10 left-1/2 -translate-x-1/2 text-white/80 font-bold text-sm tracking-widest bg-black/40 px-4 py-1 rounded-full backdrop-blur-md">

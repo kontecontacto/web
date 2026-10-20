@@ -1,0 +1,110 @@
+---
+import { SITE } from '../data/site';
+import { SOLUTIONS } from '../data/soluciones';
+
+const path = Astro.url.pathname;
+const isActive = (href: string) => path.startsWith(href);
+---
+
+<header id="main-nav" class="fixed w-full top-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-200 transition-shadow duration-300">
+  <!-- Barra de contacto -->
+  <div class="hidden md:block bg-gray-900 text-gray-300 text-xs">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-9 flex items-center justify-between gap-6">
+      <p class="flex items-center gap-2">
+        <svg class="w-3.5 h-3.5 text-lightAccent" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>
+        {SITE.city} · Proyectos en toda España y Latinoamérica
+      </p>
+      <div class="flex items-center gap-6">
+        <a href={SITE.phoneHref} class="flex items-center gap-1.5 hover:text-white transition-colors font-bold">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>
+          {SITE.phone}
+        </a>
+        <a href={`mailto:${SITE.email}`} class="flex items-center gap-1.5 hover:text-white transition-colors font-bold">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
+          {SITE.email}
+        </a>
+        <span class="text-gray-500">Respuesta en menos de 24 h</span>
+      </div>
+    </div>
+  </div>
+
+  <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" aria-label="Principal">
+    <div class="flex justify-between items-center h-16">
+      <a href="/" class="flex items-center gap-3 group" aria-label="Konte, inicio">
+        <div class="w-10 h-10 bg-lightAccent text-white flex items-center justify-center font-display font-black text-2xl rotate-3 group-hover:rotate-0 transition-transform shadow-[3px_3px_0_0_rgba(0,0,0,0.15)]">K</div>
+        <span class="font-display font-bold text-2xl tracking-tight uppercase text-gray-900">Konte</span>
+      </a>
+
+      <div class="hidden lg:flex items-center gap-7">
+        <div class="relative group">
+          <a href="/soluciones/" class={`flex items-center gap-1 text-sm font-bold transition-colors ${isActive('/soluciones') ? 'text-lightAccent' : 'text-gray-700 hover:text-lightAccent'}`}>
+            Soluciones
+            <svg class="w-3.5 h-3.5 group-hover:rotate-180 transition-transform" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>
+          </a>
+          <div class="absolute left-1/2 -translate-x-1/2 top-full pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible group-focus-within:opacity-100 group-focus-within:visible transition-all duration-200">
+            <div class="w-[640px] bg-white border border-gray-200 rounded-2xl shadow-2xl p-4 grid grid-cols-2 gap-1">
+              {SOLUTIONS.map((s) => (
+                <a href={`/soluciones/${s.slug}/`} class="flex items-start gap-3 p-3 rounded-xl hover:bg-blue-50 group/item">
+                  <span class="w-9 h-9 flex-shrink-0 text-lightAccent bg-blue-50 group-hover/item:bg-lightAccent group-hover/item:text-white p-2 rounded-lg transition-colors" set:html={s.svg} />
+                  <span>
+                    <span class="block text-sm font-bold text-gray-900">{s.name}</span>
+                    <span class="block text-xs text-gray-500 leading-snug line-clamp-2">{s.cardDesc}</span>
+                  </span>
+                </a>
+              ))}
+              <a href="/soluciones/" class="col-span-2 mt-1 text-center text-xs font-black uppercase tracking-widest text-lightAccent p-3 rounded-xl bg-gray-50 hover:bg-blue-50">Ver todas las soluciones →</a>
+            </div>
+          </div>
+        </div>
+        <a href="/servicios/" class={`text-sm font-bold transition-colors ${isActive('/servicios') ? 'text-lightAccent' : 'text-gray-700 hover:text-lightAccent'}`}>Servicios</a>
+        <a href="/#proyectos" class="text-sm font-bold text-gray-700 hover:text-lightAccent transition-colors">Proyectos</a>
+        <a href="/plantilla-crm-gratis/" class="flex items-center gap-1.5 text-sm font-bold text-gray-700 hover:text-lightAccent transition-colors">
+          Plantilla CRM
+          <span class="bg-green-500 text-white text-[9px] font-black px-1.5 py-0.5 rounded uppercase tracking-wide leading-none">Gratis</span>
+        </a>
+        <a href="/blog/" class={`text-sm font-bold transition-colors ${isActive('/blog') ? 'text-lightAccent' : 'text-gray-700 hover:text-lightAccent'}`}>Blog</a>
+        <a href="/contacto/" class={`text-sm font-bold transition-colors ${isActive('/contacto') ? 'text-lightAccent' : 'text-gray-700 hover:text-lightAccent'}`}>Contacto</a>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <a href={SITE.phoneHref} class="hidden sm:flex lg:hidden xl:flex items-center gap-2 text-sm font-bold text-gray-700 hover:text-lightAccent transition-colors border border-gray-300 hover:border-lightAccent px-3 py-2 rounded-sm" aria-label={`Llamar al ${SITE.phone}`}>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>
+          <span class="hidden xl:inline">Llamar</span>
+        </a>
+        <a href="#contacto" class="px-4 sm:px-5 py-2.5 bg-lightAccent text-white font-bold text-sm tracking-wide rounded-sm hover:-translate-y-0.5 transition-transform shadow-[3px_3px_0_0_rgba(0,0,0,0.2)] whitespace-nowrap">
+          Pedir presupuesto
+        </a>
+        <button id="mobile-menu-btn" class="lg:hidden p-2 text-gray-900" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobile-menu">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <div id="mobile-menu" class="hidden lg:hidden bg-white border-t border-gray-200 max-h-[calc(100vh-4rem)] overflow-y-auto">
+    <div class="px-4 py-5 space-y-5">
+      <div>
+        <p class="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-2">Soluciones</p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-1">
+          {SOLUTIONS.map((s) => (
+            <a href={`/soluciones/${s.slug}/`} class="flex items-center gap-3 py-2 text-sm font-bold text-gray-900 hover:text-lightAccent">
+              <span class="w-7 h-7 flex-shrink-0 text-lightAccent bg-blue-50 p-1.5 rounded-md" set:html={s.svg} />
+              {s.name}
+            </a>
+          ))}
+        </div>
+      </div>
+      <div class="grid grid-cols-2 gap-x-4 gap-y-3 border-t border-gray-100 pt-4">
+        <a href="/servicios/" class="text-base font-bold text-gray-900">Servicios</a>
+        <a href="/#proyectos" class="text-base font-bold text-gray-900">Proyectos</a>
+        <a href="/plantilla-crm-gratis/" class="text-base font-bold text-gray-900">Plantilla CRM <span class="text-green-600 text-xs">gratis</span></a>
+        <a href="/blog/" class="text-base font-bold text-gray-900">Blog</a>
+        <a href="/contacto/" class="text-base font-bold text-gray-900">Contacto</a>
+      </div>
+      <div class="grid grid-cols-1 gap-2 border-t border-gray-100 pt-4">
+        <a href={SITE.phoneHref} class="w-full py-3 border-2 border-gray-900 text-gray-900 font-black text-sm uppercase tracking-widest rounded-sm text-center">Llamar {SITE.phone}</a>
+        <a href={`mailto:${SITE.email}`} class="w-full py-3 border-2 border-gray-200 text-gray-700 font-bold text-sm rounded-sm text-center">{SITE.email}</a>
+      </div>
+    </div>
+  </div>
+</header>

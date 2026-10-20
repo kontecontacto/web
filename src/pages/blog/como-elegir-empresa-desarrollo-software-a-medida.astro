@@ -1,0 +1,77 @@
+---
+import PostLayout from '../../layouts/PostLayout.astro';
+
+const faqs = [
+  { q: '¿Es mejor una empresa grande o un estudio pequeño?', a: 'Depende del proyecto. Para pymes, un estudio pequeño suele ser más rápido, más barato y te da trato directo con quien programa. Lo importante es que tenga casos reales parecidos al tuyo y un proceso claro.' },
+  { q: '¿Tiene que estar en mi ciudad?', a: 'No necesariamente. Hoy la mayoría de proyectos se gestionan por videollamada. Sí conviene que trabaje en tu idioma y en un horario compatible con el tuyo.' },
+  { q: '¿Qué debe incluir el contrato?', a: 'Alcance de lo que se entrega, plazos, precio, forma de pago, propiedad del código y de los datos, condiciones de soporte y mantenimiento, y confidencialidad.' },
+];
+---
+
+<PostLayout
+  slug="como-elegir-empresa-desarrollo-software-a-medida"
+  title="Cómo elegir una empresa de desarrollo de software a medida: 10 preguntas antes de firmar"
+  metaTitle="Cómo elegir empresa de desarrollo de software a medida | Konte"
+  description="10 preguntas que debes hacer antes de contratar a una empresa de desarrollo de software a medida: propiedad de datos, precio cerrado, demos, soporte y más."
+  image="/img/blog/hero-elegir.webp"
+  ogImage="/img/og/blog-como-elegir-empresa-desarrollo-software-a-medida.png"
+  label="10 preguntas"
+  tags={['Guía', 'Software a medida', 'Proveedores']}
+  date="2026-10-20"
+  readTime="6 min"
+  solution="app-y-plataforma-web-a-medida"
+  faqs={faqs}
+  related={[
+    { href: '/blog/cuanto-cuesta-un-software-a-medida/', label: 'Precios', title: '¿Cuánto cuesta un software a medida?' },
+    { href: '/blog/crm-medida-clinicas-talleres/', label: 'CRM', title: 'El CRM perfecto para clínicas y talleres' },
+  ]}
+>
+  <p class="lead">Elegir bien quién te desarrolla un sistema es casi tan importante como el sistema en sí. Un mal proveedor te deja con un programa que nadie entiende, datos que no puedes sacar y facturas que no paran. Estas son las 10 preguntas que te recomendamos hacer antes de firmar con nadie, incluidos nosotros.</p>
+
+  <h2>1. ¿Habéis hecho algo parecido antes?</h2>
+  <p>Pide ver casos reales, a ser posible de tu sector o con un problema parecido. Capturas, una demo o el contacto de un cliente valen más que cualquier presentación.</p>
+
+  <h2>2. ¿Quién va a programar mi proyecto?</h2>
+  <p>En muchas agencias, quien te vende no es quien construye, y el proyecto acaba subcontratado. Hablar directamente con quien programa evita malentendidos y acelera las decisiones.</p>
+
+  <h2>3. ¿El precio es cerrado o por horas?</h2>
+  <p>Un precio cerrado por un alcance definido te protege. Si es por horas, pide un tope máximo por escrito.</p>
+
+  <h2>4. ¿De quién son los datos y el código?</h2>
+  <p>Los datos deben ser siempre tuyos y exportables en cualquier momento. Sobre el código, que quede claro en el contrato qué derechos tienes.</p>
+
+  <h2>5. ¿Cada cuánto veré avances?</h2>
+  <p>Lo sano es ver demos funcionales cada semana o cada dos. Si la respuesta es "en tres meses te lo enseñamos", huye.</p>
+
+  <h2>6. ¿Qué tecnología vais a usar y por qué?</h2>
+  <p>No hace falta que entiendas los detalles, pero sí que te expliquen por qué esa opción encaja con tu tamaño y tu presupuesto. A veces lo más sensato es construir sobre herramientas que ya usas, como Google Workspace; otras, una plataforma en la nube con servidor propio.</p>
+
+  <h2>7. ¿Qué pasa después de la entrega?</h2>
+  <p>Pregunta qué incluye el soporte, cuánto cuesta un cambio pequeño y qué ocurre si algo falla un domingo.</p>
+
+  <h2>8. ¿Hay cuotas mensuales? ¿Qué incluyen exactamente?</h2>
+  <p>Una cuota puede tener todo el sentido (servidor, copias de seguridad, seguridad, soporte), pero tiene que estar detallada.</p>
+
+  <h2>9. ¿Se puede hacer por fases?</h2>
+  <p>Un buen proveedor te propondrá empezar por lo que más duele y crecer después. Si todo tiene que hacerse de golpe, el riesgo es tuyo.</p>
+
+  <h2>10. ¿Me diríais si no necesito un desarrollo a medida?</h2>
+  <p>Es la pregunta más reveladora. A veces una herramienta estándar te sirve, y quien te lo dice está pensando en tu negocio, no en su factura.</p>
+
+  <h2>Nuestras respuestas</h2>
+  <p>Ya que te recomendamos hacer estas preguntas, estas son las nuestras:</p>
+  <table>
+    <thead><tr><th>Pregunta</th><th>En Konte</th></tr></thead>
+    <tbody>
+      <tr><td>Casos reales</td><td>Inventario multi-sede, producción y trazabilidad, ERP agrícola, app para entrenadores, finanzas de constructoras… <a href="/#proyectos">Ver proyectos</a></td></tr>
+      <tr><td>Quién programa</td><td>Hablas directamente con quien desarrolla tu sistema</td></tr>
+      <tr><td>Precio</td><td>Cerrado, en una propuesta que recibes en 48 h</td></tr>
+      <tr><td>Datos</td><td>Siempre tuyos y exportables</td></tr>
+      <tr><td>Avances</td><td>Demos semanales</td></tr>
+      <tr><td>Tecnología</td><td>Nube con servidor propio o Google Workspace, según tu caso</td></tr>
+      <tr><td>Cuotas</td><td>0€/mes en Google Workspace; en la nube, cuota detallada de servidor y mantenimiento</td></tr>
+      <tr><td>Por fases</td><td>Sí, siempre que tenga sentido</td></tr>
+    </tbody>
+  </table>
+  <p>Estamos en Barcelona y trabajamos con empresas de toda España y Latinoamérica. Si quieres, haznos estas mismas preguntas en una llamada de 30 minutos.</p>
+</PostLayout>

@@ -1,27 +1,30 @@
 ---
 import BlogLayout from '../../layouts/BlogLayout.astro';
+import BlogCta from '../../components/BlogCta.astro';
 
 const jsonLd = JSON.stringify({
   "@context": "https://schema.org",
   "@type": "BlogPosting",
   "headline": "Formularios Lead Magnet en Google Sheets: Captura Leads Sin CRM Caro",
-  "image": "https://konte.es/img/blog/hero-leads.png",
-  "author": { "@type": "Organization", "name": "Konte Solutions" },
+  "image": "https://www.konte.es/img/blog/hero-leads.png",
+  "author": { "@type": "Organization", "name": "Konte", "url": "https://www.konte.es/" },
+  "publisher": { "@id": "https://www.konte.es/#organization" },
   "datePublished": "2026-03-28",
-  "url": "https://konte.es/blog/formularios-leads-magnet-google-sheets",
+  "url": "https://www.konte.es/blog/formularios-leads-magnet-google-sheets/",
   "keywords": ["formulario lead magnet", "capturar leads Google Sheets", "CRM Google Sheets", "formulario alta conversión"]
 });
 ---
 
 <BlogLayout
+  need="CRM a medida"
   title="Formularios Lead Magnet con Google Sheets: Captura Leads Sin CRM Caro | Konte"
   description="Convierte tu tráfico web en clientes potenciales con un sistema de captación automatizado en Google Sheets. Sin Mailchimp ni HubSpot. Guía completa."
   jsonLd={jsonLd}
-  ogImage="/img/blog/hero-leads.png"
+  ogImage="/img/og/blog-formularios-leads-magnet-google-sheets.png"
 >
   <!-- Hero Image Section -->
   <div class="relative w-full h-64 md:h-[450px] overflow-hidden bg-gray-900 border-b-4 border-gray-900">
-    <img src="/img/blog/hero-leads.png" alt="Formulario lead magnet conectado a Google Sheets para capturar clientes" class="w-full h-full object-cover opacity-90" />
+    <img src="/img/blog/hero-leads.webp" width="1024" height="1024" decoding="async" alt="Formulario lead magnet conectado a Google Sheets para capturar clientes" class="w-full h-full object-cover opacity-90" />
     
     <!-- Floating Label -->
     <div class="absolute inset-0 flex items-center justify-center p-4 pointer-events-none">
@@ -116,14 +119,7 @@ const jsonLd = JSON.stringify({
           <li>Un calculador o herramienta online específica para su sector</li>
         </ul>
 
-        <div class="not-prose my-16 p-10 bg-gray-900 dark:bg-white text-white dark:text-black rounded-[32px] text-center shadow-2xl overflow-hidden relative">
-          <div class="absolute -top-24 -right-24 w-64 h-64 bg-lightAccent/20 rounded-full blur-3xl"></div>
-          <h3 class="font-display font-black text-3xl md:text-4xl uppercase mb-6 leading-none tracking-tighter">¿Sobre qué temas te gustaría que hablemos?</h3>
-          <p class="mb-10 text-lg opacity-80 max-w-xl mx-auto font-medium">Queremos que este blog sea una herramienta útil para tu PYME. Cuéntanos qué procesos te gustaría automatizar o sobre qué herramientas quieres aprender más.</p>
-          <a href="mailto:konte.contacto@gmail.com?subject=Sugerencia para el Blog" class="inline-block px-10 py-5 bg-lightAccent text-white font-black uppercase tracking-widest hover:scale-105 transition-all shadow-xl">
-            Enviar mis sugerencias
-          </a>
-        </div>
+        <BlogCta solution="crm-a-medida" />
       </div>
     </div>
   </article>
@@ -132,11 +128,11 @@ const jsonLd = JSON.stringify({
     <div class="max-w-3xl mx-auto px-4">
       <h2 class="font-display text-2xl font-black uppercase mb-8 text-gray-900 dark:text-white">Artículos relacionados</h2>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <a href="/blog/automatizacion-google-sheets-appscript" class="block p-6 bg-white dark:bg-darkSurface border-2 border-gray-200 dark:border-gray-800 rounded-xl hover:border-lightAccent dark:hover:border-darkAccent transition-colors group">
+        <a href="/blog/automatizacion-google-sheets-appscript/" class="block p-6 bg-white dark:bg-darkSurface border-2 border-gray-200 dark:border-gray-800 rounded-xl hover:border-lightAccent dark:hover:border-darkAccent transition-colors group">
           <p class="text-xs font-bold uppercase tracking-widest text-lightAccent dark:text-darkAccent mb-2">AppScript</p>
           <h3 class="font-display font-black text-lg uppercase text-gray-900 dark:text-white group-hover:text-lightAccent dark:group-hover:text-darkAccent transition-colors leading-tight">Automatización en Google Sheets con AppScript</h3>
         </a>
-        <a href="/blog/dashboard-tiempo-real-google-sheets" class="block p-6 bg-white dark:bg-darkSurface border-2 border-gray-200 dark:border-gray-800 rounded-xl hover:border-lightAccent dark:hover:border-darkAccent transition-colors group">
+        <a href="/blog/dashboard-tiempo-real-google-sheets/" class="block p-6 bg-white dark:bg-darkSurface border-2 border-gray-200 dark:border-gray-800 rounded-xl hover:border-lightAccent dark:hover:border-darkAccent transition-colors group">
           <p class="text-xs font-bold uppercase tracking-widest text-lightAccent dark:text-darkAccent mb-2">Dashboard</p>
           <h3 class="font-display font-black text-lg uppercase text-gray-900 dark:text-white group-hover:text-lightAccent dark:group-hover:text-darkAccent transition-colors leading-tight">Dashboard en Tiempo Real con Google Sheets</h3>
         </a>

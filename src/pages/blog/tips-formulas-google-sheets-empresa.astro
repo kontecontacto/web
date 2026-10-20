@@ -1,26 +1,29 @@
 ---
 import BlogLayout from '../../layouts/BlogLayout.astro';
+import BlogCta from '../../components/BlogCta.astro';
 
 const jsonLd = JSON.stringify({
   "@context": "https://schema.org",
   "@type": "BlogPosting",
   "headline": "5 Fórmulas de Google Sheets que ahorran horas de trabajo operativo",
-  "image": "https://konte.es/img/blog/hero-sheets-tips.png",
-  "author": { "@type": "Organization", "name": "Konte Solutions" },
+  "image": "https://www.konte.es/img/blog/hero-sheets-tips.png",
+  "author": { "@type": "Organization", "name": "Konte", "url": "https://www.konte.es/" },
+  "publisher": { "@id": "https://www.konte.es/#organization" },
   "datePublished": "2026-04-29",
-  "url": "https://konte.es/blog/tips-formulas-google-sheets-empresa",
+  "url": "https://www.konte.es/blog/tips-formulas-google-sheets-empresa/",
   "keywords": ["fórmulas Google Sheets", "productividad empresa", "QUERY Google Sheets", "IMPORTRANGE", "automatizar hojas de cálculo"]
 });
 ---
 
 <BlogLayout
+  need="Automatizar Google Sheets / AppScript"
   title="5 Fórmulas Pro de Google Sheets para tu Empresa | Konte"
   description="Domina Google Sheets con estas 5 fórmulas avanzadas que eliminan el trabajo manual. De QUERY a IMPORTRANGE, haz que tus datos trabajen por ti."
   jsonLd={jsonLd}
-  ogImage="/img/blog/hero-sheets-tips.png"
+  ogImage="/img/og/blog-tips-formulas-google-sheets-empresa.png"
 >
   <div class="relative w-full h-64 md:h-[450px] overflow-hidden bg-gray-900 border-b-4 border-gray-900">
-    <img src="/img/blog/hero-sheets-tips.png" alt="Trucos avanzados de Google Sheets para empresas" class="w-full h-full object-cover opacity-90" />
+    <img src="/img/blog/hero-sheets-tips.webp" width="1024" height="1024" decoding="async" alt="Trucos avanzados de Google Sheets para empresas" class="w-full h-full object-cover opacity-90" />
     <div class="absolute inset-0 flex items-center justify-center p-4 pointer-events-none">
       <div class="bg-lightAccent text-white p-6 md:p-10 border-4 border-white shadow-[12px_12px_0_0_rgba(0,0,0,0.5)] transform rotate-1 max-w-lg text-center transition-transform hover:rotate-0 duration-500 pointer-events-auto">
         <h2 class="font-display font-black text-4xl md:text-6xl uppercase leading-none tracking-tighter mb-2">Power User</h2>
@@ -75,14 +78,9 @@ const jsonLd = JSON.stringify({
 
         <p class="mt-10">Estas cinco herramientas son el punto de partida. En Konte las combinamos con sistemas personalizados para que tu empresa funcione de manera más ordenada, sin necesitar a alguien que "lo sabe todo de ordenadores". Si esto te ha parecido útil, imagina lo que podemos hacer con un sistema hecho exactamente para tu negocio.</p>
 
-        <div class="not-prose my-16 p-10 bg-gray-900 dark:bg-white text-white dark:text-black rounded-[32px] text-center shadow-2xl overflow-hidden relative">
-          <div class="absolute -top-24 -right-24 w-64 h-64 bg-lightAccent/20 rounded-full blur-3xl"></div>
-          <h3 class="font-display font-black text-3xl md:text-4xl uppercase mb-6 leading-none tracking-tighter">¿Sobre qué temas te gustaría que hablemos?</h3>
-          <p class="mb-10 text-lg opacity-80 max-w-xl mx-auto font-medium">Queremos que este blog sea una herramienta útil para tu PYME. Cuéntanos qué procesos te gustaría automatizar o sobre qué herramientas quieres aprender más.</p>
-          <a href="mailto:konte.contacto@gmail.com?subject=Sugerencia para el Blog" class="inline-block px-10 py-5 bg-lightAccent text-white font-black uppercase tracking-widest hover:scale-105 transition-all shadow-xl">
-            Enviar mis sugerencias
-          </a>
-        </div>
+        <p>¿Quieres ver muchas de estas ideas funcionando juntas? Descarga gratis nuestra <a href="/plantilla-crm-gratis/">plantilla CRM para Excel y Google Sheets</a>: embudo de ventas, avisos de seguimientos vencidos y un panel que se calcula solo.</p>
+
+        <BlogCta solution="automatizacion-google-sheets-appscript" />
       </div>
     </div>
   </article>

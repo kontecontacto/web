@@ -1,0 +1,19 @@
+---
+const steps = [
+  { n: '01', t: 'Nos cuentas tu idea', d: 'Llamada o videollamada de 30 minutos. Entendemos tu negocio, qué te quita tiempo y qué quieres conseguir.' },
+  { n: '02', t: 'Propuesta en 48 h', d: 'Te enviamos qué vamos a construir, en qué plazo y por cuánto. Precio cerrado, sin letra pequeña.' },
+  { n: '03', t: 'Desarrollo con demos', d: 'Ves avances reales cada semana y das tu opinión. Nada de esperar meses para ver el resultado.' },
+  { n: '04', t: 'Puesta en marcha', d: 'Migramos tus datos, formamos a tu equipo y nos quedamos contigo para el soporte y las mejoras.' },
+];
+---
+
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+  {steps.map((s) => (
+    <div class="relative p-7 bg-white border-2 border-gray-200 rounded-2xl">
+      <span class="font-display text-5xl font-black text-lightAccent/15 absolute top-4 right-5">{s.n}</span>
+      <div class="w-10 h-10 rounded-full bg-lightAccent text-white font-display font-black flex items-center justify-center mb-5">{Number(s.n)}</div>
+      <h3 class="font-display text-lg font-black uppercase tracking-tight text-gray-900 mb-2">{s.t}</h3>
+      <p class="text-sm text-gray-600 leading-relaxed">{s.d}</p>
+    </div>
+  ))}
+</div>

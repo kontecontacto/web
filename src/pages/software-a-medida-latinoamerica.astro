@@ -1,0 +1,107 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import SolutionCards from '../components/SolutionCards.astro';
+import TwoWays from '../components/TwoWays.astro';
+import Process from '../components/Process.astro';
+import Faq from '../components/Faq.astro';
+import WhatsAppIcon from '../components/WhatsAppIcon.astro';
+import { SITE, whatsappLink } from '../data/site';
+
+const countries = ['México', 'Argentina', 'Colombia', 'Chile', 'Perú', 'Uruguay', 'Ecuador', 'Paraguay', 'Bolivia', 'Venezuela', 'Costa Rica', 'Panamá', 'República Dominicana', 'Guatemala', 'Honduras', 'El Salvador'];
+
+const points = [
+  { t: '100% en remoto y en español', d: 'Reuniones por videollamada, soporte por WhatsApp y email. Sin barreras de idioma ni de cultura de trabajo.' },
+  { t: 'En tu horario', d: 'Organizamos las reuniones para que te vengan bien: tu mañana es nuestra tarde.' },
+  { t: 'Adaptado a tu país', d: 'Moneda, impuestos, formatos de fecha y documentos según tu país, y conexión con tu proveedor de facturación electrónica.' },
+  { t: 'Servidores rápidos para tu región', d: 'Elegimos la ubicación del servidor para que el sistema vaya rápido donde están tus usuarios.' },
+];
+
+const faqs = [
+  { q: '¿Trabajáis con empresas de Latinoamérica?', a: 'Sí. Desde Barcelona desarrollamos en remoto para empresas de México, Argentina, Colombia, Chile, Perú, Uruguay y el resto de Latinoamérica. Nuestros sistemas ya se usan fuera de España, como el inventario multi-sede de FlagShip en Estados Unidos.' },
+  { q: '¿Cómo es trabajar con un equipo que está en otro país?', a: 'Igual que con uno local: una videollamada inicial, una propuesta cerrada, demos semanales del avance y soporte por WhatsApp. Todo en español y en un horario cómodo para ti.' },
+  { q: '¿Qué es un sistema de turnos y lo podéis desarrollar?', a: 'Es una herramienta para que tus clientes saquen turno o reserven cita online, reciban recordatorios y tú organices la agenda de todo el equipo. Lo desarrollamos a medida, con pantalla de llamada de turnos si la necesitas.' },
+  { q: '¿Cómo se paga el proyecto?', a: 'Te lo detallamos en la propuesta: importe cerrado, forma de pago y calendario. Los sistemas en la nube llevan además una cuota mensual de servidor y mantenimiento.' },
+  { q: '¿Puedo usarlo desde el celular?', a: 'Sí. Todos nuestros sistemas funcionan en el navegador del celular y se pueden instalar como app en la pantalla de inicio.' },
+];
+
+const jsonLd = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: 'Desarrollo de software a medida para empresas de Latinoamérica',
+  serviceType: 'Desarrollo de software a medida',
+  url: `${SITE.url}/software-a-medida-latinoamerica/`,
+  provider: { '@id': `${SITE.url}/#organization` },
+  areaServed: countries.map((name) => ({ '@type': 'Country', name })),
+});
+---
+
+<Layout
+  ogImage="/img/og/latinoamerica.png"
+  title="Desarrollo de software a medida para Latinoamérica | Konte"
+  description="Desarrollamos en remoto CRM, sistemas de turnos, tickets con QR, inventario, ERP y apps a medida para empresas de México, Argentina, Colombia, Chile, Perú y toda Latinoamérica."
+  jsonLd={jsonLd}
+  contactProps={{ title: 'Cuéntanos tu proyecto, estés donde estés.' }}
+>
+  <section class="relative bg-white border-b border-gray-200 overflow-hidden">
+    <div class="absolute inset-0 bg-[linear-gradient(to_right,#e5e7eb_1px,transparent_1px),linear-gradient(to_bottom,#e5e7eb_1px,transparent_1px)] bg-[size:64px_64px] opacity-30 pointer-events-none"></div>
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20">
+      <Breadcrumbs items={[{ name: 'Software a medida en Latinoamérica', href: '/software-a-medida-latinoamerica/' }]} />
+      <div class="mt-6 inline-flex items-center gap-2 px-3 py-1.5 bg-blue-50 border border-blue-100 text-lightAccent rounded-full">
+        <span class="text-xs font-black uppercase tracking-widest">Latinoamérica · 100% remoto</span>
+      </div>
+      <h1 class="mt-5 font-display text-5xl md:text-7xl font-black uppercase tracking-tighter leading-[0.9] text-gray-900 max-w-5xl">
+        Software a medida para empresas de <span class="text-lightAccent">Latinoamérica</span>
+      </h1>
+      <p class="mt-6 text-xl text-gray-600 max-w-3xl font-medium leading-relaxed">
+        CRM, sistemas de turnos y citas, tickets con QR, control de inventario, ERP y apps de gestión desarrollados a la medida de tu negocio. Trabajamos en remoto con empresas de toda Latinoamérica, en español y en tu horario.
+      </p>
+      <div class="mt-8 flex flex-col sm:flex-row gap-3">
+        <a href="#contacto" class="inline-flex items-center justify-center gap-3 px-8 py-4 bg-lightAccent text-white font-black text-base uppercase tracking-wide rounded-sm hover:-translate-y-1 transition-all shadow-[6px_6px_0_0_rgba(0,0,0,0.15)]">Pedir presupuesto gratis →</a>
+        <a href={whatsappLink('Hola, escribo desde Latinoamérica y quiero información sobre un proyecto.')} target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 px-8 py-4 bg-[#25D366] hover:bg-[#128C7E] text-white font-black text-base uppercase tracking-wide rounded-sm transition-colors">
+          <WhatsAppIcon class="w-5 h-5" /> WhatsApp {SITE.phone}
+        </a>
+      </div>
+      <div class="mt-10 flex flex-wrap gap-2">
+        {countries.map((c) => <span class="px-3 py-1.5 bg-gray-100 text-gray-700 text-sm font-bold rounded-full">{c}</span>)}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 md:py-20 bg-gray-50 border-b border-gray-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="font-display text-3xl md:text-5xl font-black uppercase text-gray-900 mb-10 leading-tight">Cómo trabajamos a distancia</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        {points.map((p) => (
+          <div class="p-6 bg-white border-2 border-gray-200 rounded-2xl">
+            <h3 class="font-display text-lg font-black uppercase text-gray-900 mb-2">{p.t}</h3>
+            <p class="text-sm text-gray-600 leading-relaxed">{p.d}</p>
+          </div>
+        ))}
+      </div>
+      <div class="mt-12">
+        <Process />
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 md:py-24 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="font-display text-3xl md:text-5xl font-black uppercase text-gray-900 mb-10 leading-tight">Sistemas que desarrollamos</h2>
+      <SolutionCards />
+    </div>
+  </section>
+
+  <section class="py-16 md:py-24 bg-gray-50 border-y border-gray-200">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <TwoWays />
+    </div>
+  </section>
+
+  <section class="py-16 md:py-24 bg-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="font-display text-3xl md:text-5xl font-black uppercase text-gray-900 text-center mb-12">Preguntas frecuentes</h2>
+      <Faq items={faqs} />
+    </div>
+  </section>
+</Layout>

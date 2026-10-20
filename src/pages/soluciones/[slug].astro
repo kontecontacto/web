@@ -1,0 +1,194 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import ContactForm from '../../components/ContactForm.astro';
+import SolutionCards from '../../components/SolutionCards.astro';
+import TwoWays from '../../components/TwoWays.astro';
+import Process from '../../components/Process.astro';
+import Faq from '../../components/Faq.astro';
+import CrmTemplateBand from '../../components/CrmTemplateBand.astro';
+import WhatsAppIcon from '../../components/WhatsAppIcon.astro';
+import ProjectGallery from '../../components/ProjectGallery.jsx';
+import { SOLUTIONS, type Solution } from '../../data/soluciones';
+import { projectById } from '../../data/projects';
+import { SITE, whatsappLink } from '../../data/site';
+
+export function getStaticPaths() {
+  return SOLUTIONS.map((solution) => ({ params: { slug: solution.slug }, props: { solution } }));
+}
+
+const { solution: s } = Astro.props as { solution: Solution };
+const projects = s.projects.map(projectById).filter(Boolean);
+const url = `${SITE.url}/soluciones/${s.slug}/`;
+const Tu = s.tu.charAt(0).toUpperCase() + s.tu.slice(1);
+
+const serviceJsonLd = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  '@id': `${url}#service`,
+  name: s.name,
+  serviceType: s.serviceType,
+  description: s.metaDescription,
+  url,
+  image: `${SITE.url}${s.image}`,
+  provider: { '@id': `${SITE.url}/#organization` },
+  areaServed: SITE.areaServed.map((name) => ({ '@type': 'Place', name })),
+  audience: { '@type': 'BusinessAudience', name: s.sectors.join(', ') },
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: `Funcionalidades: ${s.name}`,
+    itemListElement: s.features.map((f) => ({ '@type': 'Offer', itemOffered: { '@type': 'Service', name: f.title, description: f.desc } })),
+  },
+});
+---
+
+<Layout
+  title={s.metaTitle}
+  description={s.metaDescription}
+  ogImage={`/img/og/${s.slug}.png`}
+  jsonLd={serviceJsonLd}
+  contactProps={{ need: s.need, title: `Hablemos de ${s.tu}.` }}
+>
+  <!-- ===================== HERO + FORMULARIO ===================== -->
+  <section class="relative bg-white border-b border-gray-200 overflow-hidden">
+    <div class="absolute inset-0 bg-[linear-gradient(to_right,#e5e7eb_1px,transparent_1px),linear-gradient(to_bottom,#e5e7eb_1px,transparent_1px)] bg-[size:64px_64px] opacity-30 pointer-events-none"></div>
+    <div class="absolute -top-20 right-0 w-[600px] h-[400px] bg-lightAccent/10 rounded-full blur-[120px] pointer-events-none"></div>
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 md:py-16 grid lg:grid-cols-[1.15fr_0.85fr] gap-10 lg:gap-14 items-start">
+      <div>
+        <Breadcrumbs items={[{ name: 'Soluciones', href: '/soluciones/' }, { name: s.name, href: `/soluciones/${s.slug}/` }]} />
+        <div class="mt-6 inline-flex items-center gap-2 px-3 py-1.5 bg-blue-50 border border-blue-100 text-lightAccent rounded-full">
+          <span class="w-5 h-5" set:html={s.svg} />
+          <span class="text-xs font-black uppercase tracking-widest">{s.eyebrow}</span>
+        </div>
+        <h1 class="mt-5 font-display text-4xl md:text-5xl lg:text-6xl font-black uppercase tracking-tight leading-[0.95] text-gray-900">{s.h1}</h1>
+        <p class="mt-6 text-lg md:text-xl text-gray-600 leading-relaxed font-medium">{s.lead}</p>
+        <ul class="mt-8 grid sm:grid-cols-2 gap-3 text-sm font-bold text-gray-800">
+          {['Presupuesto cerrado en 48 h', 'En la nube o sobre Google Workspace', 'Demos semanales durante el desarrollo', 'España y Latinoamérica, en remoto'].map((t) => (
+            <li class="flex items-center gap-2"><span class="w-5 h-5 rounded-full bg-lightAccent text-white text-[10px] flex items-center justify-center">✓</span>{t}</li>
+          ))}
+        </ul>
+        <div class="mt-8 flex flex-col sm:flex-row gap-3">
+          <a href={whatsappLink(`Hola, vengo de konte.es y me interesa: ${s.name}.`)} target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-[#25D366] hover:bg-[#128C7E] text-white font-black text-sm uppercase tracking-widest rounded-sm transition-colors">
+            <WhatsAppIcon class="w-5 h-5" /> Preguntar por WhatsApp
+          </a>
+          <a href={SITE.phoneHref} class="inline-flex items-center justify-center gap-2 px-6 py-3.5 border-2 border-gray-900 text-gray-900 font-black text-sm uppercase tracking-widest rounded-sm hover:border-lightAccent hover:text-lightAccent transition-colors">
+            Llamar {SITE.phone}
+          </a>
+        </div>
+      </div>
+
+      <div class="bg-white border-2 border-gray-900 rounded-2xl p-6 sm:p-8 shadow-[10px_10px_0_0_rgba(0,85,255,0.18)] lg:sticky lg:top-28">
+        <p class="text-[10px] font-black uppercase tracking-widest text-lightAccent mb-1">Gratis y sin compromiso</p>
+        <h2 class="font-display text-2xl font-black uppercase text-gray-900 mb-5 leading-tight">Pide presupuesto para {s.tu}</h2>
+        <ContactForm id="form-hero" source={`Solución: ${s.name}`} need={s.need} submitLabel="Pedir presupuesto" />
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== PROBLEMAS ===================== -->
+  <section class="py-16 md:py-20 bg-gray-50 border-b border-gray-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-12 items-center">
+      <div>
+        <h2 class="font-display text-3xl md:text-4xl font-black uppercase text-gray-900 mb-8 leading-tight">¿Te suena alguna de estas situaciones?</h2>
+        <ul class="space-y-4">
+          {s.pains.map((p) => (
+            <li class="flex items-start gap-4 p-5 bg-white border border-gray-200 rounded-xl">
+              <span class="w-7 h-7 flex-shrink-0 rounded-full bg-red-50 text-red-500 font-black flex items-center justify-center">✕</span>
+              <span class="text-gray-700 font-medium leading-relaxed">{p}</span>
+            </li>
+          ))}
+        </ul>
+        <p class="mt-8 text-lg font-bold text-gray-900">Si has dicho que sí a alguna, tu negocio ya está pagando el coste de no tener el sistema adecuado. <a href="#contacto" class="text-lightAccent underline">Lo solucionamos.</a></p>
+      </div>
+      <div class="rounded-3xl bg-white border border-gray-200 p-6 shadow-xl">
+        <img src={s.image} alt={`${s.name}: sistema a medida desarrollado por Konte`} width="640" height="640" loading="lazy" decoding="async" class="w-full h-auto rounded-2xl object-contain" />
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== FUNCIONALIDADES ===================== -->
+  <section class="py-16 md:py-24 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <div class="inline-block px-4 py-2 bg-gray-900 text-white font-bold text-xs uppercase tracking-widest mb-6">Qué puede incluir</div>
+        <h2 class="font-display text-3xl md:text-5xl font-black uppercase text-gray-900 leading-tight">{Tu}, con lo que tú necesitas</h2>
+        <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto font-medium">Elegimos juntos qué funciones tienen sentido para tu negocio. Ni una más, ni una menos.</p>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        {s.features.map((f, i) => (
+          <div class="p-6 bg-white border-2 border-gray-200 rounded-2xl hover:border-lightAccent transition-colors">
+            <span class="font-display text-sm font-black text-lightAccent">{String(i + 1).padStart(2, '0')}</span>
+            <h3 class="mt-2 font-display text-lg font-black uppercase tracking-tight text-gray-900 mb-2 leading-tight">{f.title}</h3>
+            <p class="text-sm text-gray-600 leading-relaxed">{f.desc}</p>
+          </div>
+        ))}
+      </div>
+
+      <div class="mt-14 p-8 bg-gray-50 border border-gray-200 rounded-2xl">
+        <h2 class="font-display text-xl font-black uppercase text-gray-900 mb-4">Para quién es</h2>
+        <div class="flex flex-wrap gap-2">
+          {s.sectors.map((sector) => (
+            <span class="px-4 py-2 bg-white border border-gray-200 rounded-full text-sm font-bold text-gray-700">{sector}</span>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== NUBE O GOOGLE ===================== -->
+  <section class="py-16 md:py-24 bg-gray-50 border-y border-gray-200">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <TwoWays cloudText={s.cloudFit} googleText={s.googleFit} heading={`Dos formas de construir ${s.tu}`} />
+    </div>
+  </section>
+
+  <!-- ===================== CASOS ===================== -->
+  {projects.length > 0 && (
+    <section class="py-16 md:py-24 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+          <div class="inline-block px-4 py-2 bg-lightAccent text-white font-bold text-xs uppercase tracking-widest mb-6">Proyectos reales</div>
+          <h2 class="font-display text-3xl md:text-5xl font-black uppercase text-gray-900">Sistemas que ya hemos construido</h2>
+        </div>
+        <div class={`grid grid-cols-1 ${projects.length > 1 ? 'lg:grid-cols-2' : 'max-w-3xl mx-auto'} gap-8`}>
+          {projects.map((proj) => proj && (
+            <div class="bg-white p-6 lg:p-8 border border-gray-200 rounded-2xl flex flex-col">
+              <div class="flex flex-wrap gap-2 mb-4">
+                {proj.tags.map((tag) => <span class="px-3 py-1.5 bg-blue-50 text-blue-700 text-[10px] font-bold uppercase tracking-widest rounded-md border border-blue-100">{tag}</span>)}
+              </div>
+              <h3 class="font-display text-2xl font-bold mb-3 leading-tight text-gray-900 uppercase tracking-tight">{proj.title}</h3>
+              <p class="text-gray-600 mb-6 text-sm leading-relaxed" set:html={proj.desc}></p>
+              <ProjectGallery client:visible project={proj} />
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- ===================== PROCESO ===================== -->
+  <section class="py-16 md:py-24 bg-gray-50 border-y border-gray-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="font-display text-3xl md:text-5xl font-black uppercase text-gray-900 text-center mb-12">Así trabajamos</h2>
+      <Process />
+    </div>
+  </section>
+
+  {s.slug === 'crm-a-medida' && <CrmTemplateBand />}
+
+  <!-- ===================== FAQ ===================== -->
+  <section class="py-16 md:py-24 bg-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="font-display text-3xl md:text-5xl font-black uppercase text-gray-900 text-center mb-12 leading-tight">Preguntas frecuentes: {s.name}</h2>
+      <Faq items={s.faqs} />
+    </div>
+  </section>
+
+  <!-- ===================== RELACIONADAS ===================== -->
+  <section class="py-16 md:py-20 bg-gray-50 border-t border-gray-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="font-display text-2xl md:text-3xl font-black uppercase text-gray-900 mb-8">Otras soluciones que te pueden interesar</h2>
+      <SolutionCards only={s.related} showOther={false} />
+    </div>
+  </section>
+</Layout>

@@ -1,0 +1,58 @@
+---
+interface Props {
+  cloudText?: string;
+  googleText?: string;
+  heading?: string;
+}
+
+const {
+  cloudText = 'Tu sistema con servidor y base de datos propios en la nube. Para cuando hay muchos usuarios, clientes que acceden desde fuera, pagos online, app móvil o integraciones con otros programas.',
+  googleText = 'Tu sistema funcionando dentro de Google Workspace (Sheets, Gmail, Drive). Para equipos que ya trabajan en Google y quieren algo rápido, robusto y sin cuotas.',
+  heading = 'Dos formas de construirlo',
+} = Astro.props;
+---
+
+<div>
+  <h2 class="font-display text-3xl md:text-5xl font-black uppercase mb-4 leading-tight text-gray-900 text-center max-w-4xl mx-auto">{heading}</h2>
+  <p class="text-center text-lg text-gray-600 max-w-2xl mx-auto mb-12 font-medium">Te recomendamos la que tiene sentido para ti, no la más cara: analizamos tu caso y te proponemos la que mejor encaja con tu presupuesto y tu crecimiento.</p>
+  <div class="grid md:grid-cols-2 gap-6">
+    <div class="relative p-8 md:p-10 bg-gray-900 text-white rounded-2xl shadow-[8px_8px_0_0_rgba(0,85,255,0.35)] flex flex-col">
+      <span class="absolute -top-3 left-8 px-3 py-1 bg-lightAccent text-white text-[10px] font-black uppercase tracking-widest rounded">Nuevo</span>
+      <div class="flex items-center gap-4 mb-5">
+        <div class="w-14 h-14 rounded-xl bg-lightAccent/20 border border-lightAccent/40 text-lightAccent p-3">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 19H7a5 5 0 1 1 .9-9.9A6 6 0 0 1 19.5 11a4 4 0 0 1-2 8z"/><path d="M9 15h.01M12 15h.01M15 15h.01"/></svg>
+        </div>
+        <div>
+          <p class="text-[10px] font-black uppercase tracking-widest text-lightAccent">Opción 1</p>
+          <h3 class="font-display text-2xl font-black uppercase">En la nube</h3>
+        </div>
+      </div>
+      <p class="text-gray-300 leading-relaxed mb-6">{cloudText}</p>
+      <ul class="space-y-2.5 text-sm text-gray-300 mb-8 flex-1">
+        {['Servidor y base de datos propios, con copias diarias', 'App móvil instalable (iPhone y Android)', 'Acceso para tus clientes, proveedores o socios', 'Pagos online, WhatsApp, facturación y APIs', 'Escala sin límites de usuarios ni de datos'].map((b) => (
+          <li class="flex items-start gap-2.5"><span class="text-lightAccent font-black">✓</span>{b}</li>
+        ))}
+      </ul>
+      <p class="text-sm font-bold text-white border-t border-white/10 pt-5">Pago único por el desarrollo + cuota mensual de servidor y mantenimiento, según el proyecto.</p>
+    </div>
+
+    <div class="relative p-8 md:p-10 bg-white border-2 border-gray-900 rounded-2xl shadow-[8px_8px_0_0_rgba(0,0,0,0.1)] flex flex-col">
+      <div class="flex items-center gap-4 mb-5">
+        <div class="w-14 h-14 rounded-xl bg-blue-50 border border-blue-100 text-lightAccent p-3">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3h18v18H3z"/><path d="M3 9h18"/><path d="M9 3v18"/><path d="M13 13l2 2 4-4"/></svg>
+        </div>
+        <div>
+          <p class="text-[10px] font-black uppercase tracking-widest text-lightAccent">Opción 2</p>
+          <h3 class="font-display text-2xl font-black uppercase text-gray-900">Sobre Google Workspace</h3>
+        </div>
+      </div>
+      <p class="text-gray-600 leading-relaxed mb-6">{googleText}</p>
+      <ul class="space-y-2.5 text-sm text-gray-600 mb-8 flex-1">
+        {['0€ al mes de servidor y mantenimiento', 'Funciona con tu Gmail, Drive, Sheets y Calendar', 'Entrega rápida: de 1 a 8 semanas', 'Código y datos 100% tuyos', 'Se puede migrar a la nube cuando crezcas'].map((b) => (
+          <li class="flex items-start gap-2.5"><span class="text-lightAccent font-black">✓</span>{b}</li>
+        ))}
+      </ul>
+      <p class="text-sm font-bold text-gray-900 border-t border-gray-200 pt-5">Pago único. Desde 300€ las mejoras y de 2.500€ a 8.000€ las aplicaciones completas.</p>
+    </div>
+  </div>
+</div>

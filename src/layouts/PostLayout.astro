@@ -1,0 +1,102 @@
+---
+import BlogLayout from './BlogLayout.astro';
+import BlogCta from '../components/BlogCta.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import Faq from '../components/Faq.astro';
+import { SITE } from '../data/site';
+import { solutionBySlug } from '../data/soluciones';
+
+interface Props {
+  slug: string;
+  title: string;
+  metaTitle: string;
+  description: string;
+  image: string;
+  ogImage: string;
+  label: string;
+  tags: string[];
+  date: string;
+  readTime: string;
+  solution: string;
+  faqs?: { q: string; a: string }[];
+  related: { href: string; label: string; title: string }[];
+}
+
+const { slug, title, metaTitle, description, image, ogImage, label, tags, date, readTime, solution, faqs = [], related } = Astro.props;
+const url = `${SITE.url}/blog/${slug}/`;
+const dateText = new Date(date).toLocaleDateString('es-ES', { day: 'numeric', month: 'long', year: 'numeric' });
+
+const jsonLd = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: title,
+  description,
+  image: `${SITE.url}${ogImage}`,
+  datePublished: date,
+  dateModified: date,
+  url,
+  mainEntityOfPage: url,
+  inLanguage: 'es',
+  keywords: tags,
+  author: { '@type': 'Organization', name: SITE.name, url: `${SITE.url}/` },
+  publisher: { '@id': `${SITE.url}/#organization` },
+});
+---
+
+<BlogLayout title={metaTitle} description={description} ogImage={ogImage} jsonLd={jsonLd} need={solutionBySlug(solution)?.need}>
+  <div class="relative w-full h-56 md:h-[380px] overflow-hidden bg-gray-900">
+    <img src={image} alt="" width="1600" height="900" decoding="async" class="w-full h-full object-cover opacity-70" />
+    <div class="absolute inset-0 flex items-center justify-center p-4 pointer-events-none">
+      <div class="bg-lightAccent text-white px-6 py-4 md:px-10 md:py-6 border-4 border-white shadow-[12px_12px_0_0_rgba(0,0,0,0.5)] -rotate-1">
+        <p class="font-display font-black text-3xl md:text-5xl uppercase leading-none tracking-tighter">{label}</p>
+      </div>
+    </div>
+  </div>
+
+  <article class="py-12 md:py-16 bg-white">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6">
+      <Breadcrumbs items={[{ name: 'Blog', href: '/blog/' }, { name: label, href: `/blog/${slug}/` }]} />
+      <div class="flex flex-wrap gap-2 mt-6 mb-6">
+        {tags.map((tag) => <span class="px-3 py-1 bg-gray-100 text-gray-600 text-xs font-bold uppercase tracking-wide rounded">{tag}</span>)}
+      </div>
+      <h1 class="font-display text-4xl md:text-5xl font-black uppercase tracking-tight mb-4 text-gray-900 leading-tight">{title}</h1>
+      <div class="flex flex-wrap items-center gap-3 text-sm text-gray-400 mb-10 pb-8 border-b border-gray-200">
+        <time datetime={date}>{dateText}</time>
+        <span>&middot;</span>
+        <span>{readTime} de lectura</span>
+        <span>&middot;</span>
+        <span class="text-lightAccent font-bold">Konte</span>
+      </div>
+
+      <div class="prose prose-lg max-w-none
+        prose-headings:font-display prose-headings:uppercase prose-headings:font-black prose-headings:tracking-tight prose-headings:text-gray-900
+        prose-p:text-gray-600 prose-p:leading-relaxed prose-li:text-gray-600
+        prose-strong:text-gray-900 prose-a:text-lightAccent prose-a:font-bold prose-a:no-underline hover:prose-a:underline
+        prose-table:text-sm prose-th:bg-gray-900 prose-th:text-white prose-th:px-3 prose-th:py-2 prose-td:px-3">
+        <slot />
+        <BlogCta solution={solution} />
+      </div>
+
+      {faqs.length > 0 && (
+        <div class="mt-4">
+          <h2 class="font-display text-3xl font-black uppercase text-gray-900 mb-8">Preguntas frecuentes</h2>
+          <Faq items={faqs} />
+        </div>
+      )}
+    </div>
+  </article>
+
+  <section class="py-14 bg-gray-50 border-t border-gray-200">
+    <div class="max-w-3xl mx-auto px-4">
+      <h2 class="font-display text-2xl font-black uppercase mb-8 text-gray-900">Sigue leyendo</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {related.map((r) => (
+          <a href={r.href} class="block p-6 bg-white border-2 border-gray-200 rounded-xl hover:border-lightAccent transition-colors group">
+            <p class="text-xs font-bold uppercase tracking-widest text-lightAccent mb-2">{r.label}</p>
+            <h3 class="font-display font-black text-lg uppercase text-gray-900 group-hover:text-lightAccent transition-colors leading-tight">{r.title}</h3>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</BlogLayout>

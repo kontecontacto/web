@@ -1,8 +1,9 @@
 ---
 // src/components/WhatsAppWidget.astro
+import { whatsappLink } from '../data/site';
 ---
 
-<div class="fixed bottom-20 sm:bottom-8 right-6 sm:right-8 z-50 font-sans" id="whatsapp-widget-container">
+<div class="hidden md:block fixed bottom-8 right-8 z-50 font-sans" id="whatsapp-widget-container">
   <!-- Notification Badge on floating button -->
   <div class="relative">
     <!-- Pulse ring -->
@@ -55,10 +56,10 @@
     </div>
 
     <!-- Body -->
-    <div class="bg-[#e5ddd5] p-4 min-h-[120px] flex flex-col justify-between relative" style="background-image: url('https://user-images.githubusercontent.com/15075759/28719144-86dc0f70-73b1-11e7-911d-60d70fcded21.png'); background-repeat: repeat;">
+    <div class="bg-[#e5ddd5] p-4 min-h-[120px] flex flex-col justify-between relative">
       <!-- Message -->
       <div class="bg-white text-gray-800 p-3 rounded-lg rounded-tl-none shadow-sm text-sm relative max-w-[90%] self-start animate-fade-in">
-        <p class="font-sans leading-relaxed text-gray-800">¡Hola! 👋 Soy Martín de Konte. ¿Tienes alguna pregunta sobre tu proyecto o quieres automatizar un proceso?</p>
+        <p class="font-sans leading-relaxed text-gray-800">¡Hola! 👋 Soy Martín de Konte. ¿Necesitas un CRM, un sistema de turnos, de tickets o cualquier otra herramienta? Cuéntame tu idea y te digo cómo lo haríamos.</p>
         <span class="block text-[9px] text-gray-400 text-right mt-1.5 font-sans" id="chat-timestamp">12:00</span>
       </div>
     </div>
@@ -67,7 +68,7 @@
     <div class="p-3 bg-gray-50 border-t border-gray-150">
       <a
         id="whatsapp-chat-link"
-        href="https://wa.me/34602194331?text=Hola%20Mart%C3%ADn%2C%20vengo%20de%20la%20web%20y%20me%20gustar%C3%ADa%20saber%20m%C3%A1s%20sobre%20tus%20servicios."
+        href={whatsappLink('Hola Martín, vengo de konte.es y quiero contaros una idea.')}
         target="_blank"
         rel="noopener noreferrer"
         class="flex items-center justify-between w-full bg-white border border-gray-200 rounded-full px-4 py-2.5 hover:border-gray-300 transition-colors group"
@@ -175,7 +176,7 @@
         if (!bubble.classList.contains('show-chat')) {
           bubble.classList.add('show-chat');
         }
-      }, 4000);
+      }, 8000);
     }
   }
 

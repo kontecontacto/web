@@ -1,88 +1,139 @@
 ---
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import ContactSection from '../components/ContactSection.astro';
+import MobileContactBar from '../components/MobileContactBar.astro';
 import WhatsAppWidget from '../components/WhatsAppWidget.astro';
+import { SITE } from '../data/site';
 
 interface Props {
   title: string;
   description?: string;
-  canonical?: string;
   ogImage?: string;
-  jsonLd?: string;
+  ogType?: 'website' | 'article';
+  jsonLd?: string | string[];
+  noindex?: boolean;
+  contact?: boolean;
+  contactProps?: { title?: string; subtitle?: string; need?: string };
 }
 
 const {
   title,
-  description = "Digitaliza tu PYME con software a medida sin costes de mantenimiento. Especialistas en Google Workspace, Looker Studio y automatización AppScript. ¡Agenda tu diagnóstico gratuito!",
-  canonical,
-  ogImage = "/img/og-konte.png",
-  jsonLd
+  description = 'Desarrollo de software a medida para empresas: CRM, sistemas de turnos y citas, tickets con QR, inventario, ERP y apps. En la nube o sobre Google Workspace. Barcelona, España y Latinoamérica.',
+  ogImage = '/img/og/konte.png',
+  ogType = 'website',
+  jsonLd,
+  noindex = false,
+  contact = true,
+  contactProps = {},
 } = Astro.props;
 
-const canonicalURL = canonical || Astro.url.href;
+const canonicalURL = new URL(Astro.url.pathname, SITE.url).href;
+const ogImageURL = new URL(ogImage, SITE.url).href;
+const pageJsonLd = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
+
+const orgJsonLd = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': ['Organization', 'ProfessionalService'],
+      '@id': `${SITE.url}/#organization`,
+      name: SITE.name,
+      alternateName: [SITE.legalName, 'konte.es'],
+      url: `${SITE.url}/`,
+      logo: `${SITE.url}/img/logo-konte.png`,
+      image: `${SITE.url}/img/og/konte.png`,
+      description: 'Estudio de desarrollo de software a medida para empresas y pymes: CRM, sistemas de turnos y cita previa, tickets y entradas con QR, inventario con escáner, ERP, control horario y apps de gestión, en la nube o sobre Google Workspace.',
+      email: SITE.email,
+      telephone: SITE.phone.replace(/\s/g, ''),
+      priceRange: '€€',
+      address: { '@type': 'PostalAddress', addressLocality: SITE.city, addressRegion: SITE.region, addressCountry: SITE.country },
+      areaServed: SITE.areaServed.map((name) => ({ '@type': 'Place', name })),
+      knowsAbout: ['Software a medida', 'CRM', 'ERP', 'Sistemas de turnos y cita previa', 'Tickets con QR', 'Control de inventario', 'Control horario', 'Google Apps Script', 'Google Workspace', 'Aplicaciones web', 'Automatización de procesos'],
+      contactPoint: { '@type': 'ContactPoint', telephone: SITE.phone.replace(/\s/g, ''), email: SITE.email, contactType: 'sales', availableLanguage: ['es'] },
+      ...(SITE.sameAs.length ? { sameAs: SITE.sameAs } : {}),
+    },
+    {
+      '@type': 'WebSite',
+      '@id': `${SITE.url}/#website`,
+      url: `${SITE.url}/`,
+      name: SITE.name,
+      inLanguage: 'es',
+      publisher: { '@id': `${SITE.url}/#organization` },
+    },
+  ],
+});
 ---
 
 <!doctype html>
-  <html lang="es">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <meta name="description" content={description} />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
     <link rel="canonical" href={canonicalURL} />
+    <meta name="robots" content={noindex ? 'noindex, follow' : 'index, follow, max-image-preview:large, max-snippet:-1'} />
+    <meta name="theme-color" content="#0055FF" />
+    <meta name="geo.region" content="ES-CT" />
+    <meta name="geo.placename" content={SITE.city} />
 
-    <!-- Open Graph -->
-    <meta property="og:type" content="website" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+
+    <meta property="og:type" content={ogType} />
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content={ogImage} />
+    <meta property="og:image" content={ogImageURL} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
     <meta property="og:locale" content="es_ES" />
-    <meta property="og:site_name" content="Konte" />
-
-    <!-- Twitter Card -->
+    <meta property="og:site_name" content={SITE.name} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:image" content={ogImageURL} />
 
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400..900;1,9..40,400..700&family=Space+Grotesk:wght@500..700&display=swap" rel="stylesheet" />
 
-    <meta name="generator" content={Astro.generator} />
-    <title>{title}</title>
+    <script type="application/ld+json" set:html={orgJsonLd} />
+    {pageJsonLd.map((ld) => <script type="application/ld+json" set:html={ld} />)}
 
-    <!-- JSON-LD Structured Data -->
-    {jsonLd && <script type="application/ld+json" set:html={jsonLd} />}
-    
-    <script is:inline>
-      // Forced light mode as requested
-      const theme = 'light';
-      document.documentElement.classList.remove('dark');
-      window.localStorage.setItem('theme', theme);
-
-      /* Original dark mode logic kept for reference:
-      const theme = (() => {
-        if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
-            return localStorage.getItem('theme');
-        }
-        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-            return 'dark';
-        }
-        return 'light';
-      })();
-    
-      if (theme === 'light') {
-          document.documentElement.classList.remove('dark');
-      } else {
-          document.documentElement.classList.add('dark');
-      }
-      window.localStorage.setItem('theme', theme);
-      */
-    </script>
+    {SITE.gaId && (
+      <>
+        <script async src={`https://www.googletagmanager.com/gtag/js?id=${SITE.gaId}`}></script>
+        <script is:inline define:vars={{ gaId: SITE.gaId }}>
+          window.dataLayer = window.dataLayer || [];
+          function gtag() { dataLayer.push(arguments); }
+          window.gtag = gtag;
+          gtag('js', new Date());
+          gtag('config', gaId);
+        </script>
+      </>
+    )}
   </head>
-  <body class="bg-lightBg text-lightText dark:bg-darkBg dark:text-darkText font-sans transition-colors duration-300 antialiased selection:bg-lightAccent selection:text-white dark:selection:bg-darkAccent text-gray-800 dark:text-gray-200">
-    <slot />
+  <body class="bg-white text-gray-900 font-sans antialiased selection:bg-lightAccent selection:text-white">
+    <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[100] focus:bg-white focus:px-4 focus:py-2 focus:rounded">Saltar al contenido</a>
+    <SiteHeader />
+    <main id="main" class="pt-16 md:pt-[100px]">
+      <slot />
+      {contact && <ContactSection {...contactProps} />}
+    </main>
+    <SiteFooter />
+    <MobileContactBar />
     <WhatsAppWidget />
+    <script>
+      import '../scripts/site.ts';
+    </script>
   </body>
 </html>
+
+<style is:global>
+  html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+  @media (min-width: 768px) { html { scroll-padding-top: 112px; } }
+</style>

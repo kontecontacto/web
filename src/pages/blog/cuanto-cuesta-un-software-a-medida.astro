@@ -1,0 +1,91 @@
+---
+import PostLayout from '../../layouts/PostLayout.astro';
+
+const faqs = [
+  { q: '¿Un software a medida es más caro que un programa por suscripción?', a: 'Al principio suele costar más, porque pagas el desarrollo. Pero no pagas licencias por usuario cada mes, así que a dos o tres años muchas veces sale más barato, sobre todo si sois varios usuarios.' },
+  { q: '¿Siempre hay que pagar mantenimiento?', a: 'Depende de dónde funcione. Un sistema sobre Google Workspace no necesita servidor propio, así que puede no tener cuota. Un sistema en la nube sí necesita servidor, copias de seguridad y actualizaciones, y eso se paga con una cuota mensual.' },
+  { q: '¿Se puede hacer por fases para repartir el coste?', a: 'Sí, y es lo que recomendamos. Empezar por el proceso que más dinero o tiempo te cuesta y añadir módulos después reduce el riesgo y te permite ver resultados antes.' },
+  { q: '¿Cuánto tarda en estar listo?', a: 'Una automatización sencilla, 1 o 2 semanas. Una aplicación completa, entre 4 y 8 semanas para la primera versión, según la complejidad.' },
+];
+---
+
+<PostLayout
+  slug="cuanto-cuesta-un-software-a-medida"
+  title="¿Cuánto cuesta un software a medida? Precios orientativos y qué hace que suba o baje"
+  metaTitle="Cuánto cuesta un software a medida: precios y factores | Konte"
+  description="Qué determina el precio de un software a medida (CRM, ERP, turnos, apps), modelos de pago, precios orientativos y cómo calcular si te compensa. Guía clara y sin rodeos."
+  image="/img/blog/hero-coste.webp"
+  ogImage="/img/og/blog-cuanto-cuesta-un-software-a-medida.png"
+  label="¿Cuánto cuesta?"
+  tags={['Precios', 'Software a medida', 'Presupuesto']}
+  date="2026-10-20"
+  readTime="7 min"
+  solution="app-y-plataforma-web-a-medida"
+  faqs={faqs}
+  related={[
+    { href: '/blog/como-elegir-empresa-desarrollo-software-a-medida/', label: 'Guía', title: 'Cómo elegir una empresa de desarrollo de software a medida' },
+    { href: '/blog/software-a-medida-sin-mantenimiento-pymes/', label: 'Software', title: 'Software a medida sin coste de mantenimiento' },
+  ]}
+>
+  <p class="lead">"¿Cuánto me costaría?" es la primera pregunta que nos hace casi todo el mundo, y "depende" es una respuesta tan cierta como inútil. En esta guía te explicamos de qué depende exactamente, para que puedas hacerte una idea antes de pedir presupuesto y detectar si alguien te está cobrando de más.</p>
+
+  <h2>Los tres modelos de pago que te vas a encontrar</h2>
+  <ul>
+    <li><strong>Suscripción (SaaS):</strong> pagas una cuota mensual por usuario por usar un programa que ya existe. Barato para empezar, pero la cuota no se acaba nunca, sube con cada persona que añades y te adaptas tú al programa, no al revés.</li>
+    <li><strong>Desarrollo a medida con pago único:</strong> pagas una vez por construir una herramienta hecha para tu negocio. Es el modelo de los sistemas que funcionan dentro de Google Workspace, que no necesitan servidor propio.</li>
+    <li><strong>Pago único + cuota de servidor y mantenimiento:</strong> pagas el desarrollo y después una cuota mensual que cubre el servidor en la nube, las copias de seguridad, la seguridad y el soporte. Es el modelo de los sistemas con muchos usuarios, acceso para clientes, pagos online o app móvil.</li>
+  </ul>
+
+  <h2>Qué hace que el precio suba o baje</h2>
+  <p>Dos sistemas que se llaman igual ("un CRM", "una app de reservas") pueden costar cosas muy distintas. Estos son los factores que más pesan:</p>
+  <ol>
+    <li><strong>Cuántos procesos cubre.</strong> No es lo mismo registrar clientes que gestionar clientes, presupuestos, pedidos y facturación. Cada proceso son pantallas, reglas y pruebas.</li>
+    <li><strong>Quién lo va a usar.</strong> Un equipo de 3 personas o 50 usuarios con permisos distintos. Y sobre todo: si tus clientes también entran (área privada, reservas, pedidos).</li>
+    <li><strong>Integraciones.</strong> Cobros con tarjeta o Bizum, WhatsApp, facturación, contabilidad, tienda online... Cada conexión suma, pero también suele ser lo que más tiempo ahorra.</li>
+    <li><strong>App móvil y modo sin conexión.</strong> Que funcione en el móvil es casi estándar. Que funcione sin cobertura o esté en las tiendas de apps, añade trabajo.</li>
+    <li><strong>Migración de datos.</strong> Pasar años de Excel desordenados a un sistema limpio requiere limpieza y comprobaciones.</li>
+    <li><strong>Informes y cuadros de mando.</strong> Un listado sencillo frente a un panel con previsiones, comparativas y alertas.</li>
+  </ol>
+
+  <h2>Precios orientativos</h2>
+  <p>Estas son nuestras referencias para proyectos sobre Google Workspace, con pago único y sin cuota mensual:</p>
+  <table>
+    <thead><tr><th>Tipo de proyecto</th><th>Desde</th></tr></thead>
+    <tbody>
+      <tr><td>Optimización de hojas de cálculo</td><td>300€</td></tr>
+      <tr><td>Formularios inteligentes de captura de datos</td><td>400€</td></tr>
+      <tr><td>Automatizaciones con Apps Script</td><td>500€</td></tr>
+      <tr><td>Dashboards en tiempo real</td><td>600€</td></tr>
+      <tr><td>Sistemas de captación de leads</td><td>800€</td></tr>
+      <tr><td>Aplicaciones web completas (CRM, inventario, producción…)</td><td>2.500€ a 8.000€</td></tr>
+    </tbody>
+  </table>
+  <p>En los <strong>sistemas en la nube</strong> el precio depende mucho más del alcance (usuarios, integraciones, app), así que no damos una cifra genérica: hacemos una llamada de 30 minutos y en 48 horas tienes un presupuesto cerrado con el pago único y la cuota mensual detallados.</p>
+
+  <h2>Cómo saber si te compensa</h2>
+  <p>La forma más sencilla es calcular lo que te cuesta <em>no</em> tenerlo. Un ejemplo:</p>
+  <ul>
+    <li>2 personas dedican 5 horas a la semana a copiar datos, perseguir pagos o rehacer informes.</li>
+    <li>Si cada hora le cuesta a la empresa 20€, son 200€ a la semana.</li>
+    <li>En un año, más de 10.000€. Sin contar los errores, los clientes que se olvidan o las ventas que se enfrían.</li>
+  </ul>
+  <p>Si un sistema elimina buena parte de ese trabajo, se paga solo en meses. Si el ahorro es pequeño, probablemente te sirva una herramienta estándar, y te lo diremos.</p>
+
+  <h2>Cómo pedir un presupuesto para que sea preciso</h2>
+  <p>Cuanto más claro llegues, más ajustado será el precio. Prepara esto antes de la primera llamada:</p>
+  <ul>
+    <li>Qué proceso quieres mejorar y cómo lo haces hoy (Excel, papel, varios programas).</li>
+    <li>Cuántas personas lo usarán y si tus clientes también entrarán.</li>
+    <li>Con qué programas tiene que conectarse.</li>
+    <li>Qué es imprescindible para empezar y qué puede esperar a una segunda fase.</li>
+  </ul>
+
+  <h2>Señales de alarma en un presupuesto</h2>
+  <ul>
+    <li><strong>Precio por horas sin tope.</strong> Es la forma más rápida de que un proyecto se dispare.</li>
+    <li><strong>No queda claro de quién son los datos</strong> ni cómo exportarlos si un día te vas.</li>
+    <li><strong>Meses sin ver nada.</strong> Si no hay demos periódicas, descubrirás los problemas al final.</li>
+    <li><strong>Cuotas de mantenimiento obligatorias sin explicar qué incluyen.</strong></li>
+  </ul>
+  <p>Si quieres, puedes empezar sin gastar nada: descarga nuestra <a href="/plantilla-crm-gratis/">plantilla CRM gratis</a> y, cuando se te quede pequeña, hablamos.</p>
+</PostLayout>

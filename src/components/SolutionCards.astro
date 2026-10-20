@@ -1,0 +1,38 @@
+---
+import { SOLUTIONS } from '../data/soluciones';
+
+interface Props {
+  only?: string[];
+  showOther?: boolean;
+}
+
+const { only, showOther = true } = Astro.props;
+const list = only ? only.map((slug) => SOLUTIONS.find((s) => s.slug === slug)!).filter(Boolean) : SOLUTIONS;
+---
+
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-5">
+  {list.map((s) => (
+    <a href={`/soluciones/${s.slug}/`} class="group relative bg-white border-2 border-gray-200 rounded-2xl p-5 sm:p-7 hover:border-lightAccent hover:-translate-y-1 transition-all duration-300 hover:shadow-[8px_8px_0_0_rgba(0,85,255,0.12)] flex flex-row sm:flex-col gap-4 sm:gap-0">
+      <div class="w-11 h-11 sm:w-12 sm:h-12 flex-shrink-0 text-lightAccent bg-blue-50 p-2.5 rounded-xl border border-blue-100 group-hover:bg-lightAccent group-hover:text-white transition-colors duration-300 sm:mb-5" set:html={s.svg} />
+      <div class="flex flex-col flex-1">
+        <h3 class="font-display text-base sm:text-lg font-black uppercase tracking-tight mb-1 sm:mb-2 text-gray-900 group-hover:text-lightAccent transition-colors">{s.name} <span class="sm:hidden text-lightAccent">→</span></h3>
+        <p class="text-sm text-gray-600 leading-relaxed font-medium flex-1">{s.cardDesc}</p>
+        <span class="hidden sm:inline-flex mt-5 items-center gap-2 text-xs font-black uppercase tracking-widest text-lightAccent">
+          Ver solución <span class="group-hover:translate-x-1 transition-transform">→</span>
+        </span>
+      </div>
+    </a>
+  ))}
+  {showOther && (
+    <a href="#contacto" data-need="Otra cosa / no lo tengo claro" class="group relative bg-gray-900 border-2 border-gray-900 rounded-2xl p-5 sm:p-7 hover:-translate-y-1 transition-all duration-300 hover:shadow-[8px_8px_0_0_rgba(0,85,255,0.3)] flex flex-col">
+      <div class="w-11 h-11 sm:w-12 sm:h-12 text-white bg-lightAccent p-2.5 rounded-xl mb-4 sm:mb-5">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.3 1 2.1V17h6v-.2c0-.8.4-1.6 1-2.1A7 7 0 0 0 12 2z"/></svg>
+      </div>
+      <h3 class="font-display text-lg font-black uppercase tracking-tight mb-2 text-white">¿Tienes otra idea?</h3>
+      <p class="text-sm text-gray-400 leading-relaxed font-medium flex-1">Si se puede programar, lo desarrollamos. Cuéntanos qué quieres resolver y te decimos cómo.</p>
+      <span class="mt-5 inline-flex items-center gap-2 text-xs font-black uppercase tracking-widest text-lightAccent">
+        Contar mi idea <span class="group-hover:translate-x-1 transition-transform">→</span>
+      </span>
+    </a>
+  )}
+</div>

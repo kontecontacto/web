@@ -1,30 +1,33 @@
 ---
 import BlogLayout from '../../layouts/BlogLayout.astro';
+import BlogCta from '../../components/BlogCta.astro';
 
 const jsonLd = JSON.stringify({
   "@context": "https://schema.org",
   "@type": "BlogPosting",
   "headline": "Automatización en Google Sheets con AppScript: La Guía Definitiva para PYMES",
   "description": "Descubre cómo eliminar el trabajo manual en tu empresa usando Google Apps Script. Scripts, triggers automáticos y casos de uso reales para ahorrar más de 5 horas semanales.",
-  "image": "https://konte.es/img/blog/hero-automatizacion.png",
-  "author": { "@type": "Organization", "name": "Konte Solutions" },
+  "image": "https://www.konte.es/img/blog/hero-automatizacion.png",
+  "author": { "@type": "Organization", "name": "Konte", "url": "https://www.konte.es/" },
+  "publisher": { "@id": "https://www.konte.es/#organization" },
   "publisher": { "@type": "Organization", "name": "Konte Solutions" },
   "datePublished": "2026-03-15",
   "dateModified": "2026-04-01",
-  "url": "https://konte.es/blog/automatizacion-google-sheets-appscript",
+  "url": "https://www.konte.es/blog/automatizacion-google-sheets-appscript/",
   "keywords": ["automatización Google Sheets", "AppScript PYME", "macros Google Sheets", "triggers automáticos", "apps script empresa"]
 });
 ---
 
 <BlogLayout
+  need="Automatizar Google Sheets / AppScript"
   title="Automatización en Google Sheets con AppScript: Guía para PYMES | Konte"
   description="Descubre cómo eliminar el trabajo manual en tu empresa usando Google Apps Script. Scripts, triggers automáticos y casos de uso reales para ahorrar más de 5 horas semanales."
   jsonLd={jsonLd}
-  ogImage="/img/blog/hero-automatizacion.png"
+  ogImage="/img/og/blog-automatizacion-google-sheets-appscript.png"
 >
   <!-- Hero Image Section -->
   <div class="relative w-full h-64 md:h-[450px] overflow-hidden bg-gray-900 border-b-4 border-gray-900">
-    <img src="/img/blog/hero-automatizacion.png" alt="Automatización en Google Sheets con AppScript para PYMES" class="w-full h-full object-cover opacity-90" />
+    <img src="/img/blog/hero-automatizacion.webp" width="1024" height="1024" decoding="async" alt="Automatización en Google Sheets con AppScript para PYMES" class="w-full h-full object-cover opacity-90" />
     
     <!-- Floating Label (HTML instead of baked in image) -->
     <div class="absolute inset-0 flex items-center justify-center p-4 pointer-events-none">
@@ -115,14 +118,7 @@ const jsonLd = JSON.stringify({
         <h2>Conclusión: Menos "Picar Datos", Más Estrategia</h2>
         <p>La automatización no va de sustituir personas, va de sustituir las tareas que aburren y agotan a las personas. Al eliminar el trabajo manual, permites que tu equipo se enfoque en lo que realmente hace crecer el negocio: la estrategia y la atención al cliente.</p>
 
-        <div class="not-prose my-16 p-10 bg-gray-900 dark:bg-white text-white dark:text-black rounded-[32px] text-center shadow-2xl overflow-hidden relative">
-          <div class="absolute -top-24 -right-24 w-64 h-64 bg-lightAccent/20 rounded-full blur-3xl"></div>
-          <h3 class="font-display font-black text-3xl md:text-4xl uppercase mb-6 leading-none tracking-tighter">¿Sobre qué temas te gustaría que hablemos?</h3>
-          <p class="mb-10 text-lg opacity-80 max-w-xl mx-auto font-medium">Queremos que este blog sea una herramienta útil para tu PYME. Cuéntanos qué procesos te gustaría automatizar o sobre qué herramientas quieres aprender más.</p>
-          <a href="mailto:konte.contacto@gmail.com?subject=Sugerencia para el Blog" class="inline-block px-10 py-5 bg-lightAccent text-white font-black uppercase tracking-widest hover:scale-105 transition-all shadow-xl">
-            Enviar mis sugerencias
-          </a>
-        </div>
+        <BlogCta solution="automatizacion-google-sheets-appscript" />
 
       </div>
 
@@ -134,11 +130,11 @@ const jsonLd = JSON.stringify({
     <div class="max-w-3xl mx-auto px-4">
       <h2 class="font-display text-2xl font-black uppercase mb-8 text-gray-900 dark:text-white">Artículos relacionados</h2>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <a href="/blog/dashboard-tiempo-real-google-sheets" class="block p-6 bg-white dark:bg-darkSurface border-2 border-gray-200 dark:border-gray-800 rounded-xl hover:border-lightAccent dark:hover:border-darkAccent transition-colors group">
+        <a href="/blog/dashboard-tiempo-real-google-sheets/" class="block p-6 bg-white dark:bg-darkSurface border-2 border-gray-200 dark:border-gray-800 rounded-xl hover:border-lightAccent dark:hover:border-darkAccent transition-colors group">
           <p class="text-xs font-bold uppercase tracking-widest text-lightAccent dark:text-darkAccent mb-2">Dashboard</p>
           <h3 class="font-display font-black text-lg uppercase text-gray-900 dark:text-white group-hover:text-lightAccent dark:group-hover:text-darkAccent transition-colors leading-tight">Dashboards en Tiempo Real con Google Sheets y Looker Studio</h3>
         </a>
-        <a href="/blog/software-a-medida-sin-mantenimiento-pymes" class="block p-6 bg-white dark:bg-darkSurface border-2 border-gray-200 dark:border-gray-800 rounded-xl hover:border-lightAccent dark:hover:border-darkAccent transition-colors group">
+        <a href="/blog/software-a-medida-sin-mantenimiento-pymes/" class="block p-6 bg-white dark:bg-darkSurface border-2 border-gray-200 dark:border-gray-800 rounded-xl hover:border-lightAccent dark:hover:border-darkAccent transition-colors group">
           <p class="text-xs font-bold uppercase tracking-widest text-lightAccent dark:text-darkAccent mb-2">Software</p>
           <h3 class="font-display font-black text-lg uppercase text-gray-900 dark:text-white group-hover:text-lightAccent dark:group-hover:text-darkAccent transition-colors leading-tight">Software a Medida Sin Mantenimiento para PYMES</h3>
         </a>

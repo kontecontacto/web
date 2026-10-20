@@ -4,78 +4,17 @@ import Layout from './Layout.astro';
 interface Props {
   title: string;
   description?: string;
-  canonical?: string;
   ogImage?: string;
   jsonLd?: string;
+  need?: string;
+  ogType?: 'website' | 'article';
 }
 
-const { title, description, canonical, ogImage, jsonLd } = Astro.props;
+const { title, description, ogImage, jsonLd, need, ogType = 'article' } = Astro.props;
 ---
 
-<Layout title={title} description={description} canonical={canonical} ogImage={ogImage} jsonLd={jsonLd}>
-  <!-- Navbar -->
-  <nav class="fixed w-full top-0 z-50 bg-lightBg/80 dark:bg-black/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-900 transition-colors duration-300">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex justify-between items-center h-20">
-        <a href="/" class="flex items-center gap-3 group">
-          <div class="w-10 h-10 bg-lightAccent dark:bg-darkAccent text-white dark:text-black flex items-center justify-center font-display font-black text-2xl rotate-3 group-hover:rotate-0 transition-transform">K</div>
-          <span class="font-display font-bold text-2xl tracking-tight uppercase">Konte</span>
-        </a>
-        
-        <div class="flex items-center gap-6">
-          <a href="/#soluciones" class="hidden md:block text-sm font-bold hover:text-lightAccent dark:hover:text-darkAccent transition-colors">Soluciones</a>
-          <a href="/#proyectos" class="hidden md:block text-sm font-bold hover:text-lightAccent dark:hover:text-darkAccent transition-colors">Proyectos</a>
-          <a href="/servicios" class="hidden md:block text-sm font-bold hover:text-lightAccent dark:hover:text-darkAccent transition-colors">Servicios</a>
-          <a href="/blog" class="hidden md:block text-sm font-bold hover:text-lightAccent dark:hover:text-darkAccent transition-colors">Blog</a>
-          
-          <a href="/#calendly" class="px-6 py-2.5 bg-lightAccent dark:bg-darkAccent text-white dark:text-black font-bold text-sm tracking-wide rounded-sm hover:-translate-y-1 transition-transform shadow-[4px_4px_0_0_rgba(0,0,0,1)] dark:shadow-[4px_4px_0_0_rgba(255,255,255,0.2)]">Evaluar Proyecto</a>
-          
-          <button id="mobile-menu-btn" class="md:hidden p-2 text-gray-900 dark:text-white" aria-label="Abrir menú">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
-          </button>
-        </div>
-      </div>
-    </div>
-
-    <div id="mobile-menu" class="hidden md:hidden bg-white dark:bg-black border-b border-gray-200 dark:border-gray-900 px-4 py-4 space-y-4">
-      <a href="/#soluciones" class="block text-base font-bold text-gray-900 dark:text-white hover:text-lightAccent transition-colors">Soluciones</a>
-      <a href="/#proyectos" class="block text-base font-bold text-gray-900 dark:text-white hover:text-lightAccent transition-colors">Proyectos</a>
-      <a href="/servicios" class="block text-base font-bold text-gray-900 dark:text-white hover:text-lightAccent transition-colors">Servicios</a>
-      <a href="/blog" class="block text-base font-bold text-gray-900 dark:text-white hover:text-lightAccent transition-colors">Blog</a>
-    </div>
-  </nav>
-
-  <main class="pt-24 bg-white dark:bg-darkBg min-h-screen">
+<Layout title={title} description={description} ogImage={ogImage} ogType={ogType} jsonLd={jsonLd} contactProps={{ need }}>
+  <div class="bg-white">
     <slot />
-  </main>
-
-  <footer class="bg-black dark:bg-darkSection text-gray-400 py-16 text-center border-t border-gray-800">
-    <div class="max-w-7xl mx-auto px-4">
-      <a href="/" class="font-display font-bold text-3xl mb-4 text-white inline-block hover:text-darkAccent transition-colors">Konte</a>
-      <p class="mt-2">Agencia de Software a Medida para PYMES &middot; Google Workspace &middot; AppScript &middot; Automatización</p>
-      <div class="flex justify-center gap-8 mt-6 text-sm">
-        <a href="/" class="hover:text-white transition-colors">Inicio</a>
-        <a href="/servicios" class="hover:text-white transition-colors">Servicios</a>
-        <a href="/blog" class="hover:text-white transition-colors">Blog</a>
-        <a href="/#calendly" class="hover:text-white transition-colors">Contacto</a>
-      </div>
-      <p class="mt-8 text-sm">&copy; {new Date().getFullYear()} Konte Solutions. Todos los derechos reservados.</p>
-    </div>
-  </footer>
-
-  <script>
-    // Mobile Menu Logic
-    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-    const mobileMenu = document.getElementById('mobile-menu');
-    mobileMenuBtn?.addEventListener('click', () => {
-      mobileMenu?.classList.toggle('hidden');
-    });
-    // Close mobile menu when clicking a link
-    mobileMenu?.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
-        mobileMenu?.classList.add('hidden');
-      });
-    });
-  </script>
-
+  </div>
 </Layout>

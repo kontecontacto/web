@@ -1,26 +1,29 @@
 ---
 import BlogLayout from '../../layouts/BlogLayout.astro';
+import BlogCta from '../../components/BlogCta.astro';
 
 const jsonLd = JSON.stringify({
   "@context": "https://schema.org",
   "@type": "BlogPosting",
   "headline": "Trazabilidad Total: Adiós al Papel en la Gestión de Planta y Almacén",
-  "image": "https://konte.es/img/blog/hero-trazabilidad-planta.png",
-  "author": { "@type": "Organization", "name": "Konte Solutions" },
+  "image": "https://www.konte.es/img/blog/hero-trazabilidad-planta.png",
+  "author": { "@type": "Organization", "name": "Konte", "url": "https://www.konte.es/" },
+  "publisher": { "@id": "https://www.konte.es/#organization" },
   "datePublished": "2026-04-29",
-  "url": "https://konte.es/blog/trazabilidad-operativa-pyme-digital",
+  "url": "https://www.konte.es/blog/trazabilidad-operativa-pyme-digital/",
   "keywords": ["trazabilidad producción", "digitalizar albaranes", "gestión almacén Google Sheets", "eficiencia operativa"]
 });
 ---
 
 <BlogLayout
+  need="Producción y trazabilidad"
   title="Trazabilidad Total en Planta y Almacén | Konte"
   description="¿Sigues usando papel para controlar tu producción? Descubre cómo la digitalización de albaranes y procesos en tiempo real elimina errores y ahorra costes."
   jsonLd={jsonLd}
-  ogImage="/img/blog/hero-trazabilidad-planta.png"
+  ogImage="/img/og/blog-trazabilidad-operativa-pyme-digital.png"
 >
   <div class="relative w-full h-64 md:h-[450px] overflow-hidden bg-gray-900 border-b-4 border-gray-900">
-    <img src="/img/blog/hero-trazabilidad-planta.png" alt="Digitalización operativa en tiempo real" class="w-full h-full object-cover opacity-90" />
+    <img src="/img/blog/hero-trazabilidad-planta.webp" width="1024" height="1024" decoding="async" alt="Digitalización operativa en tiempo real" class="w-full h-full object-cover opacity-90" />
     <div class="absolute inset-0 flex items-center justify-center p-4 pointer-events-none">
       <div class="bg-lightAccent text-white p-6 md:p-10 border-4 border-white shadow-[12px_12px_0_0_rgba(0,0,0,0.5)] transform rotate-1 max-w-lg text-center transition-transform hover:rotate-0 duration-500 pointer-events-auto">
         <h2 class="font-display font-black text-4xl md:text-6xl uppercase leading-none tracking-tighter mb-2">Trazabilidad</h2>
@@ -67,14 +70,7 @@ const jsonLd = JSON.stringify({
         <p>Cuando sabes lo que tienes, cuándo lo tienes y quién lo movió, todo cambia. Dejas de comprar material que ya tienes de sobra. Dejas de perder tiempo buscando documentos. Empiezas a detectar dónde se pierde tiempo o dinero antes de que sea un problema grande.</p>
         <p>Uno de nuestros clientes redujo sus errores de inventario en un <strong>85%</strong> en los primeros tres meses. No porque cambiara a su equipo, sino porque finalmente tenía un sistema que funcionaba.</p>
 
-        <div class="not-prose my-16 p-10 bg-gray-900 dark:bg-white text-white dark:text-black rounded-[32px] text-center shadow-2xl overflow-hidden relative">
-          <div class="absolute -top-24 -right-24 w-64 h-64 bg-lightAccent/20 rounded-full blur-3xl"></div>
-          <h3 class="font-display font-black text-3xl md:text-4xl uppercase mb-6 leading-none tracking-tighter">¿Sobre qué temas te gustaría que hablemos?</h3>
-          <p class="mb-10 text-lg opacity-80 max-w-xl mx-auto font-medium">Queremos que este blog sea una herramienta útil para tu PYME. Cuéntanos qué procesos te gustaría automatizar o sobre qué herramientas quieres aprender más.</p>
-          <a href="mailto:konte.contacto@gmail.com?subject=Sugerencia para el Blog" class="inline-block px-10 py-5 bg-lightAccent text-white font-black uppercase tracking-widest hover:scale-105 transition-all shadow-xl">
-            Enviar mis sugerencias
-          </a>
-        </div>
+        <BlogCta solution="control-de-produccion-y-trazabilidad" />
       </div>
     </div>
   </article>

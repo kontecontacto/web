@@ -3,10 +3,40 @@ import BlogLayout from '../../layouts/BlogLayout.astro';
 
 const posts = [
   {
+    slug: "cuanto-cuesta-un-software-a-medida",
+    title: "¿Cuánto cuesta un software a medida? Precios orientativos y qué hace que suba o baje",
+    excerpt: "Modelos de pago, factores que encarecen o abaratan un proyecto, precios orientativos y cómo calcular si te compensa. Sin rodeos.",
+    image: "/img/blog/hero-coste.webp",
+    label: "¿Cuánto cuesta?",
+    date: "2026-10-20",
+    readTime: "7 min",
+    tags: ["Precios", "Software a medida", "Presupuesto"]
+  },
+  {
+    slug: "como-elegir-empresa-desarrollo-software-a-medida",
+    title: "Cómo elegir una empresa de desarrollo de software a medida: 10 preguntas antes de firmar",
+    excerpt: "Propiedad de los datos, precio cerrado, demos, soporte… Las preguntas que te protegen antes de contratar a nadie (incluidos nosotros).",
+    image: "/img/blog/hero-elegir.webp",
+    label: "10 preguntas",
+    date: "2026-10-20",
+    readTime: "6 min",
+    tags: ["Guía", "Software a medida", "Proveedores"]
+  },
+  {
+    slug: "sistema-de-turnos-y-cita-previa",
+    title: "Sistema de turnos o cita previa para tu negocio: ¿app estándar o a medida?",
+    excerpt: "Qué debe tener un buen sistema de turnos y citas, cuándo te basta una app estándar, cuándo compensa a medida y cómo reducir ausencias.",
+    image: "/img/blog/hero-turnos.webp",
+    label: "Turnos y citas",
+    date: "2026-10-20",
+    readTime: "6 min",
+    tags: ["Turnos", "Cita previa", "Reservas"]
+  },
+  {
     slug: "ia-vs-automatizacion-pyme",
     title: "IA vs Automatización: Lo que tu PYME necesita de verdad hoy",
     excerpt: "Todo el mundo habla de IA, pero el verdadero motor de rentabilidad para una PYME son los automatismos determinísticos. Descubre por qué priorizar procesos sobre chatbots.",
-    image: "/img/blog/hero-ia-vs-automatizacion.png",
+    image: "/img/blog/hero-ia-vs-automatizacion.webp",
     label: "IA vs Automatismos",
     date: "2026-04-29",
     readTime: "6 min",
@@ -16,7 +46,7 @@ const posts = [
     slug: "crm-medida-clinicas-talleres",
     title: "El CRM Perfecto para Clínicas y Talleres: Fidelización basada en Datos",
     excerpt: "¿Sabes qué se hizo tu cliente la última vez? Un CRM a medida te permite asesorar mejor y fidelizar a través del conocimiento profundo de cada ficha.",
-    image: "/img/blog/hero-crm-vertical.png",
+    image: "/img/blog/hero-crm-vertical.webp",
     label: "CRM de Nicho",
     date: "2026-04-29",
     readTime: "7 min",
@@ -26,7 +56,7 @@ const posts = [
     slug: "trazabilidad-operativa-pyme-digital",
     title: "Trazabilidad Total: Adiós al Papel en la Gestión de Planta y Almacén",
     excerpt: "¿Sigues usando papel para controlar tu producción? La digitalización de albaranes y procesos en tiempo real elimina errores y ahorra miles de euros.",
-    image: "/img/blog/hero-trazabilidad-planta.png",
+    image: "/img/blog/hero-trazabilidad-planta.webp",
     label: "Trazabilidad",
     date: "2026-04-29",
     readTime: "7 min",
@@ -36,7 +66,7 @@ const posts = [
     slug: "tips-formulas-google-sheets-empresa",
     title: "5 Fórmulas de Google Sheets que ahorran horas de trabajo operativo",
     excerpt: "Domina Google Sheets con estas 5 fórmulas avanzadas que eliminan el trabajo manual. De QUERY a IMPORTRANGE, haz que tus datos trabajen por ti.",
-    image: "/img/blog/hero-sheets-tips.png",
+    image: "/img/blog/hero-sheets-tips.webp",
     label: "Power User",
     date: "2026-04-29",
     readTime: "8 min",
@@ -46,7 +76,7 @@ const posts = [
     slug: "automatizacion-google-sheets-appscript",
     title: "Automatización en Google Sheets con AppScript: La Guía Definitiva para PYMES",
     excerpt: "Descubre cómo eliminar el trabajo manual en tu empresa usando Google Apps Script. Scripts, triggers automáticos y casos de uso reales para ahorrar más de 5 horas semanales.",
-    image: "/img/blog/hero-automatizacion.png",
+    image: "/img/blog/hero-automatizacion.webp",
     label: "Automatización",
     date: "2026-03-15",
     readTime: "8 min",
@@ -56,7 +86,7 @@ const posts = [
     slug: "dashboard-tiempo-real-google-sheets",
     title: "Cómo Crear un Dashboard en Tiempo Real con Google Sheets y Looker Studio",
     excerpt: "Los dashboards estáticos son historia. Aprende a conectar tus datos operativos con Looker Studio para tener KPIs en tiempo real sin pagar licencias de BI caras.",
-    image: "/img/blog/hero-dashboard.png",
+    image: "/img/blog/hero-dashboard.webp",
     label: "Dashboards",
     date: "2026-03-22",
     readTime: "7 min",
@@ -66,7 +96,7 @@ const posts = [
     slug: "formularios-leads-magnet-google-sheets",
     title: "Formularios Lead Magnet Conectados a Google Sheets: Captura Leads Sin CRM Caro",
     excerpt: "Convierte tu tráfico web en clientes potenciales con un sistema de captación automatizado. Formulario + Google Sheets + email automático. Sin Mailchimp ni HubSpot.",
-    image: "/img/blog/hero-leads.png",
+    image: "/img/blog/hero-leads.webp",
     label: "Leads Magnet",
     date: "2026-03-28",
     readTime: "6 min",
@@ -76,7 +106,7 @@ const posts = [
     slug: "software-a-medida-sin-mantenimiento-pymes",
     title: "Software a Medida para PYMES Sin Coste de Mantenimiento: ¿Cómo Es Posible?",
     excerpt: "El modelo de desarrollo tradicional te cobra cada mes. Existe una alternativa basada en Google AppScript que elimina los costes recurrentes sin sacrificar potencia ni funcionalidad.",
-    image: "/img/blog/hero-software.png",
+    image: "/img/blog/hero-software.webp",
     label: "Software",
     date: "2026-04-01",
     readTime: "9 min",
@@ -86,7 +116,7 @@ const posts = [
     slug: "excel-vs-google-sheets-empresa",
     title: "Excel vs Google Sheets para Empresas en 2026: Cuándo Hacer el Cambio",
     excerpt: "No se trata de cuál es mejor: se trata de cuál es mejor para ti. Analizamos las 5 señales de que tu empresa ya superó a Excel y cuándo Google Sheets (con AppScript) es la respuesta.",
-    image: "/img/blog/hero-excel-vs-sheets.png",
+    image: "/img/blog/hero-excel-vs-sheets.webp",
     label: "Excel vs Sheets",
     date: "2026-04-01",
     readTime: "6 min",
@@ -99,15 +129,13 @@ const jsonLd = JSON.stringify({
   "@type": "Blog",
   "name": "Blog de Konte – Automatización y Software para PYMES",
   "description": "Artículos prácticos sobre automatización con Google Sheets, AppScript, dashboards y captación de leads para pequeñas y medianas empresas.",
-  "url": "https://konte.es/blog",
-  "publisher": {
-    "@type": "Organization",
-    "name": "Konte Solutions"
-  }
+  "url": "https://www.konte.es/blog/",
+  "publisher": { "@id": "https://www.konte.es/#organization" }
 });
 ---
 
 <BlogLayout
+  ogType="website"
   title="Blog de Automatización y Software para PYMES | Konte"
   description="Artículos prácticos sobre automatización con Google Sheets, AppScript, dashboards en tiempo real y captación de leads para pequeñas y medianas empresas."
   jsonLd={jsonLd}
@@ -130,10 +158,10 @@ const jsonLd = JSON.stringify({
   <section class="py-20 bg-white dark:bg-darkBg">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <!-- Featured Post (first one) -->
-      <a href={`/blog/${posts[0].slug}`} class="block mb-16 group">
+      <a href={`/blog/${posts[0].slug}/`} class="block mb-16 group">
         <article class="grid md:grid-cols-2 gap-0 border-2 border-gray-200 dark:border-gray-800 rounded-2xl overflow-hidden hover:border-lightAccent dark:hover:border-darkAccent transition-all duration-300 shadow-lg hover:shadow-2xl">
           <div class="relative overflow-hidden h-64 md:h-auto bg-gray-900">
-            <img src={posts[0].image} alt={posts[0].title} class="w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-500" />
+            <img src={posts[0].image} alt={posts[0].title} loading="lazy" decoding="async" class="w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-500" />
             
             <!-- HTML Label Overlay -->
             <div class="absolute inset-0 flex items-center justify-center p-4">
@@ -168,10 +196,10 @@ const jsonLd = JSON.stringify({
       <!-- Rest of posts -->
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
         {posts.slice(1).map(post => (
-          <a href={`/blog/${post.slug}`} class="block group">
+          <a href={`/blog/${post.slug}/`} class="block group">
             <article class="border-2 border-gray-200 dark:border-gray-800 rounded-2xl overflow-hidden hover:border-lightAccent dark:hover:border-darkAccent transition-all duration-300 shadow-md hover:shadow-xl h-full flex flex-col">
               <div class="relative overflow-hidden aspect-video bg-gray-900">
-                <img src={post.image} alt={post.title} class="w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-500" />
+                <img src={post.image} alt={post.title} loading="lazy" decoding="async" class="w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-500" />
                 
                 <!-- HTML Label Overlay -->
                 <div class="absolute inset-0 flex items-center justify-center p-4">
@@ -204,13 +232,14 @@ const jsonLd = JSON.stringify({
   </section>
 
   <!-- CTA -->
-  <section class="py-20 bg-gray-50 dark:bg-darkSection border-t border-gray-200 dark:border-gray-900">
+  <section class="py-16 bg-gray-50 border-t border-gray-200">
     <div class="max-w-3xl mx-auto px-4 text-center">
-      <h2 class="font-display text-3xl md:text-4xl font-black uppercase mb-4 text-gray-900 dark:text-white">¿Sobre qué temas te gustaría que hablemos?</h2>
-      <p class="text-lightTextSec dark:text-darkTextSec mb-8 text-lg">Queremos que este blog sea una herramienta útil para tu PYME. Cuéntanos qué procesos te gustaría automatizar o sobre qué herramientas quieres aprender más.</p>
-      <a href="mailto:konte.contacto@gmail.com?subject=Sugerencia para el Blog" class="inline-flex items-center gap-2 px-10 py-4 bg-lightAccent dark:bg-darkAccent text-white dark:text-black font-black uppercase tracking-widest hover:-translate-y-1 transition-transform shadow-[6px_6px_0_0_rgba(0,0,0,0.2)]">
-        Enviar mis sugerencias
-      </a>
+      <h2 class="font-display text-3xl md:text-4xl font-black uppercase mb-4 text-gray-900">¿Prefieres que te lo hagamos?</h2>
+      <p class="text-gray-600 mb-8 text-lg">CRM, turnos, tickets, inventario, ERP o lo que necesites. Cuéntanos tu idea y en 48 h tienes una propuesta cerrada.</p>
+      <div class="flex flex-col sm:flex-row gap-3 justify-center">
+        <a href="#contacto" class="inline-flex items-center justify-center gap-2 px-10 py-4 bg-lightAccent text-white font-black uppercase tracking-widest hover:-translate-y-1 transition-transform shadow-[6px_6px_0_0_rgba(0,0,0,0.2)]">Pedir presupuesto</a>
+        <a href="/plantilla-crm-gratis/" class="inline-flex items-center justify-center gap-2 px-10 py-4 bg-white border-2 border-gray-900 text-gray-900 font-black uppercase tracking-widest hover:border-lightAccent hover:text-lightAccent transition-colors">Plantilla CRM gratis</a>
+      </div>
     </div>
   </section>
 </BlogLayout>

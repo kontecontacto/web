@@ -47,3 +47,21 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+  # Avisa a Bing (fuente de ChatGPT Search), Yandex y demás buscadores de IndexNow
+  # de que hay contenido nuevo, para que lo indexen en horas y no en semanas.
+  indexnow:
+    needs: deploy
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - name: Ping IndexNow
+        env:
+          KEY: 5f40c112a25bcaaf15043bc5ec2551d3
+        run: |
+          sleep 30
+          URLS=$(curl -fsSL https://www.konte.es/sitemap-0.xml | grep -o '<loc>[^<]*' | sed 's/<loc>//' | jq -R . | jq -sc .)
+          curl -sS -X POST https://api.indexnow.org/indexnow \
+            -H 'Content-Type: application/json; charset=utf-8' \
+            -d "{\"host\":\"www.konte.es\",\"key\":\"$KEY\",\"keyLocation\":\"https://www.konte.es/$KEY.txt\",\"urlList\":$URLS}" \
+            -w '\nHTTP %{http_code}\n'

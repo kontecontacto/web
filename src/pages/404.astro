@@ -1,0 +1,15 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SolutionCards from '../components/SolutionCards.astro';
+---
+
+<Layout title="Página no encontrada | Konte" description="La página que buscas no existe." noindex>
+  <section class="py-16 md:py-24 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <p class="font-display text-8xl font-black text-lightAccent">404</p>
+      <h1 class="font-display text-4xl md:text-5xl font-black uppercase text-gray-900 mb-4">Esta página no existe</h1>
+      <p class="text-lg text-gray-600 mb-10 max-w-2xl">Puede que el enlace haya cambiado. Quizá lo que buscabas está aquí:</p>
+      <SolutionCards />
+    </div>
+  </section>
+</Layout>

@@ -1,0 +1,51 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import SolutionCards from '../../components/SolutionCards.astro';
+import TwoWays from '../../components/TwoWays.astro';
+import { SOLUTIONS } from '../../data/soluciones';
+import { SITE } from '../../data/site';
+
+const itemListJsonLd = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  name: 'Soluciones de software a medida de Konte',
+  itemListElement: SOLUTIONS.map((s, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    name: s.name,
+    url: `${SITE.url}/soluciones/${s.slug}/`,
+  })),
+});
+---
+
+<Layout
+  title="Soluciones de software a medida para empresas | Konte"
+  description="CRM, sistemas de turnos y cita previa, tickets con QR, soporte, inventario, ERP, fichaje, producción y apps a medida. Elige tu solución y pide presupuesto gratis."
+  jsonLd={itemListJsonLd}
+>
+  <section class="relative bg-white border-b border-gray-200 overflow-hidden">
+    <div class="absolute inset-0 bg-[linear-gradient(to_right,#e5e7eb_1px,transparent_1px),linear-gradient(to_bottom,#e5e7eb_1px,transparent_1px)] bg-[size:64px_64px] opacity-30 pointer-events-none"></div>
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20">
+      <Breadcrumbs items={[{ name: 'Soluciones', href: '/soluciones/' }]} />
+      <h1 class="mt-6 font-display text-5xl md:text-7xl font-black uppercase tracking-tighter leading-[0.9] text-gray-900 max-w-4xl">
+        Soluciones de software <span class="text-lightAccent">a medida</span>
+      </h1>
+      <p class="mt-6 text-xl text-gray-600 max-w-3xl font-medium leading-relaxed">
+        Estos son los sistemas que más nos piden. Cada uno se adapta por completo a tu negocio, y si lo que necesitas no está en la lista, también lo desarrollamos.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-16 md:py-20 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <SolutionCards />
+    </div>
+  </section>
+
+  <section class="py-16 md:py-24 bg-white border-t border-gray-200">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <TwoWays />
+    </div>
+  </section>
+</Layout>

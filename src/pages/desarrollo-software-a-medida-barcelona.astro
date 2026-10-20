@@ -1,0 +1,120 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import SolutionCards from '../components/SolutionCards.astro';
+import TwoWays from '../components/TwoWays.astro';
+import Process from '../components/Process.astro';
+import Faq from '../components/Faq.astro';
+import WhatsAppIcon from '../components/WhatsAppIcon.astro';
+import { SITE, whatsappLink } from '../data/site';
+
+const areas = ['Barcelona ciudad', "L'Hospitalet de Llobregat", 'Badalona', 'Sabadell', 'Terrassa', 'Mataró', 'Sant Cugat del Vallès', 'Granollers', 'Cornellà', 'El Prat', 'Castelldefels', 'Rubí', 'Viladecans', 'Manresa', 'Vilanova i la Geltrú', 'Toda Cataluña'];
+
+const sectors = [
+  { t: 'Hostelería y restauración', d: 'Inventario multi-local, fichaje de turnos, reservas y control de proveedores.' },
+  { t: 'Clínicas y centros de salud', d: 'Cita previa online, recordatorios por WhatsApp, fichas de paciente y CRM.' },
+  { t: 'Comercio y retail', d: 'Stock con escáner, pedidos, fidelización de clientes y cuadro de mando.' },
+  { t: 'Eventos, ocio y cultura', d: 'Entradas con QR, control de acceso, aforo en tiempo real y acreditaciones.' },
+  { t: 'Industria y logística', d: 'Producción, trazabilidad por lote, almacenes y ERP a medida.' },
+  { t: 'Servicios profesionales', d: 'CRM, tickets de soporte, partes de trabajo y automatización de documentos.' },
+];
+
+const faqs = [
+  { q: '¿Dónde está Konte?', a: 'Estamos en Barcelona. Trabajamos con empresas de Barcelona y su área metropolitana, del resto de Cataluña, de toda España y de Latinoamérica.' },
+  { q: '¿Cuánto cuesta desarrollar un software a medida en Barcelona?', a: 'Depende de lo que necesites. Sobre Google Workspace hablamos de un pago único: desde unos 300€ para mejoras y entre 2.500€ y 8.000€ para aplicaciones completas. En la nube, un pago único por el desarrollo más una cuota mensual de servidor y mantenimiento. Te damos un presupuesto cerrado en 48 h.' },
+  { q: '¿Qué tipo de empresas de Barcelona trabajan con vosotros?', a: 'Sobre todo pymes de hostelería, comercio, salud, eventos, industria, logística y servicios profesionales que necesitan un sistema propio en lugar de adaptar su negocio a un programa genérico.' },
+  { q: '¿Cuánto tardáis en entregar un proyecto?', a: 'Las automatizaciones sencillas, 1 o 2 semanas. Las aplicaciones completas, entre 4 y 8 semanas para la primera versión, según la complejidad.' },
+  { q: '¿Cómo empezamos?', a: `Escríbenos por WhatsApp al ${SITE.phone}, llámanos o rellena el formulario. Hacemos una llamada de 30 minutos para entender tu negocio y en 48 h tienes la propuesta.` },
+];
+
+const jsonLd = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: 'Desarrollo de software a medida en Barcelona',
+  serviceType: 'Desarrollo de software a medida',
+  url: `${SITE.url}/desarrollo-software-a-medida-barcelona/`,
+  provider: { '@id': `${SITE.url}/#organization` },
+  areaServed: [{ '@type': 'City', name: 'Barcelona' }, { '@type': 'AdministrativeArea', name: 'Cataluña' }],
+});
+---
+
+<Layout
+  ogImage="/img/og/barcelona.png"
+  title="Desarrollo de software a medida en Barcelona | Konte"
+  description="Empresa de desarrollo de software a medida en Barcelona: CRM, sistemas de turnos y citas, tickets con QR, inventario, ERP y apps para pymes. Presupuesto gratis en 48 h."
+  jsonLd={jsonLd}
+  contactProps={{ title: '¿Tu empresa está en Barcelona? Hablemos.' }}
+>
+  <section class="relative bg-white border-b border-gray-200 overflow-hidden">
+    <div class="absolute inset-0 bg-[linear-gradient(to_right,#e5e7eb_1px,transparent_1px),linear-gradient(to_bottom,#e5e7eb_1px,transparent_1px)] bg-[size:64px_64px] opacity-30 pointer-events-none"></div>
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20">
+      <Breadcrumbs items={[{ name: 'Software a medida en Barcelona', href: '/desarrollo-software-a-medida-barcelona/' }]} />
+      <div class="mt-6 inline-flex items-center gap-2 px-3 py-1.5 bg-blue-50 border border-blue-100 text-lightAccent rounded-full">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>
+        <span class="text-xs font-black uppercase tracking-widest">Barcelona · Cataluña</span>
+      </div>
+      <h1 class="mt-5 font-display text-5xl md:text-7xl font-black uppercase tracking-tighter leading-[0.9] text-gray-900 max-w-5xl">
+        Desarrollo de software a medida en <span class="text-lightAccent">Barcelona</span>
+      </h1>
+      <p class="mt-6 text-xl text-gray-600 max-w-3xl font-medium leading-relaxed">
+        Somos un equipo de desarrollo con base en Barcelona. Creamos CRM, sistemas de turnos y cita previa, tickets con QR, inventario, ERP y apps de gestión para pymes de la ciudad, del área metropolitana y de toda Cataluña.
+      </p>
+      <div class="mt-8 flex flex-col sm:flex-row gap-3">
+        <a href="#contacto" class="inline-flex items-center justify-center gap-3 px-8 py-4 bg-lightAccent text-white font-black text-base uppercase tracking-wide rounded-sm hover:-translate-y-1 transition-all shadow-[6px_6px_0_0_rgba(0,0,0,0.15)]">Pedir presupuesto gratis →</a>
+        <a href={whatsappLink('Hola, tengo una empresa en Barcelona y quiero información.')} target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 px-8 py-4 bg-[#25D366] hover:bg-[#128C7E] text-white font-black text-base uppercase tracking-wide rounded-sm transition-colors">
+          <WhatsAppIcon class="w-5 h-5" /> WhatsApp
+        </a>
+        <a href={SITE.phoneHref} class="inline-flex items-center justify-center px-8 py-4 border-2 border-gray-900 text-gray-900 font-black text-base uppercase tracking-wide rounded-sm hover:border-lightAccent hover:text-lightAccent transition-colors">{SITE.phone}</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 md:py-20 bg-gray-50 border-b border-gray-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="font-display text-3xl md:text-5xl font-black uppercase text-gray-900 mb-4 leading-tight">Software para las empresas de Barcelona</h2>
+      <p class="text-lg text-gray-600 max-w-3xl mb-10 font-medium">Barcelona tiene un tejido de pymes enorme y muy diverso. Estos son los sistemas que más desarrollamos por sector:</p>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        {sectors.map((s) => (
+          <div class="p-6 bg-white border-2 border-gray-200 rounded-2xl">
+            <h3 class="font-display text-lg font-black uppercase text-gray-900 mb-2">{s.t}</h3>
+            <p class="text-sm text-gray-600 leading-relaxed">{s.d}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 md:py-24 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="font-display text-3xl md:text-5xl font-black uppercase text-gray-900 mb-10 leading-tight">Qué desarrollamos</h2>
+      <SolutionCards />
+    </div>
+  </section>
+
+  <section class="py-16 md:py-24 bg-gray-50 border-y border-gray-200">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <TwoWays />
+    </div>
+  </section>
+
+  <section class="py-16 md:py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="font-display text-3xl md:text-4xl font-black uppercase text-gray-900 mb-8">Así trabajamos</h2>
+      <Process />
+      <div class="mt-14 p-8 bg-gray-900 rounded-2xl">
+        <h2 class="font-display text-xl font-black uppercase text-white mb-4">Damos servicio en Barcelona y alrededores</h2>
+        <div class="flex flex-wrap gap-2">
+          {areas.map((a) => <span class="px-3 py-1.5 bg-white/10 text-gray-200 text-sm font-bold rounded-full">{a}</span>)}
+        </div>
+        <p class="mt-5 text-sm text-gray-400">Y en remoto para el resto de España y <a href="/software-a-medida-latinoamerica/" class="text-lightAccent underline">Latinoamérica</a>.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 md:py-24 bg-gray-50 border-t border-gray-200">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="font-display text-3xl md:text-5xl font-black uppercase text-gray-900 text-center mb-12">Preguntas frecuentes</h2>
+      <Faq items={faqs} />
+    </div>
+  </section>
+</Layout>

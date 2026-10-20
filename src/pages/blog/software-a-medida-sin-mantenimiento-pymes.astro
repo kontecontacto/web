@@ -1,27 +1,30 @@
 ---
 import BlogLayout from '../../layouts/BlogLayout.astro';
+import BlogCta from '../../components/BlogCta.astro';
 
 const jsonLd = JSON.stringify({
   "@context": "https://schema.org",
   "@type": "BlogPosting",
   "headline": "Software a Medida para PYMES Sin Coste de Mantenimiento: ¿Cómo Es Posible?",
-  "image": "https://konte.es/img/blog/hero-software.png",
-  "author": { "@type": "Organization", "name": "Konte Solutions" },
+  "image": "https://www.konte.es/img/blog/hero-software.png",
+  "author": { "@type": "Organization", "name": "Konte", "url": "https://www.konte.es/" },
+  "publisher": { "@id": "https://www.konte.es/#organization" },
   "datePublished": "2026-04-01",
-  "url": "https://konte.es/blog/software-a-medida-sin-mantenimiento-pymes",
+  "url": "https://www.konte.es/blog/software-a-medida-sin-mantenimiento-pymes/",
   "keywords": ["software a medida PYME", "sin costes mantenimiento", "desarrollo AppScript", "web app Google", "aplicación empresa sin servidor"]
 });
 ---
 
 <BlogLayout
+  need="App móvil o plataforma web"
   title="Software a Medida para PYMES Sin Coste de Mantenimiento | Konte"
   description="El modelo de desarrollo tradicional te cobra cada mes. Existe una alternativa basada en Google AppScript que elimina los costes recurrentes sin sacrificar potencia."
   jsonLd={jsonLd}
-  ogImage="/img/blog/hero-software.png"
+  ogImage="/img/og/blog-software-a-medida-sin-mantenimiento-pymes.png"
 >
   <!-- Hero Image Section -->
   <div class="relative w-full h-64 md:h-[450px] overflow-hidden bg-gray-900 border-b-4 border-gray-900">
-    <img src="/img/blog/hero-software.png" alt="Software a medida para PYMES sin costes de mantenimiento mensual" class="w-full h-full object-cover opacity-90" />
+    <img src="/img/blog/hero-software.webp" width="1024" height="1024" decoding="async" alt="Software a medida para PYMES sin costes de mantenimiento mensual" class="w-full h-full object-cover opacity-90" />
     
     <!-- Floating Label -->
     <div class="absolute inset-0 flex items-center justify-center p-4 pointer-events-none">
@@ -84,6 +87,7 @@ const jsonLd = JSON.stringify({
           <li>Las actualizaciones de interfaz requieren recargar la página (no es una SPA completa)</li>
         </ul>
         <p>Para la mayoría de aplicaciones de gestión interna de una PYME (1-100 usuarios, operaciones de gestión estándar), estas limitaciones no son un obstáculo.</p>
+        <p><strong>¿Y si tu proyecto sí las supera?</strong> Para eso ahora también desarrollamos <a href="/soluciones/app-y-plataforma-web-a-medida/">plataformas a medida en la nube</a>, con servidor y base de datos propios, app móvil y acceso para tus clientes. En ese caso hay una cuota mensual de servidor y mantenimiento, y te explicamos con números cuándo compensa cada opción.</p>
 
         <h2>El modelo de propiedad del código</h2>
         <p>Un aspecto fundamental del modelo Konte: <strong>el código es 100% tuyo desde el día 1</strong>. No hay licencias de uso, no hay dependencia del proveedor para que la aplicación siga funcionando. Te entregamos el código fuente completo, documentado, y te formamos para que cualquier desarrollador pueda mantenerlo si algún día decides hacerlo internamente.</p>
@@ -98,14 +102,7 @@ const jsonLd = JSON.stringify({
         </ul>
         <p>La diferencia es enorme. Y la experiencia de uso es más personalizada que cualquier SaaS genérico.</p>
 
-        <div class="not-prose my-16 p-10 bg-gray-900 dark:bg-white text-white dark:text-black rounded-[32px] text-center shadow-2xl overflow-hidden relative">
-          <div class="absolute -top-24 -right-24 w-64 h-64 bg-lightAccent/20 rounded-full blur-3xl"></div>
-          <h3 class="font-display font-black text-3xl md:text-4xl uppercase mb-6 leading-none tracking-tighter">¿Sobre qué temas te gustaría que hablemos?</h3>
-          <p class="mb-10 text-lg opacity-80 max-w-xl mx-auto font-medium">Queremos que este blog sea una herramienta útil para tu PYME. Cuéntanos qué procesos te gustaría automatizar o sobre qué herramientas quieres aprender más.</p>
-          <a href="mailto:konte.contacto@gmail.com?subject=Sugerencia para el Blog" class="inline-block px-10 py-5 bg-lightAccent text-white font-black uppercase tracking-widest hover:scale-105 transition-all shadow-xl">
-            Enviar mis sugerencias
-          </a>
-        </div>
+        <BlogCta solution="app-y-plataforma-web-a-medida" />
       </div>
     </div>
   </article>
@@ -114,11 +111,11 @@ const jsonLd = JSON.stringify({
     <div class="max-w-3xl mx-auto px-4">
       <h2 class="font-display text-2xl font-black uppercase mb-8 text-gray-900 dark:text-white">Artículos relacionados</h2>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <a href="/blog/automatizacion-google-sheets-appscript" class="block p-6 bg-white dark:bg-darkSurface border-2 border-gray-200 dark:border-gray-800 rounded-xl hover:border-lightAccent dark:hover:border-darkAccent transition-colors group">
+        <a href="/blog/automatizacion-google-sheets-appscript/" class="block p-6 bg-white dark:bg-darkSurface border-2 border-gray-200 dark:border-gray-800 rounded-xl hover:border-lightAccent dark:hover:border-darkAccent transition-colors group">
           <p class="text-xs font-bold uppercase tracking-widest text-lightAccent dark:text-darkAccent mb-2">AppScript</p>
           <h3 class="font-display font-black text-lg uppercase text-gray-900 dark:text-white group-hover:text-lightAccent dark:group-hover:text-darkAccent transition-colors leading-tight">Automatización en Google Sheets con AppScript</h3>
         </a>
-        <a href="/blog/excel-vs-google-sheets-empresa" class="block p-6 bg-white dark:bg-darkSurface border-2 border-gray-200 dark:border-gray-800 rounded-xl hover:border-lightAccent dark:hover:border-darkAccent transition-colors group">
+        <a href="/blog/excel-vs-google-sheets-empresa/" class="block p-6 bg-white dark:bg-darkSurface border-2 border-gray-200 dark:border-gray-800 rounded-xl hover:border-lightAccent dark:hover:border-darkAccent transition-colors group">
           <p class="text-xs font-bold uppercase tracking-widest text-lightAccent dark:text-darkAccent mb-2">Productividad</p>
           <h3 class="font-display font-black text-lg uppercase text-gray-900 dark:text-white group-hover:text-lightAccent dark:group-hover:text-darkAccent transition-colors leading-tight">Excel vs Google Sheets: Cuándo hacer el cambio</h3>
         </a>

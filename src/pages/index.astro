@@ -1,66 +1,15 @@
 ---
+import WhatsAppIcon from '../components/WhatsAppIcon.astro';
 import Layout from '../layouts/Layout.astro';
 import BeforeAfterSlider from '../components/BeforeAfterSlider.jsx';
-import LeadMagnetForm from '../components/LeadMagnetForm.jsx';
 import ProjectGallery from '../components/ProjectGallery.jsx';
-
-// Trigger redeploy with GitHub Actions as Pages source
-const projects = [
-  {
-    tags: ['Gastronomía', 'Control de Inventario', 'App Integral'],
-    title: 'Inventario Multi-Sede: FlagShip',
-    desc: 'Una <strong>app de inventario</strong> diseñada para gestionar los utensilios y equipamiento en cientos de cafeterías por todo Estados Unidos. Escalabilidad total y sincronización en tiempo real.',
-    folder: 'FlagShip',
-    logo: 'logo.png',
-    mainImg: '1.png',
-    thumbs: ['Captura de pantalla 2026-04-01 124439.png', 'Captura de pantalla 2026-04-01 124448.png']
-  },
-  {
-    tags: ['Manufactura', 'Gestión de Lotes'],
-    title: 'Aplicación Integral de Producción: Montelimar',
-    desc: 'Un sistema integral para la <strong>gestión de procesos</strong> y <strong>control de temperatura</strong>. Permite a los operarios saber qué fabricar, controlar las variables de la <strong>cámara de curado</strong> y lotes, mientras los jefes visualizan dashboards de rendimiento en tiempo real sin perder datos en papel.',
-    folder: 'Montelimar',
-    logo: 'logo.png',
-    mainImg: '1.png',
-    thumbs: ['image copy.png', 'image copy 2.png']
-  },
-  {
-    tags: ['Logística Autopartes', 'Control de Stock Automotriz'],
-    title: 'Software de Inventario Dinámico: Recomotor',
-    desc: 'Una plataforma para la <strong>trazabilidad de recambios</strong> e inventariado de cada vehículo mediante escáner. Cualquier empleado puede registrar trazabilidad actualizando el flujo de entrada y salida, asegurando una gestión total del <strong>stock de talleres</strong>.',
-    folder: 'Recomotor',
-    logo: 'logo.png',
-    mainImg: '1.png',
-    thumbs: ['Untitled design (2).png', 'Untitled design (3).png']
-  },
-  {
-    tags: ['Salud & Fitness', 'Planificador de Rutinas'],
-    title: 'App Integral para Entrenadores',
-    desc: 'Un <strong>dashboard de seguimiento de clientes</strong> para entrenadores deportivos. Control absoluto y <strong>gestión de pagos recurrentes</strong>, asignación de rutinas personalizadas, centralizando historiales y ahorrando un 80% del tiempo organizativo manual.',
-    folder: 'Gestion Gym -Entrenador personal',
-    logo: 'logo.png',
-    mainImg: '1.png',
-    thumbs: ['Captura de pantalla 2026-03-31 181347.png', 'Captura de pantalla 2026-03-31 181353.png', 'Captura de pantalla 2026-03-31 181404.png']
-  },  
-  {
-    tags: ['Agroindustria', 'Gestión de Materia Prima'],
-    title: 'Hefe: ERP de Automatización Agrícola',
-    desc: 'De caos logístico a control maestro. Los operarios visualizan en piso la <strong>escalabilidad de recetas industriales</strong>, el sistema computa el alta de las <strong>órdenes de producción y stock</strong> automáticamente, actuando como un <strong>ERP a medida</strong> 100% digitalizado.',
-    folder: 'Hefe - Planta fertilizantes',
-    logo: 'logo.png',
-    mainImg: '1.png',
-    thumbs: ['Captura de pantalla 2026-03-31 175019.png', 'Captura de pantalla 2026-03-31 175208.png', 'Captura de pantalla 2026-03-31 175213.png']
-  },
-  {
-    tags: ['Construcción', 'Flujo de Caja'],
-    title: 'Gestor Financiero Constructoras',
-    desc: 'Sistema de alta capacidad para la auditoría y el <strong>control de presupuestos de obra</strong>. Un robusto <strong>dashboard financiero</strong> donde se supervisan gastos de proveedores, flujos de pagos y el índice de <strong>rentabilidad por proyecto</strong>.',
-    folder: 'Gestor Financiero Constructoras',
-    logo: 'logo.png',
-    mainImg: '1.png',
-    thumbs: ['Captura de pantalla 2026-03-31 190931.png', 'Captura de pantalla 2026-03-31 190950.png']
-  }
-];
+import SolutionCards from '../components/SolutionCards.astro';
+import TwoWays from '../components/TwoWays.astro';
+import Process from '../components/Process.astro';
+import CrmTemplateBand from '../components/CrmTemplateBand.astro';
+import Faq from '../components/Faq.astro';
+import { PROJECTS } from '../data/projects';
+import { SITE, whatsappLink } from '../data/site';
 
 const testimonials = [
   {
@@ -89,854 +38,347 @@ const testimonials = [
   }
 ];
 
-const services = [
-  {
-    id: "mejora-hojas-calculo",
-    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3h18v18H3z"/><path d="M3 9h18"/><path d="M9 3v18"/><path d="M13 13l2 2 4-4"/></svg>`,
-    title: "Optimización Google Sheets",
-    shortDesc: "De hojas lentas a sistemas de alto rendimiento sin lag ni errores.",
-    color: "blue"
-  },
-  {
-    id: "automatizacion-appscript",
-    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>`,
-    title: "Automatización AppScript",
-    shortDesc: "Robots internos que trabajan por ti: facturas, alertas, sincronizaciones.",
-    color: "indigo"
-  },
-  {
-    id: "software-customizado",
-    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><path d="M8 21h8"/><path d="M12 17v4"/></svg>`,
-    title: "Web-Apps a Medida",
-    shortDesc: "Apps profesionales con interfaz moderna. Google Sheets como backend.",
-    color: "violet"
-  },
-  {
-    id: "dashboards-tiempo-real",
-    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/></svg>`,
-    title: "Dashboards en Tiempo Real",
-    shortDesc: "Tus KPIs en un vistazo. Decisiones con datos, no con intuición.",
-    color: "blue"
-  },
-  {
-    id: "creacion-formularios",
-    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="M9 2h6"/><path d="M12 11h4"/><path d="M12 16h4"/><path d="M8 11h.01"/><path d="M8 16h.01"/></svg>`,
-    title: "Captura de Datos Inteligente",
-    shortDesc: "Formularios que validan y organizan la información automáticamente.",
-    color: "indigo"
-  },
-  {
-    id: "formularios-leads-magnet",
-    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>`,
-    title: "Lead Magnet & Captación",
-    shortDesc: "Tu web vendiendo por ti. Embudos que califican al cliente al instante.",
-    color: "violet"
-  }
+const heroNeeds = [
+  ['CRM', 'CRM a medida'],
+  ['Turnos y citas', 'Sistema de turnos / citas / reservas'],
+  ['Tickets con QR', 'Tickets o entradas con QR'],
+  ['Inventario', 'Inventario y stock con escáner'],
+  ['ERP / gestión', 'ERP / programa de gestión'],
+  ['Fichaje', 'Control horario / fichaje'],
+  ['App a medida', 'App móvil o plataforma web'],
+  ['Otra idea', 'Otra cosa / no lo tengo claro'],
 ];
 
-const jsonLd = JSON.stringify({
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "ProfessionalService",
-      "name": "Konte Solutions",
-      "url": "https://konte.es",
-      "description": "Agencia de software a medida para PYMES. Especialistas en Google Sheets, AppScript, automatización y dashboards en tiempo real sin costes de mantenimiento mensual.",
-      "areaServed": "España",
-      "serviceType": ["Automatización Google Sheets", "Desarrollo AppScript", "Dashboards Looker Studio", "Software a Medida PYME"]
-    },
-    {
-      "@type": "FAQPage",
-      "mainEntity": [
-        { "@type": "Question", "name": "¿Por qué no pago mantenimiento mensual?", "acceptedAnswer": { "@type": "Answer", "text": "Porque nuestro software corre directamente sobre la infraestructura de Google Workspace. No hay servidores propios que mantener. El sistema vive en tu cuenta de Google y tú eres el propietario total del código y los datos." } },
-        { "@type": "Question", "name": "¿Es seguro usar Google Sheets como base de datos para mi empresa?", "acceptedAnswer": { "@type": "Answer", "text": "Sí. Google Workspace cumple con ISO 27001, SOC 2 y SOC 3, con cifrado en tránsito y en reposo. Para la mayoría de PYMES es más seguro que un servidor propio." } },
-        { "@type": "Question", "name": "¿Cuánto cuesta un proyecto de software a medida con Konte?", "acceptedAnswer": { "@type": "Answer", "text": "Cada proyecto se presupuesta individualmente: desde mejoras de hojas de cálculo (300-500€) hasta aplicaciones web completas (2.500-8.000€). El pago es único y no hay cuotas mensuales." } },
-        { "@type": "Question", "name": "¿Puedo automatizar procesos en Google Sheets sin saber programar?", "acceptedAnswer": { "@type": "Answer", "text": "Sí. Nosotros nos encargamos de toda la programación en Google Apps Script. Tú describes el proceso y nosotros lo implementamos con formación incluida." } },
-        { "@type": "Question", "name": "¿En cuánto tiempo estará listo mi proyecto?", "acceptedAnswer": { "@type": "Answer", "text": "Las automatizaciones simples pueden estar listas en 1-2 semanas. Las aplicaciones web completas se entregan en 4-8 semanas según la complejidad." } },
-        { "@type": "Question", "name": "¿Funciona si ya tenemos muchos datos en Excel?", "acceptedAnswer": { "@type": "Answer", "text": "Sí. Google Sheets importa archivos .xlsx de forma nativa conservando fórmulas y datos. Realizamos la migración como parte del proyecto." } }
-      ]
-    }
-  ]
-});
+const reasons = [
+  { t: 'Hablas con quien programa', d: 'Sin comerciales ni intermediarios. La persona que te escucha es la que construye tu sistema.' },
+  { t: 'Precio cerrado', d: 'Sabes lo que vas a pagar antes de empezar. Sin horas extra sorpresa.' },
+  { t: 'Tus datos son tuyos', d: 'Puedes exportarlos cuando quieras. Sin permanencias ni dependencias raras.' },
+  { t: 'Demos cada semana', d: 'Ves el avance real desde la primera semana y corregimos el rumbo contigo.' },
+];
+
+const faqs = [
+  { q: '¿Qué tipo de software desarrolláis?', a: 'Cualquier sistema de gestión que una empresa necesite: CRM, sistemas de turnos y cita previa, tickets y entradas con QR, sistemas de tickets de soporte, control de inventario con escáner, ERP, control horario y fichaje, control de producción y trazabilidad, apps para gimnasios y entrenadores, portales de clientes y automatizaciones con Google Sheets y Apps Script.' },
+  { q: '¿Cuánto cuesta un software a medida?', a: 'Depende del alcance. Sobre Google Workspace es un pago único: desde unos 300€ las mejoras de hojas de cálculo y entre 2.500€ y 8.000€ las aplicaciones completas, sin cuota mensual. En la nube, es un pago único por el desarrollo más una cuota mensual por servidor y mantenimiento, según el proyecto. En ambos casos te damos un presupuesto cerrado en 48 h.' },
+  { q: '¿Qué diferencia hay entre la opción en la nube y la de Google Workspace?', a: 'La opción en la nube tiene servidor y base de datos propios: es la adecuada si hay muchos usuarios, clientes que acceden desde fuera, pagos online, app móvil o integraciones. La de Google Workspace funciona dentro de tu cuenta de Google, es más rápida de construir y no tiene cuota mensual. Te recomendamos la que tiene sentido para tu caso.' },
+  { q: '¿Cuánto se tarda en tener el sistema funcionando?', a: 'Las automatizaciones sencillas pueden estar listas en 1 o 2 semanas. Las aplicaciones completas, entre 4 y 8 semanas para la primera versión, según la complejidad. Trabajamos por fases para que empieces a usarlo cuanto antes.' },
+  { q: '¿Trabajáis con empresas fuera de Barcelona?', a: 'Sí. Estamos en Barcelona y trabajamos en remoto con empresas de toda España y de Latinoamérica: México, Argentina, Colombia, Chile, Perú, Uruguay y otros países. Las reuniones son por videollamada y el soporte, por WhatsApp y email.' },
+  { q: '¿De quién son el código y los datos?', a: 'Los datos son siempre tuyos y puedes exportarlos cuando quieras. En los proyectos sobre Google Workspace el sistema vive en tu propia cuenta; en la nube, la propiedad del código se define en el contrato.' },
+  { q: '¿Ofrecéis soporte y mantenimiento?', a: 'Sí. En la opción en la nube, el servidor, las copias de seguridad, las actualizaciones de seguridad y el soporte van incluidos en la cuota mensual. En la de Google Workspace no hay cuota: nos avisas cuando necesites un cambio o una mejora.' },
+  { q: '¿Funciona si ya tenemos muchos datos en Excel?', a: 'Sí. Migramos tus datos desde Excel, Google Sheets u otro programa como parte del proyecto, y limpiamos duplicados y errores por el camino.' },
+];
 ---
 
 <Layout
-  title="Konte | Software a Medida para PYMES con Google Sheets y AppScript"
-  description="Digitaliza tu PYME con software a medida sin costes de mantenimiento. Especialistas en Google Workspace, AppScript y Looker Studio. ¡Agenda tu diagnóstico gratuito!"
-  jsonLd={jsonLd}
+  title="Software a medida para empresas: CRM, turnos, tickets y ERP | Konte"
+  description="Desarrollamos el software que tu empresa necesita: CRM, turnos y citas, tickets con QR, inventario, ERP y apps. Desde Barcelona para España y Latinoamérica."
 >
-  <!-- ===================== NAVBAR ===================== -->
-  <nav id="main-nav" class="fixed w-full top-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-200 transition-all duration-300">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex justify-between items-center h-18 py-3">
-        <!-- Logo -->
-        <a href="/" class="flex items-center gap-3 group">
-          <div class="w-10 h-10 bg-lightAccent text-white flex items-center justify-center font-display font-black text-2xl rotate-3 group-hover:rotate-0 transition-transform shadow-[3px_3px_0_0_rgba(0,0,0,0.15)]">K</div>
-          <span class="font-display font-bold text-2xl tracking-tight uppercase text-gray-900">Konte</span>
-        </a>
+  <!-- ===================== HERO ===================== -->
+  <section class="relative bg-white overflow-hidden border-b border-gray-200">
+    <div class="absolute inset-0 bg-[linear-gradient(to_right,#e5e7eb_1px,transparent_1px),linear-gradient(to_bottom,#e5e7eb_1px,transparent_1px)] bg-[size:64px_64px] opacity-40 pointer-events-none"></div>
+    <div class="absolute top-0 right-0 w-[700px] h-[500px] bg-lightAccent/10 rounded-full blur-[120px] pointer-events-none"></div>
 
-        <!-- Nav Links (desktop) -->
-        <div class="hidden md:flex items-center gap-8">
-          <a href="#proyectos" class="text-sm font-bold text-gray-600 hover:text-lightAccent transition-colors">Proyectos</a>
-          <a href="/servicios" class="relative text-sm font-bold text-lightAccent transition-colors group">
-            Servicios
-            <span class="absolute -top-1 -right-4 bg-lightAccent text-white text-[7.5px] font-black px-1.5 py-0.5 rounded-full uppercase tracking-wide leading-none">+6</span>
-          </a>
-          <a href="/blog" class="text-sm font-bold text-gray-600 hover:text-lightAccent transition-colors">Blog</a>
-          <a href="#faq" class="text-sm font-bold text-gray-600 hover:text-lightAccent transition-colors">FAQ</a>
-        </div>
-
-        <!-- CTAs -->
-        <div class="flex items-center gap-3">
-          <a href="#contacto" class="hidden md:flex items-center gap-2 text-sm font-bold text-gray-700 hover:text-lightAccent transition-colors border border-gray-300 hover:border-lightAccent px-4 py-2 rounded-sm">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
-            Escribir
-          </a>
-          <button id="nav-calendly-btn" class="px-5 py-2.5 bg-lightAccent text-white font-bold text-sm tracking-wide rounded-sm hover:-translate-y-0.5 transition-transform shadow-[3px_3px_0_0_rgba(0,0,0,0.2)] hover:shadow-[1px_1px_0_0_rgba(0,0,0,0.2)]">
-            Agendar llamada gratis →
-          </button>
-          <button id="mobile-menu-btn" class="md:hidden p-2 text-gray-900" aria-label="Abrir menú">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
-          </button>
-        </div>
-      </div>
-    </div>
-
-    <!-- Mobile Menu -->
-    <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-gray-200 px-4 py-4 space-y-3">
-      <a href="#proyectos" class="block text-base font-bold text-gray-900 hover:text-lightAccent transition-colors">Proyectos</a>
-      <a href="/servicios" class="block text-base font-bold text-lightAccent transition-colors">Servicios →</a>
-      <a href="/blog" class="block text-base font-bold text-gray-900 hover:text-lightAccent transition-colors">Blog</a>
-      <a href="#faq" class="block text-base font-bold text-gray-900 hover:text-lightAccent transition-colors">FAQ</a>
-      <a href="#contacto" class="block text-base font-bold text-gray-900 hover:text-lightAccent transition-colors">Contacto</a>
-      <button id="mobile-calendly-btn" class="w-full py-3 bg-lightAccent text-white font-black text-sm uppercase tracking-widest rounded-sm">Agendar llamada gratis</button>
-    </div>
-  </nav>
-
-  <main class="pt-20">
-
-    <!-- ===================== HERO ===================== -->
-    <section class="relative bg-white overflow-hidden min-h-[92vh] flex items-center">
-      <!-- Background grid -->
-      <div class="absolute inset-0 bg-[linear-gradient(to_right,#e5e7eb_1px,transparent_1px),linear-gradient(to_bottom,#e5e7eb_1px,transparent_1px)] bg-[size:64px_64px] opacity-40 pointer-events-none"></div>
-      <!-- Glow -->
-      <div class="absolute top-1/4 left-1/2 -translate-x-1/2 w-[700px] h-[400px] bg-lightAccent/10 rounded-full blur-[120px] pointer-events-none"></div>
-
-      <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 text-center">
-        <!-- Social proof badge -->
-        <div class="inline-flex items-center gap-3 bg-blue-50 border border-blue-200 rounded-full px-5 py-2 mb-8 animate-fade-in">
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 md:py-20 grid lg:grid-cols-[1.1fr_0.9fr] gap-12 items-center">
+      <div>
+        <div class="inline-flex items-center gap-3 bg-blue-50 border border-blue-200 rounded-full px-4 py-1.5 mb-7">
           <span class="flex h-2.5 w-2.5 relative">
             <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-lightAccent opacity-75"></span>
             <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-lightAccent"></span>
           </span>
-          <span class="text-sm font-bold text-lightAccent uppercase tracking-wider">+100 proyectos entregados · 0€/mes de mantenimiento</span>
+          <span class="text-xs sm:text-sm font-bold text-lightAccent uppercase tracking-wider">+100 proyectos entregados · {SITE.city}</span>
         </div>
 
-        <!-- Main headline -->
-        <h1 class="font-display text-5xl md:text-7xl lg:text-8xl font-black mb-6 text-gray-900 uppercase leading-[0.85] tracking-tighter">
-          Tu empresa.<br/>
-          <span class="text-lightAccent relative">
-            Automatizada.
-            <svg class="absolute bottom-[4px] left-0 w-full" height="8" viewBox="0 0 400 8" preserveAspectRatio="none"><path d="M0 7 Q100 1 200 5 Q300 9 400 3" stroke="#0055FF" stroke-width="3" fill="none" opacity="0.4"/></svg>
-          </span><br/>
-          Sin cuotas mensuales.
+        <h1 class="font-display font-black uppercase tracking-tighter text-gray-900 leading-[0.9] mb-6">
+          <span class="block text-5xl sm:text-6xl lg:text-7xl">Software</span>
+          <span class="block text-5xl sm:text-6xl lg:text-7xl text-lightAccent">a medida</span>
+          <span class="block text-3xl sm:text-4xl lg:text-5xl mt-2">para tu empresa.</span>
         </h1>
 
-        <p class="text-xl md:text-2xl text-gray-600 mb-12 max-w-3xl mx-auto font-medium leading-relaxed">
-          Construimos <strong>software a medida sobre Google Workspace</strong>: apps de gestión, dashboards en tiempo real y automatizaciones. Pago único. El código es tuyo para siempre.
+        <p class="text-lg md:text-xl text-gray-600 mb-8 max-w-2xl font-medium leading-relaxed">
+          <strong class="text-gray-900">CRM, sistemas de turnos y citas, tickets con QR, inventario, ERP, fichaje…</strong> Si tu negocio lo necesita, lo desarrollamos. En la nube con servidor propio o sobre Google Workspace sin cuotas.
         </p>
 
-        <!-- Hero CTAs -->
-        <div class="flex flex-col sm:flex-row gap-4 justify-center mb-16">
-          <button id="hero-calendly-btn" class="group inline-flex items-center justify-center gap-3 px-10 py-5 bg-lightAccent text-white font-black text-lg uppercase tracking-wide rounded-sm hover:-translate-y-1 transition-all shadow-[6px_6px_0_0_rgba(0,0,0,0.15)] hover:shadow-[2px_2px_0_0_rgba(0,0,0,0.15)]">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
-            Agendar llamada gratis
-            <span class="group-hover:translate-x-1 transition-transform">→</span>
-          </button>
-          <a href="/servicios" class="group inline-flex items-center justify-center gap-3 px-10 py-5 bg-white text-gray-900 font-black text-lg uppercase tracking-wide rounded-sm border-2 border-gray-900 hover:-translate-y-1 transition-all shadow-[6px_6px_0_0_rgba(0,0,0,0.15)] hover:shadow-[2px_2px_0_0_rgba(0,0,0,0.15)] hover:border-lightAccent hover:text-lightAccent">
-            Ver todos los servicios
+        <p class="text-xs font-black uppercase tracking-widest text-gray-500 mb-3">¿Qué quieres construir?</p>
+        <div class="flex flex-wrap gap-2 mb-9">
+          {heroNeeds.map(([labelText, need]) => (
+            <a href="#contacto" data-need={need} class="px-4 py-2 bg-white border-2 border-gray-200 hover:border-lightAccent hover:text-lightAccent text-gray-800 font-bold text-sm rounded-full transition-colors">{labelText}</a>
+          ))}
+        </div>
+
+        <div class="flex flex-col sm:flex-row gap-3 mb-5">
+          <a href="#contacto" class="group inline-flex items-center justify-center gap-3 px-8 py-4 bg-lightAccent text-white font-black text-base uppercase tracking-wide rounded-sm hover:-translate-y-1 transition-all shadow-[6px_6px_0_0_rgba(0,0,0,0.15)] hover:shadow-[2px_2px_0_0_rgba(0,0,0,0.15)]">
+            Pedir presupuesto gratis
             <span class="group-hover:translate-x-1 transition-transform">→</span>
           </a>
-        </div>
-
-        <!-- Trust indicators -->
-        <div class="flex flex-wrap justify-center gap-8 text-sm font-bold text-gray-500 uppercase tracking-widest">
-          <span class="flex items-center gap-2">
-            <svg class="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-            Sin cuota mensual
-          </span>
-          <span class="flex items-center gap-2">
-            <svg class="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-            Código 100% tuyo
-          </span>
-          <span class="flex items-center gap-2">
-            <svg class="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-            1-8 semanas de entrega
-          </span>
-          <span class="flex items-center gap-2">
-            <svg class="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-            Infraestructura Google
-          </span>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===================== STATS COUNTER ===================== -->
-    <section class="bg-gray-900 py-14 border-y border-gray-800">
-      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-          <div class="group">
-            <div class="font-display text-5xl md:text-6xl font-black text-lightAccent mb-2 counter-number" data-target="100">0</div>
-            <div class="text-xs font-black uppercase tracking-widest text-gray-400">Proyectos entregados</div>
-          </div>
-          <div class="group">
-            <div class="font-display text-5xl md:text-6xl font-black text-white mb-2">0€</div>
-            <div class="text-xs font-black uppercase tracking-widest text-gray-400">Mantenimiento mensual</div>
-          </div>
-          <div class="group">
-            <div class="font-display text-5xl md:text-6xl font-black text-lightAccent mb-2">100%</div>
-            <div class="text-xs font-black uppercase tracking-widest text-gray-400">Propiedad del código</div>
-          </div>
-          <div class="group">
-            <div class="font-display text-5xl md:text-6xl font-black text-white mb-2">6</div>
-            <div class="text-xs font-black uppercase tracking-widest text-gray-400">Sectores atendidos</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===================== WHAT I DO (SERVICES GRID) ===================== -->
-    <section id="servicios-home" class="py-24 bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <!-- Header -->
-        <div class="text-center mb-16">
-          <div class="inline-block px-4 py-2 bg-gray-900 text-white font-bold text-xs uppercase tracking-widest mb-6">Lo que hacemos</div>
-          <h2 class="font-display text-4xl md:text-6xl font-black uppercase mb-6 leading-tight text-gray-900">
-            Soluciones que <span class="text-lightAccent">transforman</span><br/>cómo opera tu empresa
-          </h2>
-          <p class="text-xl text-gray-600 max-w-2xl mx-auto font-medium">
-            Todo construido sobre Google Workspace. Sin servidores caros. Sin dependencia de terceros.
-          </p>
-        </div>
-
-        <!-- Services Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-          {services.map((svc, i) => (
-            <a href={`/servicios#${svc.id}`} class="group relative bg-white border-2 border-gray-200 rounded-2xl p-8 hover:border-lightAccent hover:-translate-y-2 transition-all duration-300 hover:shadow-[8px_8px_0_0_rgba(0,85,255,0.1)] flex flex-col">
-              <!-- Number -->
-              <span class="absolute top-6 right-6 font-display text-5xl font-black text-gray-100 group-hover:text-blue-50 transition-colors">0{i + 1}</span>
-              <!-- Icon -->
-              <div class="w-14 h-14 text-lightAccent bg-blue-50 p-3.5 rounded-xl border border-blue-100 group-hover:bg-lightAccent group-hover:text-white transition-all duration-300 mb-6 relative z-10" set:html={svc.icon} />
-              <!-- Content -->
-              <h3 class="font-display text-xl font-black uppercase tracking-tight mb-3 text-gray-900 group-hover:text-lightAccent transition-colors relative z-10">{svc.title}</h3>
-              <p class="text-sm text-gray-600 leading-relaxed font-medium flex-1 relative z-10">{svc.shortDesc}</p>
-              <!-- CTA -->
-              <div class="mt-6 flex items-center gap-2 text-xs font-black uppercase tracking-widest text-lightAccent opacity-0 group-hover:opacity-100 transition-opacity relative z-10">
-                Ver detalles <span class="group-hover:translate-x-1 transition-transform">→</span>
-              </div>
-            </a>
-          ))}
-        </div>
-
-        <!-- See all services CTA -->
-        <div class="text-center">
-          <a href="/servicios" class="group inline-flex items-center gap-3 px-10 py-5 bg-gray-900 text-white font-black text-base uppercase tracking-widest rounded-sm hover:-translate-y-1 transition-all shadow-[6px_6px_0_0_rgba(0,0,0,0.15)] hover:shadow-[2px_2px_0_0_rgba(0,0,0,0.15)] hover:bg-lightAccent">
-            Ver todos los servicios en detalle
-            <span class="group-hover:translate-x-2 transition-transform">→</span>
+          <a href={whatsappLink()} target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-3 px-8 py-4 bg-[#25D366] hover:bg-[#128C7E] text-white font-black text-base uppercase tracking-wide rounded-sm hover:-translate-y-1 transition-all shadow-[6px_6px_0_0_rgba(37,211,102,0.25)]">
+            <WhatsAppIcon class="w-5 h-5" />
+            WhatsApp
           </a>
         </div>
+        <p class="text-sm text-gray-500 font-medium">
+          O llámanos: <a href={SITE.phoneHref} class="font-bold text-gray-900 hover:text-lightAccent">{SITE.phone}</a> · Respuesta en menos de 24 h
+        </p>
       </div>
-    </section>
 
-    <!-- ===================== BEFORE / AFTER ===================== -->
-    <section id="comparativa" class="w-full py-12 bg-gray-50 border-y border-gray-200">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-10">
-          <h2 class="font-display text-3xl md:text-5xl font-black uppercase text-gray-900">Antes vs Después</h2>
-          <p class="text-gray-500 mt-2 font-medium">Arrastra el slider para comparar el impacto real</p>
-        </div>
-        <BeforeAfterSlider client:load />
-      </div>
-    </section>
-
-    <!-- ===================== THE MODEL (WHY NO MONTHLY FEE) ===================== -->
-    <section id="modelo" class="py-24 bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid lg:grid-cols-2 gap-16 items-center">
-          <div>
-            <div class="inline-block px-4 py-2 bg-lightAccent text-white font-bold text-xs uppercase tracking-widest mb-6">La Diferencia Konte</div>
-            <h2 class="font-display text-4xl md:text-5xl font-black uppercase mb-8 leading-tight text-gray-900">Por qué tu software<br/>no cuesta nada al mes.</h2>
-            <p class="text-lg text-gray-600 mb-6 leading-relaxed">
-              Las agencias tradicionales te cobran <strong>cientos de euros/mes</strong> solo por mantener servidores vivos en AWS o Azure. Eso ya no tiene sentido para una PYME.
-            </p>
-            <p class="text-lg text-gray-600 mb-10 leading-relaxed">
-              Usamos <strong>Google Workspace como infraestructura</strong>: Google Sheets, Apps Script, Looker Studio. Sin servidores propios. Tú eres dueño del código y los datos. <strong class="text-lightAccent">Para siempre.</strong>
-            </p>
-            <div class="flex flex-col sm:flex-row gap-4">
-              <button id="modelo-calendly-btn" class="group inline-flex items-center gap-2 px-8 py-4 bg-lightAccent text-white font-black text-sm uppercase tracking-widest rounded-sm hover:-translate-y-0.5 transition-all shadow-[4px_4px_0_0_rgba(0,0,0,0.15)]">
-                Evaluar si aplica a mi empresa
-                <span class="group-hover:translate-x-1 transition-transform">→</span>
-              </button>
-            </div>
+      <!-- Composición visual: ejemplos de sistemas -->
+      <div class="relative hidden lg:block h-[520px]" aria-hidden="true">
+        <div class="absolute top-6 left-0 right-10 bg-white rounded-2xl border border-gray-200 shadow-2xl overflow-hidden">
+          <div class="h-8 bg-gray-100 border-b border-gray-200 flex items-center gap-1.5 px-4">
+            <span class="w-2.5 h-2.5 rounded-full bg-red-400"></span><span class="w-2.5 h-2.5 rounded-full bg-yellow-400"></span><span class="w-2.5 h-2.5 rounded-full bg-green-400"></span>
+            <span class="ml-3 text-[10px] font-bold text-gray-400">tuempresa.konte.app/crm</span>
           </div>
-
-          <!-- Feature boxes -->
-          <div class="grid grid-cols-2 gap-4">
-            <div class="p-8 bg-lightAccent text-white rounded-2xl shadow-[8px_8px_0_0_rgba(0,0,0,0.15)] flex flex-col gap-4">
-              <div class="font-display text-6xl font-black">0€</div>
-              <div>
-                <div class="text-xs font-black uppercase tracking-widest mb-1 text-white/70">Mantenimiento mensual</div>
-                <p class="text-sm text-white/80 leading-relaxed">Sin servidores, sin licencias, sin sorpresas.</p>
-              </div>
+          <div class="p-5 grid grid-cols-3 gap-3">
+            <div class="col-span-3 flex items-center justify-between mb-1">
+              <p class="font-display font-black uppercase text-gray-900">Embudo de ventas</p>
+              <span class="text-[10px] font-black text-green-600 bg-green-50 px-2 py-1 rounded">+18% este mes</span>
             </div>
-            <div class="p-8 bg-gray-900 text-white rounded-2xl flex flex-col gap-4">
-              <div class="font-display text-6xl font-black text-lightAccent">100%</div>
-              <div>
-                <div class="text-xs font-black uppercase tracking-widest mb-1 text-gray-400">Propiedad</div>
-                <p class="text-sm text-gray-400 leading-relaxed">El código es tuyo. Si mañana quieres cambiar algo, puedes.</p>
+            {[['Nuevos', '12', 'bg-gray-100'], ['Propuesta', '7', 'bg-blue-50'], ['Ganados', '5', 'bg-green-50']].map(([t, n, bg]) => (
+              <div class={`${bg} rounded-xl p-3`}>
+                <p class="text-[10px] font-black uppercase tracking-widest text-gray-500">{t}</p>
+                <p class="font-display text-3xl font-black text-gray-900">{n}</p>
+                <div class="mt-2 space-y-1.5">
+                  <div class="h-2 bg-white rounded"></div>
+                  <div class="h-2 bg-white rounded w-3/4"></div>
+                </div>
               </div>
-            </div>
-            <div class="p-8 bg-gray-100 rounded-2xl flex flex-col gap-4">
-              <div class="font-display text-6xl font-black text-gray-900">24/7</div>
-              <div>
-                <div class="text-xs font-black uppercase tracking-widest mb-1 text-gray-500">Disponibilidad</div>
-                <p class="text-sm text-gray-500 leading-relaxed">Infraestructura Google con 99.9% uptime.</p>
-              </div>
-            </div>
-            <div class="p-8 bg-gray-100 rounded-2xl flex flex-col gap-4">
-              <div class="font-display text-6xl font-black text-gray-900">1-8</div>
-              <div>
-                <div class="text-xs font-black uppercase tracking-widest mb-1 text-gray-500">Semanas de entrega</div>
-                <p class="text-sm text-gray-500 leading-relaxed">Desde automatización simple hasta app completa.</p>
-              </div>
+            ))}
+            <div class="col-span-3 h-24 rounded-xl bg-gradient-to-t from-blue-50 to-white border border-gray-100 flex items-end gap-2 p-3">
+              {[30, 45, 38, 60, 52, 74, 68, 90].map((h) => <div class="flex-1 bg-lightAccent/80 rounded-t" style={`height:${h}%`}></div>)}
             </div>
           </div>
         </div>
-      </div>
-    </section>
 
-    <!-- ===================== PROJECTS / PORTFOLIO ===================== -->
-    <section id="proyectos" class="w-full py-24 bg-gray-50 border-y border-gray-200">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-16">
-          <div class="inline-block px-4 py-2 bg-gray-900 text-white font-bold text-xs uppercase tracking-widest mb-6">Portfolio real</div>
-          <h2 class="font-display text-4xl md:text-6xl font-black uppercase mb-4 text-gray-900">Casos de Éxito</h2>
-          <p class="text-xl text-gray-600 max-w-2xl mx-auto font-medium">Empresas reales. Problemas reales. Soluciones que siguen funcionando hoy.</p>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 w-full">
-          {projects.map((proj) => (
-            <div class="bg-white p-6 lg:p-8 border border-gray-200 rounded-2xl overflow-hidden hover:border-lightAccent transition-all duration-300 hover:-translate-y-1 hover:shadow-xl flex flex-col h-full group/card">
-              <div class="flex flex-wrap gap-2 mb-5">
-                {proj.tags.map(tag => (
-                  <span class="px-3 py-1.5 bg-blue-50 text-blue-700 text-[10px] font-bold uppercase tracking-widest rounded-md border border-blue-100">{tag}</span>
-                ))}
-              </div>
-              {proj.logo && (
-                <div class="mb-4">
-                  <img
-                    src={`/img/${proj.folder}/${proj.logo}`}
-                    alt={`${proj.title} Logo`}
-                    class={`h-10 md:h-12 w-auto object-contain drop-shadow-sm transition-transform group-hover/card:scale-105 ${!proj.title.toLowerCase().includes('montelimar') ? 'brightness-0 opacity-85' : ''}`}
-                  />
-                </div>
-              )}
-              <h3 class="font-display text-2xl font-bold mb-3 leading-tight text-gray-900 uppercase tracking-tight">{proj.title}</h3>
-              <p class="text-gray-600 mb-6 text-sm leading-relaxed flex-1" set:html={proj.desc}></p>
-              <ProjectGallery client:load project={proj} />
+        <div class="absolute bottom-0 right-0 w-56 bg-gray-900 rounded-[28px] p-3 shadow-2xl rotate-3">
+          <div class="bg-white rounded-[20px] p-4 text-center">
+            <p class="text-[10px] font-black uppercase tracking-widest text-gray-400">Entrada · Fila 4</p>
+            <p class="font-display font-black text-gray-900 uppercase mb-3">Concierto Gràcia</p>
+            <div class="mx-auto w-28 h-28 grid grid-cols-7 gap-0.5 p-1.5 bg-white border-2 border-gray-900 rounded">
+              {Array.from({ length: 49 }).map((_, i) => <span class={(i * 7 + (i % 5) * 3) % 3 === 0 || [0,1,2,7,9,14,15,16,4,5,6,11,13,18,19,20,28,29,30,35,37,42,43,44].includes(i) ? 'bg-gray-900' : 'bg-white'}></span>)}
             </div>
-          ))}
-        </div>
-
-        <!-- CTA after projects -->
-        <div class="mt-16 text-center bg-gray-900 rounded-2xl p-10 md:p-14">
-          <p class="text-gray-400 text-sm font-bold uppercase tracking-widest mb-3">¿Tu empresa podría ser el próximo caso de éxito?</p>
-          <h3 class="font-display text-3xl md:text-5xl font-black text-white uppercase mb-8">Hablemos de tu proyecto</h3>
-          <button id="projects-calendly-btn" class="group inline-flex items-center gap-3 px-10 py-5 bg-lightAccent text-white font-black text-lg uppercase tracking-widest rounded-sm hover:-translate-y-1 transition-all shadow-[6px_6px_0_0_rgba(0,85,255,0.3)]">
-            Agendar sesión estratégica gratuita
-            <span class="group-hover:translate-x-1 transition-transform">→</span>
-          </button>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===================== TESTIMONIALS ===================== -->
-    <section id="testimonios" class="py-24 bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-16">
-          <div class="inline-block px-4 py-2 bg-lightAccent text-white font-bold text-xs uppercase tracking-widest mb-6">Testimonioss</div>
-          <h2 class="font-display text-4xl md:text-5xl font-black uppercase text-gray-900">Lo que dicen nuestros clientes</h2>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {testimonials.map((t, i) => (
-            <div class={`p-8 md:p-10 rounded-2xl border-2 flex flex-col gap-6 ${i % 2 === 0 ? 'bg-gray-900 border-gray-800' : 'bg-white border-gray-200'}`}>
-              <!-- Stars -->
-              <div class="flex gap-1">
-                {[1,2,3,4,5].map(() => (
-                  <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                ))}
-              </div>
-              <!-- Quote -->
-              <blockquote class={`text-lg leading-relaxed font-medium italic ${i % 2 === 0 ? 'text-gray-200' : 'text-gray-700'}`}>
-                "{t.quote}"
-              </blockquote>
-              <!-- Author -->
-              <div class="flex items-center gap-4">
-                <div class={`w-12 h-12 rounded-full flex items-center justify-center font-display font-black text-xl ${i % 2 === 0 ? 'bg-lightAccent text-white' : 'bg-gray-900 text-white'}`}>
-                  {t.author.charAt(0)}
-                </div>
-                <div>
-                  <div class={`font-bold text-sm ${i % 2 === 0 ? 'text-white' : 'text-gray-900'}`}>{t.author}</div>
-                  <div class={`text-xs font-bold uppercase tracking-widest ${i % 2 === 0 ? 'text-lightAccent' : 'text-lightAccent'}`}>{t.company}</div>
-                  <div class={`text-xs ${i % 2 === 0 ? 'text-gray-500' : 'text-gray-400'}`}>{t.sector}</div>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- ===================== CONTACT + CALENDLY ===================== -->
-    <section id="contacto" class="py-24 bg-gray-900">
-      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid lg:grid-cols-2 gap-16 items-start">
-          <!-- Left: Calendly CTA -->
-          <div>
-            <div class="inline-block px-4 py-2 bg-lightAccent text-white font-bold text-xs uppercase tracking-widest mb-6">Habla con nosotros</div>
-            <h2 class="font-display text-4xl md:text-5xl font-black uppercase mb-6 text-white leading-tight">
-              Evalúa tu proyecto.<br/><span class="text-lightAccent">Gratis.</span> Sin compromiso.
-            </h2>
-            <p class="text-gray-400 text-lg mb-10 leading-relaxed">
-              Agendamos una sesión de 30 minutos. Revisamos tu operativa, identificamos qué se puede automatizar y te digo si tiene sentido o no. Sin rodeos.
-            </p>
-
-            <!-- What you get -->
-            <ul class="space-y-4 mb-10">
-              {["Análisis gratuito de tu operativa actual", "Propuesta de solución adaptada a tu sector", "Presupuesto sin compromiso en 48h", "Sin tecnicismos, explicación clara y directa"].map(item => (
-                <li class="flex items-center gap-3 text-gray-300 font-medium">
-                  <div class="w-6 h-6 bg-lightAccent/20 border border-lightAccent/30 rounded-full flex items-center justify-center flex-shrink-0">
-                    <svg class="w-3 h-3 text-lightAccent" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
-                  </div>
-                  {item}
-                </li>
-              ))}
-            </ul>
-
-            <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
-              <button id="cta-calendly-btn" class="group inline-flex items-center justify-center gap-3 px-10 py-5 bg-lightAccent text-white font-black text-lg uppercase tracking-widest rounded-sm hover:-translate-y-1 transition-all shadow-[6px_6px_0_0_rgba(0,85,255,0.3)] hover:shadow-[2px_2px_0_0_rgba(0,85,255,0.3)]">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
-                Agendar llamada
-                <span class="group-hover:translate-x-1 transition-transform">→</span>
-              </button>
-
-              <a href="https://wa.me/34602194331?text=Hola%20Mart%C3%ADn%2C%20necesito%20m%C3%A1s%20informaci%C3%B3n%20sobre%20tus%20servicios%20de%20automatizaci%C3%B3n." target="_blank" rel="noopener noreferrer" class="group inline-flex items-center justify-center gap-3 px-10 py-5 bg-[#25D366] hover:bg-[#128C7E] text-white font-black text-lg uppercase tracking-widest rounded-sm hover:-translate-y-1 transition-all shadow-[6px_6px_0_0_rgba(37,211,102,0.3)] hover:shadow-[2px_2px_0_0_rgba(37,211,102,0.3)]">
-                <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
-                  <path d="M12.01 2.003c-5.502 0-9.973 4.47-9.973 9.973 0 1.76.456 3.475 1.324 4.992L2 22l5.163-1.353a9.92 9.92 0 0 0 4.846 1.229c5.503 0 9.974-4.47 9.974-9.973 0-2.657-1.035-5.155-2.914-7.035a9.907 9.907 0 0 0-7.059-2.915zm0 1.702c2.2 0 4.27.856 5.828 2.415 1.558 1.558 2.415 3.627 2.415 5.856 0 4.566-3.715 8.28-8.28 8.28-1.442 0-2.857-.376-4.108-1.088l-.295-.175-3.056.8 1.01-2.977-.193-.306A8.204 8.204 0 0 1 3.712 12c0-4.565 3.715-8.28 8.28-8.28zm3.842 11.232c-.21-.105-1.246-.614-1.44-.684-.193-.07-.333-.105-.473.105-.14.21-.543.684-.666.824-.124.14-.246.158-.456.053-.21-.105-.888-.327-1.693-1.045-.625-.558-1.047-1.248-1.17-1.458-.123-.21-.013-.323.092-.427.095-.095.21-.246.315-.369.105-.123.14-.21.21-.35.07-.14.035-.263-.017-.369-.053-.105-.473-1.14-.648-1.56-.172-.413-.347-.35-.473-.35-.123-.005-.263-.005-.403-.005-.14 0-.368.053-.56.263-.193.21-.737.72-.737 1.754s.754 2.035.86 2.175c.105.14 1.484 2.266 3.597 3.178.503.217.895.347 1.2.443.51.162.974.139 1.34.084.408-.06 1.246-.51 1.421-1.002.175-.49.175-.91.123-1.002-.053-.092-.193-.14-.403-.245"/>
-                </svg>
-                WhatsApp directo
-                <span class="group-hover:translate-x-1 transition-transform">→</span>
-              </a>
-            </div>
-
-            <p class="mt-4 text-gray-600 text-sm">¿Prefieres escribir? Usa el formulario →</p>
-          </div>
-
-          <!-- Right: Contact form -->
-          <div class="bg-white rounded-2xl p-8 md:p-10">
-            <h3 class="font-display text-2xl font-black uppercase mb-2 text-gray-900">Envía tu consulta</h3>
-            <p class="text-gray-500 text-sm mb-8 font-medium">Te respondemos en menos de 24 horas.</p>
-
-            <form id="contact-form" action="https://formspree.io/f/xredqzoa" method="POST" class="space-y-5">
-              <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                <div>
-                  <label class="block text-xs font-black uppercase tracking-widest text-gray-700 mb-2">Nombre *</label>
-                  <input type="text" name="nombre" required placeholder="Tu nombre" class="w-full p-3.5 bg-gray-50 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-lightAccent transition-colors text-gray-900 font-medium text-sm">
-                </div>
-                <div>
-                  <label class="block text-xs font-black uppercase tracking-widest text-gray-700 mb-2">Email *</label>
-                  <input type="email" name="email" required placeholder="tu@empresa.com" class="w-full p-3.5 bg-gray-50 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-lightAccent transition-colors text-gray-900 font-medium text-sm">
-                </div>
-              </div>
-              <div>
-                <label class="block text-xs font-black uppercase tracking-widest text-gray-700 mb-2">Teléfono</label>
-                <input type="tel" name="telefono" placeholder="+34 600 000 000" class="w-full p-3.5 bg-gray-50 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-lightAccent transition-colors text-gray-900 font-medium text-sm">
-              </div>
-              <div>
-                <label class="block text-xs font-black uppercase tracking-widest text-gray-700 mb-2">¿En qué te puedo ayudar? *</label>
-                <textarea name="mensaje" required rows="5" placeholder="Cuéntanos qué problema quieres resolver o qué proceso te gustaría automatizar..." class="w-full p-3.5 bg-gray-50 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-lightAccent transition-colors text-gray-900 font-medium text-sm resize-none"></textarea>
-              </div>
-              <button type="submit" id="contact-submit-btn" class="w-full py-4 bg-gray-900 text-white font-black text-base uppercase tracking-widest rounded-lg hover:bg-lightAccent transition-all duration-300 flex items-center justify-center gap-2 group">
-                <span>Enviar consulta</span>
-                <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
-              </button>
-              <p class="text-center text-xs text-gray-400">🔒 Tu información es privada. No spam, nunca.</p>
-            </form>
+            <p class="mt-3 text-xs font-black text-green-600 flex items-center justify-center gap-1">✓ Válida · escaneada 21:04</p>
           </div>
         </div>
-      </div>
-    </section>
 
-    <!-- ===================== FAQ ===================== -->
-    <section id="faq" class="py-24 bg-white border-t border-gray-200">
-      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-14">
-          <div class="inline-block px-4 py-2 bg-gray-900 text-white font-bold text-xs uppercase tracking-widest mb-6">FAQ</div>
-          <h2 class="font-display text-4xl md:text-5xl font-black uppercase text-gray-900 leading-tight">Lo que todo el mundo<br/>nos pregunta</h2>
-        </div>
-        <div class="space-y-3" id="faq-container">
-          {[
-            { q: "¿Por qué no pago mantenimiento mensual?", a: "Porque nuestro software corre directamente sobre la infraestructura de Google Workspace. No hay servidores propios que mantener ni actualizar. El sistema vive en tu cuenta de Google y tú eres el propietario total del código y los datos." },
-            { q: "¿Es seguro usar Google Sheets como base de datos?", a: "Sí. Google Workspace cumple con ISO 27001, SOC 2 y SOC 3, con cifrado en tránsito y en reposo. Los permisos de acceso son granulares y auditables. Para la mayoría de PYMES es significativamente más seguro que un servidor propio." },
-            { q: "¿Cuánto cuesta un proyecto de automatización con Konte?", a: "Cada proyecto se presupuesta individualmente: desde mejoras de hojas de cálculo (300-500€) hasta aplicaciones web completas (2.500-8.000€). El pago es único. No hay cuotas mensuales ni costes de mantenimiento recurrentes." },
-            { q: "¿Puedo automatizar procesos sin saber programar?", a: "Sí. Nosotros nos encargamos de toda la programación en Google Apps Script. Tú describes el proceso que quieres automatizar y nosotros lo implementamos. Después te formamos para que puedas usarlo sin depender de ningún proveedor." },
-            { q: "¿En cuánto tiempo estará listo mi proyecto?", a: "Las automatizaciones simples en Google Sheets pueden estar listas en 1-2 semanas. Las aplicaciones web completas con AppScript se entregan en 4-8 semanas según la complejidad del proyecto." },
-            { q: "¿Funciona si ya tenemos muchos datos en Excel?", a: "Sí. Google Sheets importa archivos .xlsx de forma nativa conservando fórmulas, datos y formatos. Realizamos la migración y auditoría de tus archivos Excel existentes como parte del proyecto." }
-          ].map(item => (
-            <div class="faq-item border-2 border-gray-200 rounded-xl overflow-hidden transition-all duration-200">
-              <button class="faq-trigger w-full flex items-center justify-between p-6 text-left bg-white hover:bg-gray-50 transition-colors">
-                <span class="font-display font-bold text-base md:text-lg uppercase tracking-tight pr-4 text-gray-900">{item.q}</span>
-                <svg class="faq-icon w-6 h-6 text-lightAccent flex-shrink-0 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 5v14M5 12h14"/></svg>
-              </button>
-              <div class="faq-answer hidden px-6 pb-6 bg-white"><p class="text-gray-600 leading-relaxed">{item.a}</p></div>
+        <div class="absolute bottom-6 left-0 bg-white rounded-xl border border-gray-200 shadow-xl p-4 w-64 -rotate-2">
+          <div class="flex items-center gap-3">
+            <span class="w-10 h-10 rounded-lg bg-lightAccent text-white flex items-center justify-center font-black">10:30</span>
+            <div>
+              <p class="text-sm font-black text-gray-900">Cita confirmada</p>
+              <p class="text-xs text-gray-500">Fisioterapia · Sala 2 · Laura</p>
             </div>
-          ))}
-        </div>
-        <div class="mt-10 text-center">
-          <p class="text-gray-500 mb-4 font-medium">¿Tienes más preguntas?</p>
-          <button id="faq-calendly-btn" class="inline-flex items-center gap-2 px-8 py-4 bg-lightAccent text-white font-black text-sm uppercase tracking-widest rounded-sm hover:-translate-y-0.5 transition-all shadow-[4px_4px_0_0_rgba(0,0,0,0.15)]">
-            Habla directamente con nosotros →
-          </button>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===================== DEMO SECTION ===================== -->
-    <section id="demo" class="py-16 bg-gray-50 border-t border-gray-200">
-      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <div class="bg-gray-900 rounded-2xl p-8 md:p-12 relative overflow-hidden">
-          <div class="absolute -top-20 -right-20 w-64 h-64 bg-lightAccent/20 rounded-full blur-3xl pointer-events-none"></div>
-          <div class="relative">
-            <div class="inline-block px-4 py-2 bg-lightAccent text-white font-bold text-xs uppercase tracking-widest mb-6 rounded-full animate-pulse">Demo disponible ahora</div>
-            <h2 class="font-display text-3xl md:text-5xl font-black uppercase mb-4 text-white leading-tight">
-              Prueba una app real<br/><span class="text-lightAccent">antes de decidir</span>
-            </h2>
-            <p class="text-gray-400 text-lg mb-8 max-w-2xl mx-auto">
-              Navega por un dashboard de gestión real. Ve cómo funciona antes de comprometerte a nada.
-            </p>
-            <form id="demo-form" action="https://formspree.io/f/xredqzoa" method="POST" class="max-w-xl mx-auto flex flex-col sm:flex-row gap-3">
-              <input
-                type="email"
-                name="email"
-                required
-                placeholder="Introduce tu email profesional"
-                class="flex-1 p-4 bg-white/10 border-2 border-white/20 rounded-lg focus:outline-none focus:border-lightAccent transition-colors text-white font-medium placeholder:text-gray-500"
-              />
-              <button
-                type="submit"
-                class="bg-lightAccent text-white font-black uppercase px-8 py-4 rounded-lg hover:-translate-y-0.5 transition-all flex items-center justify-center gap-2 group whitespace-nowrap"
-              >
-                <span>Acceder a la demo</span>
-                <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
-              </button>
-            </form>
-            <p class="mt-4 text-gray-600 text-xs uppercase tracking-widest font-bold">Sin instalaciones · Acceso inmediato · Datos de prueba incluidos</p>
           </div>
+          <p class="mt-3 text-[11px] font-bold text-gray-500 bg-gray-50 rounded px-2 py-1.5">📲 Recordatorio enviado por WhatsApp</p>
         </div>
-      </div>
-    </section>
-
-    <!-- Toast -->
-    <div id="toast" class="fixed bottom-10 left-1/2 -translate-x-1/2 z-[200] opacity-0 translate-y-10 pointer-events-none transition-all duration-500">
-      <div class="bg-gray-900 text-white px-8 py-4 rounded-xl shadow-2xl font-black uppercase tracking-widest flex items-center gap-4 border border-gray-700">
-        <div class="bg-green-500 text-white rounded-full p-1">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
-        </div>
-        <span id="toast-message">¡Enviado con éxito!</span>
       </div>
     </div>
+  </section>
 
-  </main>
+  <!-- ===================== STATS ===================== -->
+  <section class="bg-gray-900 py-12 border-b border-gray-800">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+      <div>
+        <div class="font-display text-4xl md:text-5xl font-black text-lightAccent mb-2">+100</div>
+        <div class="text-xs font-black uppercase tracking-widest text-gray-400">Proyectos entregados</div>
+      </div>
+      <div>
+        <div class="font-display text-4xl md:text-5xl font-black text-white mb-2">48 h</div>
+        <div class="text-xs font-black uppercase tracking-widest text-gray-400">Para tu propuesta cerrada</div>
+      </div>
+      <div>
+        <div class="font-display text-4xl md:text-5xl font-black text-lightAccent mb-2">0€/mes</div>
+        <div class="text-xs font-black uppercase tracking-widest text-gray-400">Opción Google Workspace</div>
+      </div>
+      <div>
+        <div class="font-display text-4xl md:text-5xl font-black text-white mb-2">BCN</div>
+        <div class="text-xs font-black uppercase tracking-widest text-gray-400">España y Latinoamérica</div>
+      </div>
+    </div>
+  </section>
 
-  <!-- ===================== FOOTER ===================== -->
-  <footer class="bg-black text-gray-400 py-16 border-t border-gray-800">
+  <!-- ===================== SOLUCIONES ===================== -->
+  <section id="soluciones" class="py-20 md:py-24 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
-        <!-- Brand -->
-        <div>
-          <div class="flex items-center gap-3 mb-4">
-            <div class="w-10 h-10 bg-lightAccent text-white flex items-center justify-center font-display font-black text-2xl">K</div>
-            <span class="font-display font-bold text-2xl tracking-tight uppercase text-white">Konte</span>
-          </div>
-          <p class="text-sm text-gray-500 leading-relaxed mb-6">Software a medida para PYMES sobre Google Workspace. Sin costes mensuales. Sin dependencias.</p>
-          <button id="footer-calendly-btn" class="inline-flex items-center gap-2 px-6 py-3 bg-lightAccent text-white font-bold text-sm rounded-sm hover:-translate-y-0.5 transition-transform">
-            Agendar llamada →
-          </button>
-        </div>
-
-        <!-- Links -->
-        <div>
-          <h4 class="text-white font-black text-xs uppercase tracking-widest mb-6">Servicios</h4>
-          <ul class="space-y-3 text-sm">
-            <li><a href="/servicios#mejora-hojas-calculo" class="hover:text-white transition-colors">Optimización Google Sheets</a></li>
-            <li><a href="/servicios#automatizacion-appscript" class="hover:text-white transition-colors">Automatización AppScript</a></li>
-            <li><a href="/servicios#software-customizado" class="hover:text-white transition-colors">Web-Apps a Medida</a></li>
-            <li><a href="/servicios#dashboards-tiempo-real" class="hover:text-white transition-colors">Dashboards en Tiempo Real</a></li>
-            <li><a href="/servicios#formularios-leads-magnet" class="hover:text-white transition-colors">Lead Magnet & Captación</a></li>
-          </ul>
-        </div>
-
-        <!-- Contact -->
-        <div>
-          <h4 class="text-white font-black text-xs uppercase tracking-widest mb-6">Contacto</h4>
-          <ul class="space-y-3 text-sm">
-            <li><a href="#contacto" class="hover:text-white transition-colors flex items-center gap-2"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>Enviar consulta</a></li>
-            <li><a href="https://calendly.com/konte-contacto/30min" target="_blank" class="hover:text-white transition-colors flex items-center gap-2"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>Agendar llamada</a></li>
-            <li><a href="/blog" class="hover:text-white transition-colors">Blog y recursos</a></li>
-            <li><a href="/servicios" class="hover:text-white transition-colors">Ver todos los servicios</a></li>
-          </ul>
-        </div>
+      <div class="text-center mb-14">
+        <div class="inline-block px-4 py-2 bg-gray-900 text-white font-bold text-xs uppercase tracking-widest mb-6">Lo que desarrollamos</div>
+        <h2 class="font-display text-4xl md:text-6xl font-black uppercase mb-5 leading-tight text-gray-900">
+          El sistema que necesitas,<br/><span class="text-lightAccent">hecho para tu negocio</span>
+        </h2>
+        <p class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto font-medium">Nada de adaptar tu empresa a un programa genérico. Construimos la herramienta alrededor de cómo trabajas tú.</p>
       </div>
-
-      <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-600">
-        <p>&copy; {new Date().getFullYear()} Konte Solutions. Todos los derechos reservados.</p>
-        <div class="flex gap-6">
-          <a href="/" class="hover:text-white transition-colors">Inicio</a>
-          <a href="/servicios" class="hover:text-white transition-colors">Servicios</a>
-          <a href="/blog" class="hover:text-white transition-colors">Blog</a>
-        </div>
-      </div>
+      <SolutionCards />
     </div>
-  </footer>
+  </section>
 
-  <!-- ===================== STICKY CTA BAR ===================== -->
-  <div id="sticky-cta" class="fixed bottom-0 left-0 right-0 z-40 translate-y-full transition-transform duration-500 ease-in-out">
-    <div class="bg-gray-900 border-t-2 border-lightAccent shadow-2xl">
-      <div class="max-w-7xl mx-auto px-4 py-3 flex flex-col sm:flex-row items-center justify-between gap-3">
-        <div class="flex items-center gap-3 text-center sm:text-left">
-          <div class="hidden sm:flex w-8 h-8 bg-lightAccent/20 rounded-full items-center justify-center flex-shrink-0">
-            <svg class="w-4 h-4 text-lightAccent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+  <!-- ===================== DOS OPCIONES ===================== -->
+  <section id="modelo" class="py-20 md:py-24 bg-gray-50 border-y border-gray-200">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <TwoWays />
+    </div>
+  </section>
+
+  <!-- ===================== ANTES / DESPUÉS ===================== -->
+  <section id="comparativa" class="w-full py-12 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <BeforeAfterSlider client:visible />
+    </div>
+  </section>
+
+  <!-- ===================== PROYECTOS ===================== -->
+  <section id="proyectos" class="w-full py-20 md:py-24 bg-gray-50 border-y border-gray-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-14">
+        <div class="inline-block px-4 py-2 bg-gray-900 text-white font-bold text-xs uppercase tracking-widest mb-6">Portfolio real</div>
+        <h2 class="font-display text-4xl md:text-6xl font-black uppercase mb-4 text-gray-900">Casos de éxito</h2>
+        <p class="text-xl text-gray-600 max-w-2xl mx-auto font-medium">Empresas reales. Problemas reales. Sistemas que siguen funcionando hoy.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 w-full">
+        {PROJECTS.map((proj) => (
+          <div class="bg-white p-6 lg:p-8 border border-gray-200 rounded-2xl overflow-hidden hover:border-lightAccent transition-all duration-300 hover:-translate-y-1 hover:shadow-xl flex flex-col h-full group/card">
+            <div class="flex flex-wrap gap-2 mb-5">
+              {proj.tags.map(tag => (
+                <span class="px-3 py-1.5 bg-blue-50 text-blue-700 text-[10px] font-bold uppercase tracking-widest rounded-md border border-blue-100">{tag}</span>
+              ))}
+            </div>
+            <div class="mb-4">
+              <img
+                src={encodeURI(`/img/${proj.folder}/${proj.logo}`)}
+                alt={`Logo ${proj.title}`}
+                loading="lazy"
+                class={`h-10 md:h-12 w-auto object-contain drop-shadow-sm transition-transform group-hover/card:scale-105 ${proj.id !== 'montelimar' ? 'brightness-0 opacity-85' : ''}`}
+              />
+            </div>
+            <h3 class="font-display text-2xl font-bold mb-3 leading-tight text-gray-900 uppercase tracking-tight">{proj.title}</h3>
+            <p class="text-gray-600 mb-6 text-sm leading-relaxed flex-1" set:html={proj.desc}></p>
+            <ProjectGallery client:visible project={proj} />
           </div>
-          <p class="text-white text-sm font-bold">
-            <span class="text-lightAccent font-black">¿Listo para digitalizar tu empresa?</span>
-            <span class="hidden sm:inline text-gray-400"> · Sesión gratuita de 30 min sin compromiso</span>
-          </p>
-        </div>
-        <div class="flex items-center gap-3 flex-shrink-0">
-          <a href="#contacto" class="px-5 py-2 border border-gray-600 text-gray-300 font-bold text-xs uppercase tracking-widest hover:border-gray-400 hover:text-white transition-colors rounded-sm">
-            Escribir
+        ))}
+      </div>
+
+      <div class="mt-16 text-center bg-gray-900 rounded-2xl p-10 md:p-14">
+        <p class="text-gray-400 text-sm font-bold uppercase tracking-widest mb-3">¿Tu empresa podría ser el próximo caso de éxito?</p>
+        <h3 class="font-display text-3xl md:text-5xl font-black text-white uppercase mb-8">Hablemos de tu proyecto</h3>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="#contacto" class="group inline-flex items-center justify-center gap-3 px-10 py-5 bg-lightAccent text-white font-black text-lg uppercase tracking-widest rounded-sm hover:-translate-y-1 transition-all shadow-[6px_6px_0_0_rgba(0,85,255,0.3)]">
+            Pedir presupuesto <span class="group-hover:translate-x-1 transition-transform">→</span>
           </a>
-          <button id="sticky-calendly-btn" class="px-6 py-2.5 bg-lightAccent text-white font-black text-xs uppercase tracking-widest hover:-translate-y-0.5 transition-transform rounded-sm shadow-[3px_3px_0_0_rgba(0,0,0,0.3)]">
-            Agendar llamada →
-          </button>
-          <button id="sticky-close" class="text-gray-500 hover:text-white transition-colors p-1" aria-label="Cerrar">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+          <button type="button" data-calendly class="inline-flex items-center justify-center gap-3 px-10 py-5 bg-white/10 border border-white/20 text-white font-black text-lg uppercase tracking-widest rounded-sm hover:bg-white/20 transition-colors">
+            Agendar videollamada
           </button>
         </div>
       </div>
     </div>
-  </div>
+  </section>
 
-  <!-- ===================== SCRIPTS ===================== -->
-  <script>
-    // ---- Mobile Menu ----
-    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-    const mobileMenu = document.getElementById('mobile-menu');
-    mobileMenuBtn?.addEventListener('click', () => mobileMenu?.classList.toggle('hidden'));
-    mobileMenu?.querySelectorAll('a, button').forEach(el => {
-      el.addEventListener('click', () => mobileMenu?.classList.add('hidden'));
-    });
+  <!-- ===================== PROCESO + POR QUÉ ===================== -->
+  <section id="como-trabajamos" class="py-20 md:py-24 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-14">
+        <div class="inline-block px-4 py-2 bg-lightAccent text-white font-bold text-xs uppercase tracking-widest mb-6">Cómo trabajamos</div>
+        <h2 class="font-display text-4xl md:text-5xl font-black uppercase text-gray-900 leading-tight">De la idea al sistema funcionando,<br class="hidden md:block" /> sin sorpresas</h2>
+      </div>
+      <Process />
 
-    // ---- Load Calendly ----
-    const calLink = document.createElement('link');
-    calLink.href = 'https://assets.calendly.com/assets/external/widget.css';
-    calLink.rel = 'stylesheet';
-    document.head.appendChild(calLink);
+      <div class="mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {reasons.map((r) => (
+          <div class="flex gap-4">
+            <span class="w-8 h-8 flex-shrink-0 rounded-full bg-blue-50 text-lightAccent flex items-center justify-center font-black">✓</span>
+            <div>
+              <h3 class="font-bold text-gray-900 mb-1">{r.t}</h3>
+              <p class="text-sm text-gray-600 leading-relaxed">{r.d}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
 
-    const calScript = document.createElement('script');
-    calScript.src = 'https://assets.calendly.com/assets/external/widget.js';
-    calScript.async = true;
-    document.body.appendChild(calScript);
+  <!-- ===================== TESTIMONIOS ===================== -->
+  <section id="testimonios" class="py-20 md:py-24 bg-gray-50 border-t border-gray-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-14">
+        <div class="inline-block px-4 py-2 bg-lightAccent text-white font-bold text-xs uppercase tracking-widest mb-6">Testimonios</div>
+        <h2 class="font-display text-4xl md:text-5xl font-black uppercase text-gray-900">Lo que dicen nuestros clientes</h2>
+      </div>
 
-    function openCalendly() {
-      // @ts-ignore
-      if (window.Calendly) {
-        // @ts-ignore
-        window.Calendly.initPopupWidget({ url: 'https://calendly.com/konte-contacto/30min' });
-      } else {
-        window.open('https://calendly.com/konte-contacto/30min', '_blank');
-      }
-    }
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {testimonials.map((t, i) => (
+          <figure class={`p-8 md:p-10 rounded-2xl border-2 flex flex-col gap-6 ${i % 2 === 0 ? 'bg-gray-900 border-gray-800' : 'bg-white border-gray-200'}`}>
+            <div class="flex gap-1" aria-label="5 de 5 estrellas">
+              {[1,2,3,4,5].map(() => (
+                <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+              ))}
+            </div>
+            <blockquote class={`text-lg leading-relaxed font-medium italic ${i % 2 === 0 ? 'text-gray-200' : 'text-gray-700'}`}>
+              "{t.quote}"
+            </blockquote>
+            <figcaption class="flex items-center gap-4">
+              <div class={`w-12 h-12 rounded-full flex items-center justify-center font-display font-black text-xl ${i % 2 === 0 ? 'bg-lightAccent text-white' : 'bg-gray-900 text-white'}`}>
+                {t.author.charAt(0)}
+              </div>
+              <div>
+                <div class={`font-bold text-sm ${i % 2 === 0 ? 'text-white' : 'text-gray-900'}`}>{t.author}</div>
+                <div class="text-xs font-bold uppercase tracking-widest text-lightAccent">{t.company}</div>
+                <div class={`text-xs ${i % 2 === 0 ? 'text-gray-500' : 'text-gray-400'}`}>{t.sector}</div>
+              </div>
+            </figcaption>
+          </figure>
+        ))}
+      </div>
+    </div>
+  </section>
 
-    // All Calendly buttons
-    ['nav-calendly-btn', 'hero-calendly-btn', 'modelo-calendly-btn', 'projects-calendly-btn', 'cta-calendly-btn', 'faq-calendly-btn', 'sticky-calendly-btn', 'footer-calendly-btn', 'mobile-calendly-btn'].forEach(id => {
-      document.getElementById(id)?.addEventListener('click', (e) => {
-        e.preventDefault();
-        openCalendly();
-      });
-    });
+  <CrmTemplateBand />
 
-    // ---- Sticky CTA Bar ----
-    const stickyCta = document.getElementById('sticky-cta');
-    const stickyClose = document.getElementById('sticky-close');
-    let stickyDismissed = false;
-    let stickyShown = false;
+  <!-- ===================== DEMO ===================== -->
+  <section id="demo" class="py-16 bg-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <div class="bg-gray-900 rounded-2xl p-8 md:p-12 relative overflow-hidden">
+        <div class="absolute -top-20 -right-20 w-64 h-64 bg-lightAccent/20 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="relative" data-form-wrap>
+          <div class="inline-block px-4 py-2 bg-lightAccent text-white font-bold text-xs uppercase tracking-widest mb-6 rounded-full">Demo gratuita</div>
+          <h2 class="font-display text-3xl md:text-5xl font-black uppercase mb-4 text-white leading-tight">
+            Prueba una app real<br/><span class="text-lightAccent">antes de decidir</span>
+          </h2>
+          <p class="text-gray-400 text-lg mb-8 max-w-2xl mx-auto">
+            Navega por un panel de gestión real hecho por nosotros, con datos de prueba. Sin instalar nada.
+          </p>
+          <form id="demo-form" data-konte-form data-subject="Acceso a la demo desde konte.es" class="max-w-xl mx-auto" novalidate>
+            <input type="hidden" name="origen" value="Demo home" />
+            <input type="text" name="_honey" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true" />
+            <div class="flex flex-col sm:flex-row gap-3">
+              <label for="demo-email" class="sr-only">Tu email</label>
+              <input id="demo-email" type="email" name="email" required placeholder="Tu email profesional" class="flex-1 p-4 bg-white/10 border-2 border-white/20 rounded-lg focus:outline-none focus:border-lightAccent transition-colors text-white font-medium placeholder:text-gray-500" />
+              <button type="submit" class="bg-lightAccent text-white font-black uppercase px-8 py-4 rounded-lg hover:-translate-y-0.5 transition-all flex items-center justify-center gap-2 whitespace-nowrap">
+                <span data-submit-label>Acceder a la demo</span>
+              </button>
+            </div>
+            <p data-form-error-inline class="hidden mt-3 text-sm font-bold text-red-400"></p>
+          </form>
+          <div data-form-success class="hidden">
+            <a href="https://script.google.com/macros/s/AKfycbxuWkpv-4lN_CGTRu7py0q3qk-fEA9ENtBMUTzAgJ7gYxTVGIE-VRmke7y64IfyBtYwmA/exec" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-3 px-10 py-5 bg-lightAccent text-white font-black text-lg uppercase tracking-widest rounded-sm hover:-translate-y-1 transition-all">
+              Abrir la demo →
+            </a>
+          </div>
+          <div data-form-failure class="hidden">
+            <a href="https://script.google.com/macros/s/AKfycbxuWkpv-4lN_CGTRu7py0q3qk-fEA9ENtBMUTzAgJ7gYxTVGIE-VRmke7y64IfyBtYwmA/exec" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-3 px-10 py-5 bg-lightAccent text-white font-black text-lg uppercase tracking-widest rounded-sm">
+              Abrir la demo →
+            </a>
+            <a data-failure-whatsapp href="#" class="hidden"></a><a data-failure-email href="#" class="hidden"></a>
+          </div>
+          <p class="mt-4 text-gray-500 text-xs uppercase tracking-widest font-bold">Sin instalaciones · Acceso inmediato · Datos de prueba incluidos</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    stickyClose?.addEventListener('click', () => {
-      stickyDismissed = true;
-      stickyCta?.classList.add('translate-y-full');
-    });
-
-    window.addEventListener('scroll', () => {
-      if (stickyDismissed) return;
-      const scrolled = window.scrollY > 400;
-      // Hide if near contact section
-      const contactSection = document.getElementById('contacto');
-      const contactTop = contactSection?.getBoundingClientRect().top ?? 9999;
-      const nearContact = contactTop < window.innerHeight + 100;
-
-      if (scrolled && !nearContact && !stickyShown) {
-        stickyCta?.classList.remove('translate-y-full');
-        stickyShown = true;
-      } else if (nearContact && stickyShown) {
-        stickyCta?.classList.add('translate-y-full');
-        stickyShown = false;
-      } else if (!scrolled && stickyShown) {
-        stickyCta?.classList.add('translate-y-full');
-        stickyShown = false;
-      }
-    }, { passive: true });
-
-    // ---- Animated Counter ----
-    function animateCounter(el: HTMLElement, target: number, duration = 1800) {
-      let start = 0;
-      const step = (timestamp: number) => {
-        if (!start) start = timestamp;
-        const progress = Math.min((timestamp - start) / duration, 1);
-        const eased = 1 - Math.pow(1 - progress, 3);
-        el.textContent = Math.floor(eased * target) + '+';
-        if (progress < 1) requestAnimationFrame(step);
-      };
-      requestAnimationFrame(step);
-    }
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const el = entry.target as HTMLElement;
-          const target = parseInt(el.dataset.target || '0');
-          animateCounter(el, target);
-          observer.unobserve(el);
-        }
-      });
-    }, { threshold: 0.5 });
-
-    document.querySelectorAll('.counter-number').forEach(el => observer.observe(el));
-
-    // ---- FAQ Accordion ----
-    document.querySelectorAll('.faq-item').forEach(item => {
-      const trigger = item.querySelector('.faq-trigger');
-      const answer = item.querySelector('.faq-answer');
-      const icon = item.querySelector('.faq-icon');
-      trigger?.addEventListener('click', () => {
-        const isOpen = !answer?.classList.contains('hidden');
-        document.querySelectorAll('.faq-item').forEach(other => {
-          other.querySelector('.faq-answer')?.classList.add('hidden');
-          const oi = other.querySelector('.faq-icon') as HTMLElement;
-          if (oi) oi.style.transform = '';
-          other.classList.remove('border-lightAccent');
-          other.classList.add('border-gray-200');
-        });
-        if (!isOpen) {
-          answer?.classList.remove('hidden');
-          if (icon) (icon as HTMLElement).style.transform = 'rotate(45deg)';
-          item.classList.add('border-lightAccent');
-          item.classList.remove('border-gray-200');
-        }
-      });
-    });
-
-    // ---- Toast ----
-    function showToast(message: string) {
-      const toast = document.getElementById('toast');
-      const toastMsg = document.getElementById('toast-message');
-      if (!toast || !toastMsg) return;
-      toastMsg.textContent = message;
-      toast.classList.remove('opacity-0', 'translate-y-10', 'pointer-events-none');
-      setTimeout(() => toast.classList.add('opacity-0', 'translate-y-10', 'pointer-events-none'), 4000);
-    }
-
-    // ---- Contact Form ----
-    const contactForm = document.getElementById('contact-form') as HTMLFormElement;
-    contactForm?.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const btn = document.getElementById('contact-submit-btn') as HTMLButtonElement;
-      const originalHTML = btn.innerHTML;
-      btn.disabled = true;
-      btn.innerHTML = '<span>Enviando...</span>';
-      try {
-        const res = await fetch(contactForm.action, {
-          method: 'POST',
-          body: new FormData(contactForm),
-          headers: { 'Accept': 'application/json' }
-        });
-        if (res.ok) {
-          showToast('¡Consulta enviada! Te respondemos en menos de 24h.');
-          contactForm.reset();
-        } else throw new Error();
-      } catch {
-        showToast('Error al enviar. Inténtalo de nuevo.');
-      } finally {
-        btn.disabled = false;
-        btn.innerHTML = originalHTML;
-      }
-    });
-
-    // ---- Demo Form ----
-    const demoForm = document.getElementById('demo-form') as HTMLFormElement;
-    demoForm?.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const btn = demoForm.querySelector('button[type="submit"]') as HTMLButtonElement;
-      const originalHTML = btn.innerHTML;
-      btn.disabled = true;
-      btn.innerHTML = '<span>Cargando...</span>';
-      try {
-        const res = await fetch(demoForm.action, {
-          method: 'POST',
-          body: new FormData(demoForm),
-          headers: { 'Accept': 'application/json' }
-        });
-        if (res.ok) {
-          showToast('¡Acceso concedido! Abriendo demo...');
-          setTimeout(() => window.open('https://script.google.com/macros/s/AKfycbxuWkpv-4lN_CGTRu7py0q3qk-fEA9ENtBMUTzAgJ7gYxTVGIE-VRmke7y64IfyBtYwmA/exec', '_blank'), 1000);
-          demoForm.reset();
-        } else throw new Error();
-      } catch {
-        showToast('Error al procesar. Inténtalo de nuevo.');
-      } finally {
-        btn.disabled = false;
-        btn.innerHTML = originalHTML;
-      }
-    });
-
-    // ---- Navbar scroll shadow ----
-    const nav = document.getElementById('main-nav');
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 20) {
-        nav?.classList.add('shadow-md');
-      } else {
-        nav?.classList.remove('shadow-md');
-      }
-    }, { passive: true });
-  </script>
-
-  <style>
-    @keyframes fade-in {
-      from { opacity: 0; transform: translateY(-8px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    .animate-fade-in { animation: fade-in 0.6s ease-out forwards; }
-  </style>
-
+  <!-- ===================== FAQ ===================== -->
+  <section id="faq" class="py-20 md:py-24 bg-gray-50 border-t border-gray-200">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <div class="inline-block px-4 py-2 bg-gray-900 text-white font-bold text-xs uppercase tracking-widest mb-6">Preguntas frecuentes</div>
+        <h2 class="font-display text-4xl md:text-5xl font-black uppercase text-gray-900 leading-tight">Lo que todo el mundo<br/>nos pregunta</h2>
+      </div>
+      <Faq items={faqs} />
+    </div>
+  </section>
 </Layout>

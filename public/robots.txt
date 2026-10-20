@@ -1,4 +1,21 @@
+# konte.es: todo el contenido es público y puede indexarse,
+# incluidos los buscadores con IA (ChatGPT, Perplexity, Claude, Gemini...).
 User-agent: *
 Allow: /
 
-Sitemap: https://konte.es/sitemap-index.xml
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+Sitemap: https://www.konte.es/sitemap-index.xml

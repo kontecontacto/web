@@ -1,0 +1,36 @@
+---
+interface Props {
+  items: { q: string; a: string }[];
+  schema?: boolean;
+}
+
+const { items, schema = true } = Astro.props;
+
+const jsonLd = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: items.map((i) => ({
+    '@type': 'Question',
+    name: i.q,
+    acceptedAnswer: { '@type': 'Answer', text: i.a },
+  })),
+});
+---
+
+<div class="space-y-3">
+  {items.map((item) => (
+    <details class="faq group border-2 border-gray-200 rounded-xl overflow-hidden bg-white open:border-lightAccent transition-colors">
+      <summary class="flex items-center justify-between gap-4 p-5 md:p-6 cursor-pointer list-none hover:bg-gray-50 transition-colors">
+        <span class="font-display font-bold text-base md:text-lg uppercase tracking-tight text-gray-900">{item.q}</span>
+        <svg class="w-6 h-6 text-lightAccent flex-shrink-0 transition-transform duration-300 group-open:rotate-45" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 5v14M5 12h14"/></svg>
+      </summary>
+      <div class="px-5 md:px-6 pb-6 -mt-1"><p class="text-gray-600 leading-relaxed">{item.a}</p></div>
+    </details>
+  ))}
+</div>
+
+{schema && <script type="application/ld+json" set:html={jsonLd} />}
+
+<style>
+  summary::-webkit-details-marker { display: none; }
+</style>
