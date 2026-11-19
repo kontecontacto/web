@@ -3,6 +3,8 @@ import WhatsAppIcon from '../components/WhatsAppIcon.astro';
 import Layout from '../layouts/Layout.astro';
 import BeforeAfterSlider from '../components/BeforeAfterSlider.jsx';
 import ProjectGallery from '../components/ProjectGallery.jsx';
+import HeroShowcase from '../components/HeroShowcase.jsx';
+import PixelBlast from '../components/reactbits/PixelBlast.jsx';
 import SolutionCards from '../components/SolutionCards.astro';
 import TwoWays from '../components/TwoWays.astro';
 import Process from '../components/Process.astro';
@@ -74,12 +76,35 @@ const faqs = [
 >
   <!-- ===================== HERO ===================== -->
   <section class="relative bg-white overflow-hidden border-b border-gray-200">
-    <div class="absolute inset-0 bg-[linear-gradient(to_right,#e5e7eb_1px,transparent_1px),linear-gradient(to_bottom,#e5e7eb_1px,transparent_1px)] bg-[size:64px_64px] opacity-40 pointer-events-none"></div>
-    <div class="absolute top-0 right-0 w-[700px] h-[500px] bg-lightAccent/10 rounded-full blur-[120px] pointer-events-none"></div>
+    <!-- Subtle Grid + Interactive React Bits PixelBlast Background -->
+    <div class="absolute inset-0 bg-[linear-gradient(to_right,#e5e7eb_1px,transparent_1px),linear-gradient(to_bottom,#e5e7eb_1px,transparent_1px)] bg-[size:64px_64px] opacity-35 pointer-events-none"></div>
+    <div class="absolute inset-0 opacity-45">
+      <PixelBlast
+        client:load
+        variant="square"
+        pixelSize={3}
+        color="#0055FF"
+        accentColor="#06B6D4"
+        patternScale={2.4}
+        patternDensity={0.85}
+        softness={0.7}
+        glow={0.45}
+        twinkle={0.3}
+        drift={0.2}
+        hoverEffect="reveal"
+        hoverRadius={180}
+        enableRipples={true}
+        edgeFade={0.35}
+        lightMode={true}
+      />
+    </div>
+    <!-- Fluid Spectrum Ambient Glows -->
+    <div class="absolute -top-24 right-0 w-[750px] h-[550px] bg-gradient-to-br from-lightAccent/15 via-cyan-400/10 to-indigo-500/15 rounded-full blur-[130px] pointer-events-none hero-aurora"></div>
+    <div class="absolute bottom-0 left-1/4 w-[500px] h-[350px] bg-gradient-to-tr from-blue-500/10 via-sky-400/10 to-emerald-400/10 rounded-full blur-[110px] pointer-events-none"></div>
 
-    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-14 pb-24 md:pt-20 md:pb-28 grid lg:grid-cols-[1fr_1fr] gap-16 lg:gap-20 items-center">
-      <div>
-        <div class="inline-flex items-center gap-3 bg-blue-50 border border-blue-200 rounded-full px-4 py-1.5 mb-7">
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-20 md:pt-16 md:pb-28 grid lg:grid-cols-[0.95fr_1.05fr] gap-12 lg:gap-14 items-center">
+      <div class="relative z-10">
+        <div class="inline-flex items-center gap-3 bg-white/90 backdrop-blur-md border border-blue-200/80 shadow-sm rounded-full px-4 py-1.5 mb-7">
           <span class="flex h-2.5 w-2.5 relative">
             <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-lightAccent opacity-75"></span>
             <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-lightAccent"></span>
@@ -89,18 +114,27 @@ const faqs = [
 
         <h1 class="font-display font-black uppercase tracking-tighter text-gray-900 leading-[0.9] mb-6">
           <span class="block text-5xl sm:text-6xl lg:text-7xl">Software</span>
-          <span class="block text-5xl sm:text-6xl lg:text-7xl text-lightAccent">a medida</span>
+          <span class="block text-5xl sm:text-6xl lg:text-7xl hero-spectrum-text">a medida</span>
           <span class="block text-3xl sm:text-4xl lg:text-5xl mt-2">para tu empresa.</span>
         </h1>
 
-        <p class="text-lg md:text-xl text-gray-600 mb-8 max-w-2xl font-medium leading-relaxed">
+        <p class="text-lg md:text-xl text-gray-600 mb-7 max-w-2xl font-medium leading-relaxed">
           <strong class="text-gray-900">CRM, sistemas de turnos y citas, tickets con QR, inventario, ERP, fichaje…</strong> Si tu negocio lo necesita, lo desarrollamos. En la nube con servidor propio o sobre Google Workspace sin cuotas.
         </p>
 
-        <p class="text-xs font-black uppercase tracking-widest text-gray-500 mb-3">¿Qué quieres construir?</p>
+        <div class="flex items-center justify-between max-w-xl mb-3">
+          <p class="text-xs font-black uppercase tracking-widest text-gray-500">¿Qué quieres construir?</p>
+          <span class="hidden sm:inline-flex items-center gap-1.5 text-[11px] font-bold text-lightAccent">
+            <span class="w-1.5 h-1.5 rounded-full bg-lightAccent animate-pulse"></span>
+            Pasa el cursor para ver en vivo →
+          </span>
+        </div>
         <div class="flex flex-wrap gap-2 mb-9">
           {heroNeeds.map(([labelText, need]) => (
-            <a href="#contacto" data-need={need} class="px-4 py-2 bg-white border-2 border-gray-200 hover:border-lightAccent hover:text-lightAccent text-gray-800 font-bold text-sm rounded-full transition-colors">{labelText}</a>
+            <a href="#contacto" data-need={need} class="group/pill px-4 py-2 bg-white/90 backdrop-blur-sm border-2 border-gray-200 hover:border-lightAccent hover:bg-blue-50/60 hover:text-lightAccent hover:-translate-y-0.5 text-gray-800 font-bold text-sm rounded-full transition-all duration-200 shadow-sm hover:shadow-md flex items-center gap-1.5">
+              <span class="w-1.5 h-1.5 rounded-full bg-gray-300 group-hover/pill:bg-lightAccent transition-colors"></span>
+              {labelText}
+            </a>
           ))}
         </div>
 
@@ -119,53 +153,9 @@ const faqs = [
         </p>
       </div>
 
-      <!-- Composición visual: la demo real en ordenador y móvil -->
-      <div class="relative mt-4 lg:mt-0" aria-hidden="true">
-        <div class="absolute -inset-6 lg:-inset-10 bg-gradient-to-br from-lightAccent via-blue-500 to-indigo-700 rounded-[40px] rotate-2 opacity-95"></div>
-        <div class="absolute -inset-6 lg:-inset-10 rounded-[40px] rotate-2 bg-[linear-gradient(to_right,rgba(255,255,255,0.12)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.12)_1px,transparent_1px)] bg-[size:32px_32px]"></div>
-
-        <!-- Ordenador -->
-        <div class="relative hero-float-slow">
-          <div class="bg-gray-900 rounded-t-2xl p-2 pb-0 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.5)]">
-            <div class="flex items-center gap-1.5 px-2 py-1.5">
-              <span class="w-2.5 h-2.5 rounded-full bg-red-400"></span><span class="w-2.5 h-2.5 rounded-full bg-yellow-400"></span><span class="w-2.5 h-2.5 rounded-full bg-green-400"></span>
-              <span class="ml-3 flex-1 max-w-[260px] bg-gray-800 text-gray-400 text-[10px] font-bold rounded-md px-3 py-1 truncate">🔒 tuempresa.konte.app</span>
-            </div>
-            <img src="/img/demo/escritorio.webp" alt="" width="1280" height="800" fetchpriority="high" decoding="async" class="w-full h-auto rounded-t-lg" />
-          </div>
-          <div class="h-3 bg-gradient-to-b from-gray-300 to-gray-400 rounded-b-xl mx-[-3%]"></div>
-        </div>
-
-        <!-- Móvil -->
-        <div class="absolute -bottom-10 -right-3 sm:-right-6 w-[30%] max-w-[190px] hero-float">
-          <div class="bg-gray-900 rounded-[26px] p-1.5 shadow-[0_25px_50px_-12px_rgba(0,0,0,0.6)] ring-1 ring-white/10">
-            <img src="/img/demo/movil.webp" alt="" width="390" height="718" decoding="async" class="w-full h-auto rounded-[20px]" />
-          </div>
-        </div>
-
-        <!-- Avisos flotantes -->
-        <div class="absolute -top-5 -left-3 sm:-left-8 bg-white rounded-2xl shadow-2xl p-3 pr-4 flex items-center gap-3 hero-float">
-          <span class="w-10 h-10 rounded-xl bg-[#25D366] text-white flex items-center justify-center flex-shrink-0">
-            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91C21.95 6.45 17.5 2 12.04 2z"/></svg>
-          </span>
-          <span class="leading-tight">
-            <span class="block text-xs font-black text-gray-900">Recordatorio enviado</span>
-            <span class="block text-[11px] text-gray-500">Cita mañana 10:30 · Laura</span>
-          </span>
-        </div>
-
-        <div class="absolute top-[38%] -left-4 sm:-left-12 bg-white rounded-2xl shadow-2xl p-3 pr-4 hidden sm:flex items-center gap-3 hero-float-slow">
-          <span class="w-10 h-10 rounded-xl bg-lightAccent text-white flex items-center justify-center font-black">€</span>
-          <span class="leading-tight">
-            <span class="block text-xs font-black text-gray-900">Factura cobrada</span>
-            <span class="block text-[11px] text-green-600 font-bold">+ 1.250 € · hoy</span>
-          </span>
-        </div>
-
-        <div class="absolute -bottom-6 left-[8%] bg-gray-900 text-white rounded-2xl shadow-2xl px-4 py-3 hidden sm:block hero-float">
-          <span class="block text-[10px] font-black uppercase tracking-widest text-gray-400">Ventas este mes</span>
-          <span class="flex items-baseline gap-2"><span class="font-display text-2xl font-black">+18%</span><span class="text-green-400 text-xs font-bold">▲ vs. mes pasado</span></span>
-        </div>
+      <!-- Escenario Interactivo en Vivo: Konte OS + React Bits PixelBlast & Folder 3D -->
+      <div class="relative mt-2 lg:mt-0">
+        <HeroShowcase client:load />
       </div>
     </div>
   </section>
@@ -369,9 +359,31 @@ const faqs = [
   </section>
 <style is:global>
   @keyframes hero-float { 0%, 100% { transform: translateY(0) } 50% { transform: translateY(-10px) } }
+  @keyframes hero-spectrum {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+  @keyframes hero-aurora-drift {
+    0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+    50% { transform: translate3d(-40px, 25px, 0) scale(1.08); }
+  }
   .hero-float { animation: hero-float 5s ease-in-out infinite; }
   .hero-float-slow { animation: hero-float 7s ease-in-out infinite; animation-delay: -2s; }
-  @media (prefers-reduced-motion: reduce) { .hero-float, .hero-float-slow { animation: none; } }
+  .hero-spectrum-text {
+    background: linear-gradient(110deg, #0055FF 0%, #00C6FF 35%, #6366F1 68%, #0055FF 100%);
+    background-size: 220% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: hero-spectrum 6s ease infinite;
+  }
+  .hero-aurora {
+    animation: hero-aurora-drift 12s ease-in-out infinite;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .hero-float, .hero-float-slow, .hero-spectrum-text, .hero-aurora { animation: none; }
+  }
 </style>
 
 </Layout>
