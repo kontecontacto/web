@@ -77,7 +77,7 @@ const faqs = [
     <div class="absolute inset-0 bg-[linear-gradient(to_right,#e5e7eb_1px,transparent_1px),linear-gradient(to_bottom,#e5e7eb_1px,transparent_1px)] bg-[size:64px_64px] opacity-40 pointer-events-none"></div>
     <div class="absolute top-0 right-0 w-[700px] h-[500px] bg-lightAccent/10 rounded-full blur-[120px] pointer-events-none"></div>
 
-    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 md:py-20 grid lg:grid-cols-[1.1fr_0.9fr] gap-12 items-center">
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-14 pb-24 md:pt-20 md:pb-28 grid lg:grid-cols-[1fr_1fr] gap-16 lg:gap-20 items-center">
       <div>
         <div class="inline-flex items-center gap-3 bg-blue-50 border border-blue-200 rounded-full px-4 py-1.5 mb-7">
           <span class="flex h-2.5 w-2.5 relative">
@@ -119,54 +119,52 @@ const faqs = [
         </p>
       </div>
 
-      <!-- Composición visual: ejemplos de sistemas -->
-      <div class="relative hidden lg:block h-[520px]" aria-hidden="true">
-        <div class="absolute top-6 left-0 right-10 bg-white rounded-2xl border border-gray-200 shadow-2xl overflow-hidden">
-          <div class="h-8 bg-gray-100 border-b border-gray-200 flex items-center gap-1.5 px-4">
-            <span class="w-2.5 h-2.5 rounded-full bg-red-400"></span><span class="w-2.5 h-2.5 rounded-full bg-yellow-400"></span><span class="w-2.5 h-2.5 rounded-full bg-green-400"></span>
-            <span class="ml-3 text-[10px] font-bold text-gray-400">tuempresa.konte.app/crm</span>
+      <!-- Composición visual: la demo real en ordenador y móvil -->
+      <div class="relative mt-4 lg:mt-0" aria-hidden="true">
+        <div class="absolute -inset-6 lg:-inset-10 bg-gradient-to-br from-lightAccent via-blue-500 to-indigo-700 rounded-[40px] rotate-2 opacity-95"></div>
+        <div class="absolute -inset-6 lg:-inset-10 rounded-[40px] rotate-2 bg-[linear-gradient(to_right,rgba(255,255,255,0.12)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.12)_1px,transparent_1px)] bg-[size:32px_32px]"></div>
+
+        <!-- Ordenador -->
+        <div class="relative hero-float-slow">
+          <div class="bg-gray-900 rounded-t-2xl p-2 pb-0 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.5)]">
+            <div class="flex items-center gap-1.5 px-2 py-1.5">
+              <span class="w-2.5 h-2.5 rounded-full bg-red-400"></span><span class="w-2.5 h-2.5 rounded-full bg-yellow-400"></span><span class="w-2.5 h-2.5 rounded-full bg-green-400"></span>
+              <span class="ml-3 flex-1 max-w-[260px] bg-gray-800 text-gray-400 text-[10px] font-bold rounded-md px-3 py-1 truncate">🔒 tuempresa.konte.app</span>
+            </div>
+            <img src="/img/demo/escritorio.webp" alt="" width="1280" height="800" fetchpriority="high" decoding="async" class="w-full h-auto rounded-t-lg" />
           </div>
-          <div class="p-5 grid grid-cols-3 gap-3">
-            <div class="col-span-3 flex items-center justify-between mb-1">
-              <p class="font-display font-black uppercase text-gray-900">Embudo de ventas</p>
-              <span class="text-[10px] font-black text-green-600 bg-green-50 px-2 py-1 rounded">+18% este mes</span>
-            </div>
-            {[['Nuevos', '12', 'bg-gray-100'], ['Propuesta', '7', 'bg-blue-50'], ['Ganados', '5', 'bg-green-50']].map(([t, n, bg]) => (
-              <div class={`${bg} rounded-xl p-3`}>
-                <p class="text-[10px] font-black uppercase tracking-widest text-gray-500">{t}</p>
-                <p class="font-display text-3xl font-black text-gray-900">{n}</p>
-                <div class="mt-2 space-y-1.5">
-                  <div class="h-2 bg-white rounded"></div>
-                  <div class="h-2 bg-white rounded w-3/4"></div>
-                </div>
-              </div>
-            ))}
-            <div class="col-span-3 h-24 rounded-xl bg-gradient-to-t from-blue-50 to-white border border-gray-100 flex items-end gap-2 p-3">
-              {[30, 45, 38, 60, 52, 74, 68, 90].map((h) => <div class="flex-1 bg-lightAccent/80 rounded-t" style={`height:${h}%`}></div>)}
-            </div>
+          <div class="h-3 bg-gradient-to-b from-gray-300 to-gray-400 rounded-b-xl mx-[-3%]"></div>
+        </div>
+
+        <!-- Móvil -->
+        <div class="absolute -bottom-10 -right-3 sm:-right-6 w-[30%] max-w-[190px] hero-float">
+          <div class="bg-gray-900 rounded-[26px] p-1.5 shadow-[0_25px_50px_-12px_rgba(0,0,0,0.6)] ring-1 ring-white/10">
+            <img src="/img/demo/movil.webp" alt="" width="390" height="718" decoding="async" class="w-full h-auto rounded-[20px]" />
           </div>
         </div>
 
-        <div class="absolute bottom-0 right-0 w-56 bg-gray-900 rounded-[28px] p-3 shadow-2xl rotate-3">
-          <div class="bg-white rounded-[20px] p-4 text-center">
-            <p class="text-[10px] font-black uppercase tracking-widest text-gray-400">Entrada · Fila 4</p>
-            <p class="font-display font-black text-gray-900 uppercase mb-3">Concierto Gràcia</p>
-            <div class="mx-auto w-28 h-28 grid grid-cols-7 gap-0.5 p-1.5 bg-white border-2 border-gray-900 rounded">
-              {Array.from({ length: 49 }).map((_, i) => <span class={(i * 7 + (i % 5) * 3) % 3 === 0 || [0,1,2,7,9,14,15,16,4,5,6,11,13,18,19,20,28,29,30,35,37,42,43,44].includes(i) ? 'bg-gray-900' : 'bg-white'}></span>)}
-            </div>
-            <p class="mt-3 text-xs font-black text-green-600 flex items-center justify-center gap-1">✓ Válida · escaneada 21:04</p>
-          </div>
+        <!-- Avisos flotantes -->
+        <div class="absolute -top-5 -left-3 sm:-left-8 bg-white rounded-2xl shadow-2xl p-3 pr-4 flex items-center gap-3 hero-float">
+          <span class="w-10 h-10 rounded-xl bg-[#25D366] text-white flex items-center justify-center flex-shrink-0">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91C21.95 6.45 17.5 2 12.04 2z"/></svg>
+          </span>
+          <span class="leading-tight">
+            <span class="block text-xs font-black text-gray-900">Recordatorio enviado</span>
+            <span class="block text-[11px] text-gray-500">Cita mañana 10:30 · Laura</span>
+          </span>
         </div>
 
-        <div class="absolute bottom-6 left-0 bg-white rounded-xl border border-gray-200 shadow-xl p-4 w-64 -rotate-2">
-          <div class="flex items-center gap-3">
-            <span class="w-10 h-10 rounded-lg bg-lightAccent text-white flex items-center justify-center font-black">10:30</span>
-            <div>
-              <p class="text-sm font-black text-gray-900">Cita confirmada</p>
-              <p class="text-xs text-gray-500">Fisioterapia · Sala 2 · Laura</p>
-            </div>
-          </div>
-          <p class="mt-3 text-[11px] font-bold text-gray-500 bg-gray-50 rounded px-2 py-1.5">📲 Recordatorio enviado por WhatsApp</p>
+        <div class="absolute top-[38%] -left-4 sm:-left-12 bg-white rounded-2xl shadow-2xl p-3 pr-4 hidden sm:flex items-center gap-3 hero-float-slow">
+          <span class="w-10 h-10 rounded-xl bg-lightAccent text-white flex items-center justify-center font-black">€</span>
+          <span class="leading-tight">
+            <span class="block text-xs font-black text-gray-900">Factura cobrada</span>
+            <span class="block text-[11px] text-green-600 font-bold">+ 1.250 € · hoy</span>
+          </span>
+        </div>
+
+        <div class="absolute -bottom-6 left-[8%] bg-gray-900 text-white rounded-2xl shadow-2xl px-4 py-3 hidden sm:block hero-float">
+          <span class="block text-[10px] font-black uppercase tracking-widest text-gray-400">Ventas este mes</span>
+          <span class="flex items-baseline gap-2"><span class="font-display text-2xl font-black">+18%</span><span class="text-green-400 text-xs font-bold">▲ vs. mes pasado</span></span>
         </div>
       </div>
     </div>
@@ -369,4 +367,11 @@ const faqs = [
       <Faq items={faqs} />
     </div>
   </section>
+<style is:global>
+  @keyframes hero-float { 0%, 100% { transform: translateY(0) } 50% { transform: translateY(-10px) } }
+  .hero-float { animation: hero-float 5s ease-in-out infinite; }
+  .hero-float-slow { animation: hero-float 7s ease-in-out infinite; animation-delay: -2s; }
+  @media (prefers-reduced-motion: reduce) { .hero-float, .hero-float-slow { animation: none; } }
+</style>
+
 </Layout>

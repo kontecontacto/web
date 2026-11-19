@@ -37,7 +37,7 @@ export default function Dashboard({ go }: { go: (v: string) => void }) {
         ))}
       </div>
 
-      <div className="grid lg:grid-cols-3 gap-5">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
         <Card className="p-5 lg:col-span-2">
           <div className="flex items-center justify-between mb-4">
             <h2 className="font-display font-black uppercase">Facturación últimos 6 meses</h2>
