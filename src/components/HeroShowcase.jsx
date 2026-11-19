@@ -438,8 +438,8 @@ export default function HeroShowcase() {
         className="relative z-10 mx-auto"
       >
         {/* Top Interactive Module Switcher Bar */}
-        <div className="relative z-20 flex items-center justify-between gap-2 mb-3 px-1">
-          <div className="flex items-center gap-1.5 bg-slate-900/85 backdrop-blur-xl p-1 rounded-2xl border border-white/15 shadow-lg overflow-x-auto max-w-full">
+        <div className="relative z-20 flex items-center justify-between gap-2 mb-3 px-0.5">
+          <div className="flex items-center gap-1 bg-slate-900/85 backdrop-blur-xl p-1 rounded-2xl border border-white/15 shadow-lg">
             {MODULES.map((mod, idx) => {
               const isActive = idx === activeIndex;
               return (
@@ -447,7 +447,7 @@ export default function HeroShowcase() {
                   key={mod.id}
                   type="button"
                   onClick={() => setActiveIndex(idx)}
-                  className={`relative px-3 py-1.5 rounded-xl text-xs font-extrabold tracking-tight transition-all whitespace-nowrap flex items-center gap-1.5 ${
+                  className={`relative px-2.5 py-1.5 rounded-xl text-[11px] font-extrabold tracking-tight transition-all whitespace-nowrap flex items-center gap-1.5 ${
                     isActive
                       ? 'text-white shadow-md'
                       : 'text-slate-400 hover:text-white hover:bg-white/5'
@@ -469,8 +469,8 @@ export default function HeroShowcase() {
                         isActive ? 'bg-white animate-pulse' : 'bg-slate-600'
                       }`}
                     />
-                    <span className="hidden sm:inline">{mod.label}</span>
-                    <span className="sm:hidden">{mod.shortLabel}</span>
+                    <span className="hidden xl:inline">{mod.label}</span>
+                    <span className="xl:hidden">{mod.shortLabel}</span>
                   </span>
                 </button>
               );
@@ -479,7 +479,7 @@ export default function HeroShowcase() {
 
           <a
             href="/demo/"
-            className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/15 text-[11px] font-black text-white uppercase tracking-wider transition-all"
+            className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/15 text-[11px] font-black text-white uppercase tracking-wider transition-all whitespace-nowrap flex-shrink-0"
           >
             <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
             Demo en vivo →
@@ -730,12 +730,12 @@ export default function HeroShowcase() {
           </div>
         </div>
 
-        {/* ===================== FLOATING PARALLAX TOASTS & REACT BITS <FOLDER /> ===================== */}
+        {/* ===================== FLOATING PARALLAX TOAST & REACT BITS <FOLDER /> ===================== */}
 
-        {/* Top-Left Live Notification Toast */}
+        {/* Mid-Left Floating Notification Toast (sin tapar pestañas ni botones) */}
         <motion.div
           style={{ x: floatX, y: floatY, translateZ: '40px' }}
-          className="hidden sm:flex absolute -top-4 -left-5 z-30 bg-white/95 backdrop-blur-xl text-slate-900 rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.35)] border border-slate-200/80 p-3 pr-4 items-center gap-3 max-w-[290px]"
+          className="hidden sm:flex absolute top-[36%] -left-6 lg:-left-10 z-30 bg-white/95 backdrop-blur-xl text-slate-900 rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.3)] border border-slate-200/80 p-3 pr-4 items-center gap-3 max-w-[265px]"
         >
           <AnimatePresence mode="wait">
             <motion.div
@@ -782,7 +782,7 @@ export default function HeroShowcase() {
         {/* Bottom-Left Metric Spectrum Pill */}
         <motion.div
           style={{ x: counterFloatX, y: counterFloatY, translateZ: '50px' }}
-          className="mt-3 sm:mt-0 sm:absolute sm:-bottom-7 sm:left-4 z-30 bg-slate-900/95 backdrop-blur-xl text-white rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.5)] border border-white/15 px-4 py-3 flex items-center justify-between sm:block"
+          className="mt-3 sm:mt-0 sm:absolute sm:-bottom-7 sm:left-3 z-30 bg-slate-900/95 backdrop-blur-xl text-white rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.45)] border border-white/15 px-4 py-3 flex items-center justify-between sm:block"
         >
           <AnimatePresence mode="wait">
             <motion.div
@@ -807,50 +807,36 @@ export default function HeroShowcase() {
           </AnimatePresence>
         </motion.div>
 
-        {/* Bottom-Right Interactive React Bits <Folder /> Dock */}
+        {/* Bottom-Right Floating React Bits <Folder /> (sin fondo ni caja alrededor) */}
         <motion.div
           style={{ x: floatX, y: counterFloatY, translateZ: '65px' }}
-          className="mt-4 sm:mt-0 sm:absolute sm:-bottom-10 sm:-right-4 z-40 flex items-center justify-center"
+          className="mt-5 sm:mt-0 sm:absolute sm:-bottom-12 sm:-right-4 z-40 flex items-center justify-center"
         >
-          <div className="relative bg-slate-900/90 backdrop-blur-2xl border border-white/20 rounded-3xl px-4 pt-3 pb-3.5 shadow-[0_25px_60px_rgba(0,0,0,0.65)] flex items-center gap-3.5">
-            <div className="flex-shrink-0">
-              <Folder
-                label="Módulos"
-                mode="flap"
-                variant="glass"
-                color={activeModule.accent}
-                paperColor="#ffffff"
-                tabPosition="left"
-                layout="spread"
-                size={0.58}
-                frost={0.28}
-                tilt={0.85}
-                bounce={0.45}
-                peek={true}
-                intro={true}
-                draggable={true}
-                zoomOnClick={false}
-                items={folderItems}
-                onOpenChange={(open) => setFolderOpen(open)}
-                onItemClick={(_, idx) => {
-                  if (idx >= 0 && idx < MODULES.length) {
-                    setActiveIndex(idx);
-                  }
-                }}
-              />
-            </div>
-            <div className="pr-1 max-w-[135px]">
-              <span className="inline-flex items-center gap-1 text-[9px] font-black uppercase tracking-widest text-sky-400 bg-sky-500/10 border border-sky-400/20 px-2 py-0.5 rounded-full mb-1">
-                Interactivo 3D
-              </span>
-              <p className="text-xs font-black text-white leading-tight">
-                Abre la carpeta de sistemas
-              </p>
-              <p className="text-[10px] text-slate-400 leading-snug mt-0.5">
-                Haz clic o arrastra cada módulo para probarlo
-              </p>
-            </div>
-          </div>
+          <Folder
+            label="Módulos"
+            mode="flap"
+            variant="glass"
+            color={activeModule.accent}
+            paperColor="#ffffff"
+            tabPosition="left"
+            layout="spread"
+            size={0.72}
+            frost={0.25}
+            tilt={0.85}
+            bounce={0.45}
+            peek={true}
+            intro={true}
+            draggable={true}
+            zoomOnClick={false}
+            theme="light"
+            items={folderItems}
+            onOpenChange={(open) => setFolderOpen(open)}
+            onItemClick={(_, idx) => {
+              if (idx >= 0 && idx < MODULES.length) {
+                setActiveIndex(idx);
+              }
+            }}
+          />
         </motion.div>
       </motion.div>
     </div>

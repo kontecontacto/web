@@ -4,7 +4,6 @@ import Layout from '../layouts/Layout.astro';
 import BeforeAfterSlider from '../components/BeforeAfterSlider.jsx';
 import ProjectGallery from '../components/ProjectGallery.jsx';
 import HeroShowcase from '../components/HeroShowcase.jsx';
-import PixelBlast from '../components/reactbits/PixelBlast.jsx';
 import SolutionCards from '../components/SolutionCards.astro';
 import TwoWays from '../components/TwoWays.astro';
 import Process from '../components/Process.astro';
@@ -76,31 +75,8 @@ const faqs = [
 >
   <!-- ===================== HERO ===================== -->
   <section class="relative bg-white overflow-hidden border-b border-gray-200">
-    <!-- Subtle Grid + Interactive React Bits PixelBlast Background -->
-    <div class="absolute inset-0 bg-[linear-gradient(to_right,#e5e7eb_1px,transparent_1px),linear-gradient(to_bottom,#e5e7eb_1px,transparent_1px)] bg-[size:64px_64px] opacity-35 pointer-events-none"></div>
-    <div class="absolute inset-0 opacity-45">
-      <PixelBlast
-        client:load
-        variant="square"
-        pixelSize={3}
-        color="#0055FF"
-        accentColor="#06B6D4"
-        patternScale={2.4}
-        patternDensity={0.85}
-        softness={0.7}
-        glow={0.45}
-        twinkle={0.3}
-        drift={0.2}
-        hoverEffect="reveal"
-        hoverRadius={180}
-        enableRipples={true}
-        edgeFade={0.35}
-        lightMode={true}
-      />
-    </div>
-    <!-- Fluid Spectrum Ambient Glows -->
-    <div class="absolute -top-24 right-0 w-[750px] h-[550px] bg-gradient-to-br from-lightAccent/15 via-cyan-400/10 to-indigo-500/15 rounded-full blur-[130px] pointer-events-none hero-aurora"></div>
-    <div class="absolute bottom-0 left-1/4 w-[500px] h-[350px] bg-gradient-to-tr from-blue-500/10 via-sky-400/10 to-emerald-400/10 rounded-full blur-[110px] pointer-events-none"></div>
+    <!-- Rejilla sutil de fondo; el espectro PixelBlast vive solo detrás de la pantalla de ejemplo -->
+    <div class="absolute inset-0 bg-[linear-gradient(to_right,#e5e7eb_1px,transparent_1px),linear-gradient(to_bottom,#e5e7eb_1px,transparent_1px)] bg-[size:64px_64px] opacity-40 pointer-events-none"></div>
 
     <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-20 md:pt-16 md:pb-28 grid lg:grid-cols-[0.95fr_1.05fr] gap-12 lg:gap-14 items-center">
       <div class="relative z-10">
